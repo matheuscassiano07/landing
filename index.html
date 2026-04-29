@@ -2697,15 +2697,10 @@
     }
 
     /* ============================================================
-       Site shell · LEDs · parallax float targets
+       Decorative LEDs · subtle overlay
        ============================================================ */
-    .site-stage {
-      position: relative;
-      isolation: isolate;
-    }
-
-    .site-stage > main,
-    .site-stage > footer {
+    body > main,
+    body > footer {
       position: relative;
       z-index: 1;
     }
@@ -2779,19 +2774,6 @@
       animation-delay: -4.1s;
     }
 
-    .hero__parallax-slot {
-      position: absolute;
-      inset: 0;
-      z-index: -2;
-      overflow: hidden;
-      pointer-events: none;
-      will-change: transform;
-    }
-
-    .site-scroll-float {
-      will-change: transform;
-    }
-
     /* ============================================================
        Reduced motion · kill all non-essential animation
        ============================================================ */
@@ -2821,15 +2803,10 @@
       .site-led-layer {
         display: none;
       }
-
-      .site-scroll-float {
-        will-change: auto;
-      }
     }
   </style>
 </head>
 <body>
-  <div id="site-stage" class="site-stage">
   <div class="site-led-layer" aria-hidden="true">
     <span class="site-led"></span>
     <span class="site-led"></span>
@@ -2906,29 +2883,18 @@
 
   <main>
     <section class="hero" id="hero" aria-labelledby="hero-title">
-      <div
-        class="hero__parallax-slot site-scroll-float"
-        data-float-sx="16"
-        data-float-sy="24"
+      <img
+        src="assets/hero-bg.jpg"
+        alt=""
+        class="hero__bg"
         aria-hidden="true">
-        <img
-          src="assets/hero-bg.jpg"
-          alt=""
-          class="hero__bg"
-          aria-hidden="true">
-      </div>
 
       <div class="hero__top-brand">
         <img src="assets/logo-preta.png" alt="" width="120" height="48" decoding="async">
       </div>
 
       <div class="hero__content">
-        <h1
-          class="hero__title site-scroll-float"
-          id="hero-title"
-          data-float-sx="14"
-          data-float-sy="11"
-          data-i18n="hero.title">
+        <h1 class="hero__title" id="hero-title" data-i18n="hero.title">
           A plataforma que organiza atendimento, equipe, obras e prazos para escritórios de arquitetura e engenharia.
         </h1>
         <p class="hero__credibility" data-i18n="hero.credibility">
@@ -2963,7 +2929,7 @@
           <div class="zira__lead">
             <div class="zira__brand">
               <div class="zira__title-group">
-                <h2 class="zira__title site-scroll-float" id="zira-title" data-float-sx="9" data-float-sy="10">
+                <h2 class="zira__title" id="zira-title">
                   Zira AI
                 </h2>
               </div>
@@ -2971,8 +2937,7 @@
                 <img
                   src="assets/zira-mascot.png"
                   alt=""
-                  class="zira__image zira__image--aside anim-zira-thumb site-scroll-float"
-                  data-float-phase="2.2"
+                  class="zira__image zira__image--aside anim-zira-thumb"
                   width="132"
                   height="132"
                   loading="lazy"
@@ -2990,8 +2955,7 @@
             src="assets/zira-mascot.png"
             data-i18n-attr="alt:zira.imageAlt"
             alt=""
-            class="zira__image zira__image--featured anim-zira-hero site-scroll-float"
-            data-float-phase="0.8"
+            class="zira__image zira__image--featured anim-zira-hero"
             loading="lazy">
         </div>
       </div>
@@ -3014,10 +2978,8 @@
       </div>
       <div class="problem__header" data-reveal>
         <h2
-          class="section-title section-title--centered site-scroll-float"
+          class="section-title section-title--centered"
           id="problem-title"
-          data-float-sx="8"
-          data-float-sy="7"
           data-i18n="problem.title">
           O problema não está só em captar clientes. Está em perder controle da operação.
         </h2>
@@ -3066,9 +3028,8 @@
               <div class="device-shell__screen">
                 <span class="device-shell__island" aria-hidden="true"></span>
                 <img
-                  class="device-shell__img site-scroll-float"
+                  class="device-shell__img"
                   src="assets/screens/plug-iphone.svg"
-                  data-float-phase="1.6"
                   alt=""
                   width="390"
                   height="844"
@@ -3098,10 +3059,8 @@
       </div>
       <div class="workflow__container">
         <h2
-          class="section-title section-title--centered site-scroll-float"
+          class="section-title section-title--centered"
           id="workflow-title"
-          data-float-sx="8"
-          data-float-sy="7"
           data-i18n="workflow.title"
           data-reveal>
           Do primeiro contato à entrega da obra, tudo conectado.
@@ -3155,10 +3114,9 @@
                   <span class="workflow-flow__index" aria-hidden="true">02</span>
                   <div class="workflow-flow__icon-slot workflow-flow__icon-slot--zira" aria-hidden="true">
                     <img
-                      class="workflow-flow__zira site-scroll-float"
+                      class="workflow-flow__zira"
                       src="assets/avatar-zira.png"
                       alt=""
-                      data-float-phase="3.1"
                       data-i18n-attr="alt:workflow.ziraMascotAlt"
                       loading="lazy"
                       width="52"
@@ -3286,10 +3244,8 @@
     <section class="tracking" id="tracking" aria-labelledby="tracking-title">
       <div class="tracking__container">
         <h2
-          class="section-title section-title--centered site-scroll-float"
+          class="section-title section-title--centered"
           id="tracking-title"
-          data-float-sx="8"
-          data-float-sy="7"
           data-i18n="tracking.title"
           data-reveal>
           Saiba o que cada arquiteto, engenheiro e membro da equipe está fazendo, o que está atrasado e o que exige atenção agora.
@@ -3310,10 +3266,8 @@
     <section class="calendar" id="calendar" aria-labelledby="calendar-title">
       <div class="calendar__container">
         <h2
-          class="section-title section-title--centered site-scroll-float"
+          class="section-title section-title--centered"
           id="calendar-title"
-          data-float-sx="8"
-          data-float-sy="7"
           data-i18n="calendar.title"
           data-reveal>
           Prazos, reuniões, retornos e etapas em uma única visualização.
@@ -3329,9 +3283,8 @@
               <span class="device-shell__cam" aria-hidden="true"></span>
               <div class="device-shell__screen device-shell__screen--laptop">
                 <img
-                  class="device-shell__img site-scroll-float"
+                  class="device-shell__img"
                   src="assets/screens/plug-macbook.svg"
-                  data-float-phase="1.3"
                   alt=""
                   width="1440"
                   height="900"
@@ -3356,10 +3309,8 @@
       <div class="blog-teaser__header">
         <div>
           <h2
-            class="section-title site-scroll-float"
+            class="section-title"
             id="blog-title"
-            data-float-sx="8"
-            data-float-sy="7"
             data-i18n="blogSection.title"
             data-reveal>
             Conteúdo para quem lidera obra
@@ -3397,10 +3348,8 @@
     <section class="faq" id="faq" aria-labelledby="faq-title">
       <div class="faq__container">
         <h2
-          class="section-title section-title--centered site-scroll-float"
+          class="section-title section-title--centered"
           id="faq-title"
-          data-float-sx="8"
-          data-float-sy="7"
           data-i18n="faq.title"
           data-reveal>
           Perguntas frequentes
@@ -3493,10 +3442,8 @@
     <section class="adapt" aria-labelledby="adapt-title">
       <div class="adapt__container">
         <h2
-          class="section-title section-title--centered site-scroll-float"
+          class="section-title section-title--centered"
           id="adapt-title"
-          data-float-sx="8"
-          data-float-sy="7"
           data-i18n="adapt.title"
           data-reveal>
           Cada escritório opera de um jeito. O sistema se adapta a isso.
@@ -3506,8 +3453,7 @@
             src="assets/logo-branca.png"
             data-i18n-attr="alt:adapt.logoAlt"
             alt="ZIRA AI"
-            class="adapt__logo site-scroll-float"
-            data-float-phase="0.4"
+            class="adapt__logo"
             loading="lazy">
         </div>
       </div>
@@ -3516,7 +3462,7 @@
     <section class="cta" id="cta" aria-labelledby="cta-title">
       <div class="cta__container">
         <div class="cta__inner" data-reveal>
-          <h2 class="cta__title site-scroll-float" id="cta-title" data-float-sx="10" data-float-sy="9" data-i18n="cta.title">
+          <h2 class="cta__title" id="cta-title" data-i18n="cta.title">
             Saia na frente na operação, sem abrir mão do que já funciona no escritório.
           </h2>
           <p class="cta__desc" data-i18n="cta.desc">
@@ -3557,7 +3503,6 @@
       <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.149-.197.297-.767.967-.94 1.164-.173.198-.347.223-.644.074-.297-.15-1.255-.463-2.39-1.475-.884-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.134.297-.347.446-.52.149-.173.198-.297.297-.495.099-.198.05-.371-.025-.52-.074-.148-.673-1.618-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.569-.01-.198 0-.52.074-.792.372-.271.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.226 1.359.195 1.871.118.571-.084 1.758-.719 2.006-1.413.248-.694.248-1.288.173-1.413-.074-.124-.272-.197-.569-.347m-5.419 7.403h-.004a9.87 9.87 0 01-5.03-1.378l-.361-.215-3.741.983.998-3.648-.236-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.887-9.884 2.641 0 5.119 1.03 6.986 2.897a9.825 9.825 0 012.892 7.003c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.688 5.949L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
     </svg>
   </a>
-  </div>
 
   <div id="schedule-modal" class="schedule-modal" hidden>
     <button
@@ -3726,7 +3671,6 @@
 
   <script src="assets/i18n.js"></script>
   <script src="assets/leads.js"></script>
-  <script src="assets/site-motion.js"></script>
   <script>
     (function () {
       'use strict';
