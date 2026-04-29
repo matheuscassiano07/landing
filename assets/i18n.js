@@ -67,10 +67,33 @@
       workflow: {
         title: 'Do primeiro contato à entrega da obra, tudo conectado.',
         caption:
-          'O atendimento deixa de depender de memória, repasse informal e conversa perdida. O cliente entra, o contexto é organizado, a operação ganha continuidade e cada etapa passa a ser acompanhada com mais coerência.',
+          'Sete pontos ligados como um ciclo · do primeiro ping no WhatsApp à equipe trabalhando com o mesmo panorama, incluindo priorização ativa, mensagens quando o cliente é difícil, follow-ups e projeto integrado a alertas.',
         kicker:
-          'Do primeiro contato à entrega, com contexto, continuidade e rastreabilidade.',
-        imageAlt: 'Do primeiro contato à obra, em um fluxo contínuo',
+          'Setas mostram sequência entre etapas · curva conecta a última volta do atendimento à mesma entrada do fluxo.',
+        flowAria:
+          'Fluxo visual em duas linhas com setas e curvas ligando sete etapas do WhatsApp à operação reunida.',
+        s1Title: 'Lead no WhatsApp',
+        s1Body:
+          'O primeiro contato acontece no canal em que o cliente já está, sem fricção e sem perder velocidade no atendimento.',
+        s2Title: 'ZIRA AI organiza a demanda',
+        s2Body:
+          'Mesmo quando o cliente não consegue explicar direito o que quer, o Zira ajuda a estruturar a solicitação e transforma uma conversa solta em contexto útil para o time.',
+        s3Title: 'Intenção clara, prioridade definida',
+        s3Body:
+          'O sistema identifica o que o lead quer, separa curiosos de oportunidades reais e ajuda o escritório a decidir o que merece atenção primeiro.',
+        s4Title: 'Sugestões de resposta para atendimentos difíceis',
+        s4Body:
+          'Quando o cliente é confuso, exigente ou difícil de conduzir, o sistema ajuda o time com respostas mais claras, profissionais e estratégicas.',
+        s5Title: 'Follow-up sem depender de memória',
+        s5Body:
+          'Se o contato demonstra interesse, responde e depois some, o fluxo não morre. O sistema ajuda a retomar no momento certo, sem deixar oportunidade esfriar.',
+        s6Title: 'Projeto com etapas e alertas',
+        s6Body:
+          'Quando o atendimento avança, a operação já nasce organizada, com fases rastreáveis, checklists, agenda e alertas conectados ao mesmo fluxo.',
+        s7Title: 'Equipe alinhada no mesmo lugar',
+        s7Body:
+          'Prazos, tarefas e histórico deixam de ficar espalhados. O time enxerga o que precisa acontecer agora e decide com mais clareza, menos ruído e menos retrabalho.',
+        ziraMascotAlt: 'ZIRA AI',
       },
       tracking: {
         title:
@@ -157,11 +180,39 @@
         blog: 'Blog',
         faq: 'FAQ',
         contact: 'Contato',
+        adminLeads: 'Painel · leads',
       },
       wa: {
         aria: 'Atendimento ZIRA AI no WhatsApp',
         message:
           'Olá! Gostaria de falar sobre o ZIRA AI.',
+      },
+      schedule: {
+        title: 'Agendar conversa',
+        subtitle:
+          'Informe nome, e-mail e telefone. Enviaremos uma confirmação e entraremos em contato por esses dados. Empresa opcional.',
+        labelName: 'Nome completo',
+        labelEmail: 'E-mail',
+        labelPhone: 'Telefone (com DDD)',
+        labelCompany: 'Empresa ou escritório',
+        companyOptional: 'opcional',
+        btnSubmit: 'Enviar dados',
+        btnCancel: 'Cancelar',
+        errRequired: 'Preencha este campo.',
+        errEmail: 'Informe um e-mail válido.',
+        errPhone: 'Informe um telefone com ao menos 8 dígitos.',
+        errSubmit: 'Não foi possível registrar agora. Tente de novo.',
+        submitting: 'Enviando…',
+        successTitle: 'Recebemos tudo!',
+        successSubtitle:
+          'Em breve entraremos em contato pelo e-mail ou telefone que você informou.',
+        btnDone: 'Fechar',
+        intro: 'Olá! Gostaria de agendar uma conversa sobre o ZIRA AI.',
+        lineName: 'Nome',
+        lineEmail: 'E-mail',
+        linePhone: 'Telefone',
+        lineCompany: 'Empresa',
+        ariaCloseOverlay: 'Fechar',
       },
       schema: {
         organizationName: 'M2 SCALE',
@@ -169,15 +220,18 @@
           'Plataforma que organiza atendimento, equipe, obras e prazos para escritórios de arquitetura e engenharia, com atendimento integrado via WhatsApp.',
       },
       blogPage: {
-        metaTitle: 'Blog · ZIRA AI',
+        metaTitle:
+          'Blog ZIRA AI · Gestão de escritório, obra, WhatsApp e engenharia',
         metaDesc:
-          'Artigos sobre gestão de escritório de arquitetura e engenharia, operação em obra e comunicação com cliente, ZIRA AI.',
-        ogTitle: 'Blog · ZIRA AI',
+          'Artigos sobre gestão de escritório de arquitetura e engenharia: retrabalho no WhatsApp, priorização da equipe, jornada do cliente na obra e LGPD. Conteúdo para escalar operação sem perder contexto.',
+        ogTitle:
+          'Blog ZIRA AI · Operação em escritório e obra',
         ogDesc:
-          'Conteúdo para quem lidera obra e operação em escritório de arquitetura e engenharia.',
-        twitterTitle: 'Blog · ZIRA AI',
+          'Guias sobre retrabalho, gestão à vista, expectativa do cliente e compliance — para escritórios que usam WhatsApp mas precisam de previsibilidade.',
+        twitterTitle:
+          'Blog ZIRA AI · Gestão de escritório e obra',
         twitterDesc:
-          'Gestão de escritório, obra e relacionamento com cliente, ZIRA AI.',
+          'Gestão de escritório, obra, relacionamento com cliente e melhores práticas LGPD para arquitetura e engenharia.',
         navBrandAria: 'M2 SCALE · página inicial',
         navBack: '← Voltar ao site',
         heroTitle: 'Blog',
@@ -204,8 +258,84 @@
           'O lead quer velocidade e o time quer precisão. Narrar etapas de forma objetiva (“o que já foi decidido”, “o que falta pra fechar o pacote atual”) atravessa períodos lentos sem destruir confiança. Silêncio pesa mais que uma data honesta bem explicada.',
         post3p2:
           'Fluxos bem desenhados deixam o cliente enxergar o caminho do primeiro “oi” até a obra em execução, sem depender que alguém lembre de atualizar grupo à mão todas as tardes.',
+        post1p3:
+          'Em escritórios médios e grandes, o custo real do retrabalho não é só hora técnica: é prazo perdido com fornecedor, revisão em cima da hora e estresse nas relações com o cliente e com o canteiro. Registrar decisão única por canal evita aquele pingue-pongue de “acho que combinamos outra coisa”.',
+        post1p4:
+          'Se o WhatsApp é o sistema, o mínimo viável para SEO operacional é: um dono por conversa até fechar escopo; histórico pesquisável; e prioridade explícita. Ferramentas como o Zira sustentam isso ao ligar inbox a etapa da obra sem exigir que o time mude de canal da noite para o dia.',
+        post2p3:
+          'Indicadores leves já ajudam: fila média por responsável, obra com mais dias sem atualização oficial e SLA interno só para retrorno ao cliente, não para todas as mensagens internas.',
+        post2p4:
+          'Quando existe painel único ligado ao fluxo que o time já usa, o gestor deixa de ser “filtro humano” e passa a atuar só onde há exceção. Isso é exatamente o tipo de ganho que buscamos ao falar em gestão de obra integrada ao atendimento no escritório.',
+        post3p3:
+          'Normalize uma cadência simples — por exemplo segunda e quinta para obras críticas, semanalmente para cobrança de pagamento quando aplicável — e comunique esse ritmo ao cliente cedo.',
+        post3p4:
+          'O Google e clientes avaliam bem páginas e processos onde o escritório parece estar no comando da informação; em SEO de reputação aplicado à obra, consistência conta tanto quanto velocidade pontual.',
+        post4meta: 'Priorização · 7 min',
+        post4h2:
+          'Caixa de entrada sem dono: como priorizar o que entra antes de virar problema em obra',
+        post4p1:
+          'Nem todo lead é igual e nem toda urgência gritada no grupo é importante. Um critério claro por tipo de obra — reforma rápida, novo empreendimento, corporativo — evita que a equipe viva em modo “turbo” eterno.',
+        post4p2:
+          'Listas Kanban ou filas nomeadas já melhoram, desde que cada card tenha dono único até o próximo estado. Mensagens perdidas são sintoma quase sempre de backlog sem ordenação.',
+        post4p3:
+          'Ao integrar atendimento a etapas reais da obra — da proposta à visita técnica — você reduz a sensação caótica tanto para dentro quanto para fora do escritório, o que impacta marca e até buscas relacionadas ao nome do estúdio quando clientes recomendam o processo, não só o portfólio.',
+        post4p4:
+          'Por fim: medir retrabalho por tipo de projeto mostra onde investir playbook ou modelo de briefing, em vez de “processo genérico” que não pega bem em projeto de alta complexidade.',
+        post5meta: 'Compliance · 6 min',
+        post5h2:
+          'LGPD na prática para escritório de arquitetura: cliente, obra e uso de ferramentas de mensagens',
+        post5p1:
+          'Tratar WhatsApp apenas como canal informal aumenta risco quando há dados cadastrais, plantas e valores em circulação. Políticas internas devem definir onde cada tipo de dado pode ficar e por quanto tempo.',
+        post5p2:
+          'Consentimento pode ser combinado verbalmente mas precisa estar documentado no contrato e na coleta inicial: finalidade dos dados e contato oficial do responsável tratam bem a maior parte das dúvidas do cliente final.',
+        post5p3:
+          'Sistemas que minimizam cópias soltas ou prints em grupo ajudam a auditar quando necessário, sem transformar cada conversa num processo burocrático.',
+        post5p4:
+          'Um blog com página única bem estruturada (títulos, meta descrições e FAQs internas aos artigos) soma texto relevante sobre temas que clientes pesquisam: gestão em obra de arquitetura, ferramentas de equipe para engenharia, operação multidisciplinar no Brasil.',
         footerCr: '© M2 SCALE',
         footerSite: 'Site principal',
+        tocTitle: 'Nesta página',
+        tocAriaLabel: 'Artigos nesta página',
+        toc1: 'Retrabalho e WhatsApp como “sistema”',
+        toc2: 'Gestão à vista antes do drama com o cliente',
+        toc3: 'Jornada do lead até a obra',
+        toc4: 'Priorização da caixa de entrada',
+        toc5: 'LGPD para escritório e mensagens',
+      },
+      adminPage: {
+        metaTitle: 'Painel · Leads · ZIRA AI',
+        metaDesc:
+          'Visualize solicitações de contato enviadas pela landing ZIRA AI. Acesso restrito.',
+        ogTitle: 'Painel · Leads · ZIRA AI',
+        ogDesc: 'Solicitações de agendamento e dados de contato.',
+        twitterTitle: 'Painel · Leads · ZIRA AI',
+        twitterDesc: 'Solicitações de contato · ZIRA AI.',
+        brand: 'M2 SCALE',
+        pageTitle: 'Leads',
+        pageSubtitle: 'Agendamentos pela landing',
+        statTotal: 'Total',
+        statToday: 'Hoje',
+        statWeek: '7 dias',
+        searchPlaceholder: 'Buscar por nome, e-mail ou telefone…',
+        emptyTitle: 'Nenhum lead ainda',
+        emptyDesc: 'Quando alguém enviar o formulário «Agendar conversa», aparece aqui.',
+        colDate: 'Data',
+        colName: 'Nome',
+        colEmail: 'E-mail',
+        colPhone: 'Telefone',
+        colCompany: 'Empresa',
+        colLang: 'Idioma',
+        exportCsv: 'Exportar CSV',
+        refresh: 'Atualizar',
+        logout: 'Sair',
+        gateTitle: 'Acesso ao painel',
+        gateHint: 'Informe o código de acesso configurado no servidor.',
+        gateInputLabel: 'Código de acesso',
+        gateSubmit: 'Entrar',
+        gateError: 'Código incorreto.',
+        securityWarn:
+          'Defina window.ZIRA_ADMIN_CODE em assets/admin-config.js em produção. Esta página deve ficar só para a equipe.',
+        unauthorized: 'Digite o código para ver os dados.',
       },
     },
     en: {
@@ -266,10 +396,33 @@
       workflow: {
         title: 'From first touch to handover: one connected thread.',
         caption:
-          'Intake stops relying on memory, informal handoffs, and lost chats. Prospects enter, context is structured, work keeps continuity, and every phase is followed with more coherence.',
+          'Seven loops tie together WhatsApp-led intake · structured briefing · sharp prioritisation · scripted moments for tough callers · revived follow-ups · staged delivery with alerting · and crews sharing one truth surface.',
         kicker:
-          'From first reply to handover with context, continuity, and traceability.',
-        imageAlt: 'Continuous flow from first reply through the build',
+          'Straight arrows cue sequence · the curved braid joins the lower band to the intake row · dashed trace hints at iterating the motion.',
+        flowAria:
+          'Two-row cycle diagram tying seven checkpoints from inbound WhatsApp to aligned delivery.',
+        s1Title: 'Lead enters WhatsApp',
+        s1Body:
+          'The first handshake happens wherever the buyer already communicates, frictionless and fast-paced.',
+        s2Title: 'ZIRA AI organizes the demand',
+        s2Body:
+          'Even when language is fuzzy ZIRA reshapes chatter into workable scope so one loose thread converts into actionable context.',
+        s3Title: 'Clear intent · explicit priority',
+        s3Body:
+          'Engines separate browsers from earnest jobs and elevate what deserves urgency right now.',
+        s4Title: 'Suggested replies for tough conversations',
+        s4Body:
+          'When moods spike or ambiguity reigns drafted responses keep replies calm, articulate, strategic.',
+        s5Title: 'Follow-ups powered by cues, not memory',
+        s5Body:
+          'If interest fades the pipeline still tracks it nudging reconnection when timing feels right.',
+        s6Title: 'Project pacing with checkpoints + alerts',
+        s6Body:
+          'As momentum compounds work graduates into phased programs checkpoints calendars and alerts tethered inside one roadmap.',
+        s7Title: 'Team alignment in one view',
+        s7Body:
+          'Threads deadlines history unify so everyone reads the same board less noise less rework chasing context.',
+        ziraMascotAlt: 'ZIRA AI',
       },
       tracking: {
         title:
@@ -359,10 +512,38 @@
         blog: 'Blog',
         faq: 'FAQ',
         contact: 'Contact',
+        adminLeads: 'Leads · dashboard',
       },
       wa: {
         aria: 'Chat with ZIRA AI on WhatsApp',
         message: 'Hello! I would like to talk about ZIRA AI.',
+      },
+      schedule: {
+        title: 'Book a call',
+        subtitle:
+          'Enter your name, email and phone. We will reply using those details. Company is optional.',
+        labelName: 'Full name',
+        labelEmail: 'Email',
+        labelPhone: 'Phone (with area code)',
+        labelCompany: 'Company / studio',
+        companyOptional: 'optional',
+        btnSubmit: 'Send details',
+        btnCancel: 'Cancel',
+        errRequired: 'This field is required.',
+        errEmail: 'Enter a valid email.',
+        errPhone: 'Enter a phone number with at least 8 digits.',
+        errSubmit: 'We could not save your request right now. Please retry.',
+        submitting: 'Sending…',
+        successTitle: "You're all set!",
+        successSubtitle:
+          'We received your details. We will contact you shortly via email or phone.',
+        btnDone: 'Close',
+        intro: 'Hello! I’d like to book a conversation about ZIRA AI.',
+        lineName: 'Name',
+        lineEmail: 'Email',
+        linePhone: 'Phone',
+        lineCompany: 'Company',
+        ariaCloseOverlay: 'Close',
       },
       schema: {
         organizationName: 'M2 SCALE',
@@ -370,14 +551,18 @@
           'Platform that aligns intake, staffing, projects, and deadlines for architecture and engineering firms, with WhatsApp native orchestration.',
       },
       blogPage: {
-        metaTitle: 'Blog · ZIRA AI',
+        metaTitle:
+          'ZIRA AI Blog · Architecture firm ops, WhatsApp discipline & field coordination',
         metaDesc:
-          'Practice operations, jobsite workflows, and client communication for architecture & engineering studios.',
-        ogTitle: 'Blog · ZIRA AI',
+          'Operational articles for AE firms: rework when chat is HQ, telemetry before crises, client pacing, backlog ownership, lightweight compliance. Readable guidance for principals running real builds.',
+        ogTitle:
+          'ZIRA AI Blog · Studio operations without noisy inboxes',
         ogDesc:
-          'Field notes on running serious firms without drowning in unstructured chats.',
-        twitterTitle: 'Blog · ZIRA AI',
-        twitterDesc: 'Operational insight for principals running real construction work.',
+          'Stories on rework, leadership telemetry, stakeholder alignment and pragmatic privacy workflows for multidisciplinary teams.',
+        twitterTitle:
+          'ZIRA AI Blog · Architecture & engineering ops',
+        twitterDesc:
+          'Operational insight for principals: intake priority, WhatsApp workflows, mobilization pacing and compliance-lite habits.',
         navBrandAria: 'M2 SCALE · homepage',
         navBack: '← Back to site',
         heroTitle: 'Blog',
@@ -404,8 +589,84 @@
           'Momentum wants throughput; architects want fidelity. Transparent pulse (what landed, what is still buffering) helps slow phases feel sane. Silence outweighs admitting a believable ETA.',
         post3p2:
           'Flows that articulate the breadcrumb trail from first DM through mobilization keep owners oriented without pinning your technical bench to heroic daily narrations.',
+        post1p3:
+          'Across mid sized shops the rework tax is not hourly alone: slipped vendor releases, frantic redlines at night and frayed GC relationships accumulate. Persisting decisions in once place lowers the “I thought we agreed otherwise” pings.',
+        post1p4:
+          'When WhatsApp is your control tower the minimum credible rigor is owned threads until scope settles, searchable history and explicit sequencing. Stacks like Zira bridge inbox to milestone without forcing crews to ditch the channel overnight.',
+        post2p3:
+          'Light gauges help: backlog per steward, stale project clock and an SLA only on owner facing replies—not every internal chatter line.',
+        post2p4:
+          'Connected boards linked to workflows keep managers out of bottleneck duty and intervene only where exceptions erupt which is precisely the promise of integrated ops leadership.',
+        post3p3:
+          'Normalize a cadence—for example Mondays and Thursdays for hot jobs—and publish that heartbeat early.',
+        post3p4:
+          'Search engines and savvy clients alike reward signals that leadership stays ahead of narratives; reputational SEO for AE firms benefits as much from consistent reporting as instantaneous hero replies.',
+        post4meta: 'Prioritisation · 7 min',
+        post4h2:
+          'Untended intake: how to sort what arrives before it derails mobilization',
+        post4p1:
+          'Not every DM matches every pursuit and not every frantic ping moves the needle. Typology tiers keep everyone from pretending every fire is inferno tier.',
+        post4p2:
+          'Named queues help when each payload gets a steward until promotion; ghost threads usually mean unstructured backlog fatigue.',
+        post4p3:
+          'Stitch intake to embodied phases—concept through commissioning—and you tame chaos inward and outward reinforcing brand halo when referrals praise process not only pixels.',
+        post4p4:
+          'Measuring rework by archetype informs where playbook investment pays off versus generic choreography that flops on complex mandates.',
+        post5meta: 'Compliance · 6 min',
+        post5h2:
+          'Operational privacy reminders for AE studios juggling owners, crews and chats',
+        post5p1:
+          'Treating chat as casually non corporate grows risky once drawings values and Personally Identifiable Information bounce around unstructured.',
+        post5p2:
+          'Consent can remain conversational yet must echo in master agreements onboarding sheets and official contacts so purpose limitation stays legible.',
+        post5p3:
+          'Systems that constrain scattershot forwarding make audits humane without turning everyday dialogue into paralysis.',
+        post5p4:
+          'Publishing a single well structured evergreen page with purposeful headings FAQs inside articles reinforces queries prospects actually run searches about AE operations discipline multidisciplinary Brazil delivery.',
         footerCr: '© M2 SCALE',
         footerSite: 'Main website',
+        tocTitle: 'On this page',
+        tocAriaLabel: 'Articles on this page',
+        toc1: 'Rework when WhatsApp is HQ',
+        toc2: 'Telemetry before client drama',
+        toc3: 'Lead journey into execution',
+        toc4: 'Inbox triage discipline',
+        toc5: 'Privacy for studios + chats',
+      },
+      adminPage: {
+        metaTitle: 'Dashboard · Leads · ZIRA AI',
+        metaDesc:
+          'View contact requests captured from the ZIRA AI landing. Restricted area.',
+        ogTitle: 'Dashboard · Leads · ZIRA AI',
+        ogDesc: 'Appointment requests and captured contact fields.',
+        twitterTitle: 'Dashboard · Leads · ZIRA AI',
+        twitterDesc: 'Contact submissions · ZIRA AI.',
+        brand: 'M2 SCALE',
+        pageTitle: 'Leads',
+        pageSubtitle: 'Captured from landing',
+        statTotal: 'Total',
+        statToday: 'Today',
+        statWeek: 'Last 7 days',
+        searchPlaceholder: 'Search by name, email or phone…',
+        emptyTitle: 'No leads yet',
+        emptyDesc: 'Once someone submits the “Book a call” form, they show here.',
+        colDate: 'Date',
+        colName: 'Name',
+        colEmail: 'Email',
+        colPhone: 'Phone',
+        colCompany: 'Company',
+        colLang: 'Language',
+        exportCsv: 'Export CSV',
+        refresh: 'Refresh',
+        logout: 'Sign out',
+        gateTitle: 'Dashboard access',
+        gateHint: 'Enter the access code configured for your deployment.',
+        gateInputLabel: 'Access code',
+        gateSubmit: 'Continue',
+        gateError: 'Incorrect code.',
+        securityWarn:
+          'Set window.ZIRA_ADMIN_CODE in assets/admin-config.js for production. Keep this URL internal.',
+        unauthorized: 'Enter the code to view leads.',
       },
     },
   };
@@ -451,16 +712,43 @@
     return m[1].toLowerCase() === 'en' ? 'en' : 'pt-BR';
   }
 
-  function buildWaHref(lang) {
-    var msg =
-      (STRINGS[lang] && STRINGS[lang].wa && STRINGS[lang].wa.message) ||
-      STRINGS['pt-BR'].wa.message;
+  function buildWaHref(lang, customMessage) {
+    var msg;
+    if (typeof customMessage === 'string' && customMessage.length > 0) {
+      msg = customMessage;
+    } else {
+      msg =
+        (STRINGS[lang] && STRINGS[lang].wa && STRINGS[lang].wa.message) ||
+        STRINGS['pt-BR'].wa.message;
+    }
     return (
       'https://wa.me/' +
       WA_PHONE +
       '?text=' +
       encodeURIComponent(msg)
     );
+  }
+
+  function buildScheduleLeadMessage(lang, data) {
+    if (!data) data = {};
+    var s =
+      STRINGS[lang] && STRINGS[lang].schedule
+        ? STRINGS[lang].schedule
+        : STRINGS['pt-BR'].schedule;
+    var name = String(data.name || '').trim();
+    var email = String(data.email || '').trim();
+    var phone = String(data.phone || '').trim();
+    var company = String(data.company || '').trim();
+    var lines = [s.intro];
+    lines.push(s.lineName + ': ' + name);
+    lines.push(s.lineEmail + ': ' + email);
+    lines.push(s.linePhone + ': ' + phone);
+    if (company) lines.push(s.lineCompany + ': ' + company);
+    return lines.join('\n');
+  }
+
+  function buildLeadWaHref(lang, data) {
+    return buildWaHref(lang, buildScheduleLeadMessage(lang, data));
   }
 
   function applyMeta(lang) {
@@ -475,10 +763,12 @@
     var m =
       page === 'blog'
         ? STRINGS[lang].blogPage
-        : STRINGS[lang].meta;
+        : page === 'admin'
+          ? STRINGS[lang].adminPage
+          : STRINGS[lang].meta;
     if (!m) return;
 
-    if (page === 'blog') {
+    if (page === 'blog' || page === 'admin') {
       document.title = m.metaTitle;
       set('meta[name="description"]', 'content', m.metaDesc);
       set('meta[property="og:title"]', 'content', m.ogTitle);
@@ -685,6 +975,8 @@
       return t(currentLang, dotPath);
     },
     buildWaHref: buildWaHref,
+    buildScheduleLeadMessage: buildScheduleLeadMessage,
+    buildLeadWaHref: buildLeadWaHref,
     STRINGS: STRINGS,
   };
 })(typeof window !== 'undefined' ? window : this);

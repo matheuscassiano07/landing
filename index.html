@@ -3,6 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=(), usb=()">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; object-src 'none'; base-uri 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob: https:; connect-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com https:; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests">
   <meta name="description" content="ZIRA AI · Organiza atendimento, equipe, obras e prazos para escritórios de arquitetura e engenharia. Operação clara no WhatsApp, desktop e obra.">
   <meta name="theme-color" content="#ffffff">
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000000">
@@ -24,8 +28,10 @@
   <meta name="twitter:description" id="twitter-desc" content="Atendimento, equipe, obras e prazos organizados para escritórios de arquitetura e engenharia.">
   <meta name="twitter:image" content="https://www.zira.ai/assets/hero-bg.jpg">
   <link rel="alternate" href="https://www.zira.ai/" hreflang="pt-BR">
-  <link rel="icon" href="assets/logo-preta.png" type="image/png">
-  <link rel="icon" href="assets/logo-branca.png" type="image/png" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" sizes="any">
+  <link rel="apple-touch-icon" href="assets/favicon.svg">
+  <link rel="icon" type="image/png" sizes="48x48" href="assets/logo-preta.png">
+  <link rel="icon" type="image/png" sizes="48x48" href="assets/logo-branca.png" media="(prefers-color-scheme: dark)">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
@@ -107,6 +113,9 @@
       /* Layout */
       --content-max: 1200px;
       --nav-height: 60px;
+      /** Header fixo quando visível: maior ao surgir · menor após rolar mais */
+      --nav-height-expanded: 80px;
+      --nav-height-compact: 52px;
 
       /* Transition */
       --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
@@ -270,11 +279,12 @@
        Once revealed, sits on the BLACK zone, so dark theme.
        ============================================================ */
     .nav {
+      --nav-dynamic: var(--nav-height);
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
-      height: var(--nav-height);
+      height: var(--nav-dynamic);
       background: rgba(10, 10, 10, 0.72);
       backdrop-filter: blur(14px) saturate(140%);
       -webkit-backdrop-filter: blur(14px) saturate(140%);
@@ -282,15 +292,32 @@
       z-index: 1000;
       transform: translateY(-100%);
       opacity: 0;
-      transition: transform var(--t-slow), opacity var(--t-base);
+      transition:
+        transform var(--t-slow),
+        opacity var(--t-base),
+        height 0.4s var(--ease-out),
+        backdrop-filter 0.4s ease;
       will-change: transform, opacity;
       pointer-events: none;
+      box-sizing: border-box;
     }
 
     .nav[data-visible="true"] {
       transform: translateY(0);
       opacity: 1;
       pointer-events: auto;
+      will-change: transform, opacity;
+    }
+
+    .nav[data-visible="true"]:not([data-compact="true"]) {
+      --nav-dynamic: var(--nav-height-expanded);
+    }
+
+    .nav[data-visible="true"][data-compact="true"] {
+      --nav-dynamic: var(--nav-height-compact);
+      background: rgba(10, 10, 10, 0.82);
+      backdrop-filter: blur(12px) saturate(135%);
+      -webkit-backdrop-filter: blur(12px) saturate(135%);
     }
 
     .nav__container {
@@ -319,6 +346,19 @@
       width: 34px;
       height: 34px;
       object-fit: contain;
+      transition:
+        width 0.38s var(--ease-out),
+        height 0.38s var(--ease-out);
+    }
+
+    .nav[data-visible="true"]:not([data-compact="true"]) .nav__logo {
+      width: 42px;
+      height: 42px;
+    }
+
+    .nav[data-visible="true"][data-compact="true"] .nav__logo {
+      width: 30px;
+      height: 30px;
     }
 
     .nav__menu {
@@ -341,8 +381,20 @@
       font-weight: var(--weight-medium);
       line-height: 1;
       color: var(--on-dark-text-2);
-      transition: color var(--t-fast);
+      transition:
+        color var(--t-fast),
+        font-size 0.38s var(--ease-out),
+        letter-spacing 0.38s var(--ease-out);
       position: relative;
+    }
+
+    .nav[data-visible="true"]:not([data-compact="true"]) .nav__item {
+      font-size: calc(var(--fs-caption) + 0.015rem);
+      letter-spacing: -0.025em;
+    }
+
+    .nav[data-visible="true"][data-compact="true"] .nav__item {
+      font-size: calc(var(--fs-caption) - 0.04rem);
     }
 
     .nav__item::after {
@@ -376,7 +428,21 @@
       font-size: var(--fs-caption);
       font-weight: var(--weight-medium);
       letter-spacing: -0.13px;
-      transition: transform var(--t-fast), background var(--t-fast);
+      transition:
+        transform var(--t-fast),
+        background var(--t-fast),
+        padding 0.38s var(--ease-out),
+        font-size 0.38s var(--ease-out);
+    }
+
+    .nav[data-visible="true"]:not([data-compact="true"]) .nav__cta {
+      padding: 11px 20px;
+      font-size: calc(var(--fs-caption) + 0.035rem);
+    }
+
+    .nav[data-visible="true"][data-compact="true"] .nav__cta {
+      padding: 6px 12px;
+      font-size: calc(var(--fs-caption) - 0.035rem);
     }
 
     .nav__cta:hover {
@@ -828,7 +894,7 @@
       line-height: 0.92;
       letter-spacing: var(--ls-display-xl);
       color: var(--white);
-      margin-bottom: var(--space-7);
+      margin-bottom: 0;
     }
 
     .zira__divider {
@@ -840,6 +906,7 @@
         var(--white) 0%,
         transparent 100%
       );
+      margin-top: var(--space-6);
       margin-bottom: var(--space-7);
     }
 
@@ -859,8 +926,42 @@
       width: min(100%, 620px);
     }
 
+    .zira__brand {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: var(--space-5);
+      width: 100%;
+    }
+
     .zira__title-group {
-      flex-shrink: 0;
+      flex: 1;
+      min-width: 0;
+    }
+
+    @media (min-width: 681px) {
+      .zira__brand {
+        display: block;
+      }
+
+      .zira__image-wrap--aside {
+        display: none !important;
+      }
+
+      .zira__image-wrap--featured {
+        display: flex !important;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .zira__image-wrap--featured {
+        display: none !important;
+      }
+
+      .zira__image-wrap--aside {
+        display: flex;
+      }
     }
 
     .zira__image-wrap {
@@ -871,20 +972,93 @@
       transition: transform var(--t-base);
     }
 
-    .zira__image-wrap:hover {
-      transform: translateY(-4px);
+    .zira__image-wrap--aside {
+      flex: 0 0 clamp(88px, 28vw, 132px);
+      max-width: 132px;
+      align-self: center;
     }
 
-    .zira__image {
+    .zira__image--aside {
       width: 100%;
-      max-width: min(520px, 100%);
       height: auto;
+      max-height: 112px;
       object-fit: contain;
       transition: transform var(--t-slow);
     }
 
-    .zira__image-wrap:hover .zira__image {
+    .zira__image-wrap--featured {
+      align-self: stretch;
+    }
+
+    .zira__image-wrap--featured:hover {
+      transform: translateY(-4px);
+    }
+
+    .zira__image--featured {
+      width: 100%;
+      max-width: min(520px, 100%);
+      height: auto;
+      object-fit: contain;
+      transition:
+        transform var(--t-slow),
+        filter 0.9s ease;
+    }
+
+    .zira__image-wrap--featured:hover .zira__image--featured {
       transform: scale(1.03);
+    }
+
+    @keyframes animZiraThumb {
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-5px);
+      }
+    }
+
+    @keyframes animZiraHero {
+      0%,
+      100% {
+        filter: brightness(1) saturate(1);
+      }
+      50% {
+        filter: brightness(1.06) saturate(1.05);
+      }
+    }
+
+    @keyframes animDecoStroke {
+      0%,
+      100% {
+        opacity: 0.38;
+      }
+      50% {
+        opacity: 0.62;
+      }
+    }
+
+    .anim-zira-thumb {
+      animation: animZiraThumb 4.2s ease-in-out infinite;
+    }
+
+    .zira__image--featured.anim-zira-hero {
+      animation: animZiraHero 7s ease-in-out infinite;
+    }
+
+    .has-arch-deco .arch-deco svg {
+      animation: animDecoStroke 14s ease-in-out infinite;
+    }
+
+    .problem__bullet[data-revealed='true'] {
+      transition:
+        border-color var(--t-base),
+        transform var(--t-base),
+        box-shadow 0.8s var(--ease-out);
+    }
+
+    .problem__bullet[data-revealed='true']:hover {
+      box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08), 0 12px 40px rgba(0, 0, 0, 0.35);
     }
 
     /* ============================================================
@@ -1220,6 +1394,345 @@
       margin-bottom: var(--space-9);
     }
 
+    /* Workflow · ciclo interligado (setas + duas linhas ligadas por curvas) */
+    .frame--workflow-flow {
+      text-align: left;
+      overflow: visible;
+    }
+
+    .workflow-cycle {
+      position: relative;
+      padding-left: clamp(12px, 3vw, 28px);
+    }
+
+    .workflow-cycle__tier {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: stretch;
+      justify-content: center;
+      gap: var(--space-3);
+      margin-inline: auto;
+    }
+
+    .workflow-cycle__tier--top .workflow-flow__step {
+      flex: 1 1 min(180px, 46%);
+      max-width: min(268px, 100%);
+      min-width: 0;
+    }
+
+    .workflow-cycle__tier--bottom {
+      max-width: min(940px, 100%);
+      margin-top: var(--space-7);
+      padding-top: var(--space-4);
+      border-top: 1px solid var(--on-dark-2);
+    }
+
+    .workflow-cycle__tier--bottom .workflow-flow__step {
+      flex: 1 1 min(220px, 32%);
+      max-width: min(300px, 100%);
+      min-width: 0;
+    }
+
+    .workflow-flow__step {
+      position: relative;
+      display: flex;
+      min-width: 0;
+    }
+
+    .workflow-cycle__tier .workflow-flow__chev {
+      align-self: center;
+    }
+
+    .workflow-cycle__braid {
+      position: relative;
+      height: clamp(72px, 10vw, 112px);
+      margin: calc(var(--space-2) * -0.25) auto 0;
+      max-width: min(760px, 100%);
+      color: rgba(255, 255, 255, 0.2);
+      pointer-events: none;
+    }
+
+    .workflow-cycle__braid svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .workflow-cycle__braid-path {
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.35;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .workflow-cycle__loop-wrap {
+      position: absolute;
+      left: clamp(4px, 1.8vw, 16px);
+      top: clamp(72px, 18%, 168px);
+      bottom: clamp(48px, 16%, 120px);
+      width: clamp(28px, 4.5vw, 56px);
+      color: rgba(255, 255, 255, 0.16);
+      pointer-events: none;
+    }
+
+    .workflow-cycle__loop-wrap svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .workflow-cycle__loop-dash {
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.35;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-dasharray: 7 11;
+      opacity: 0.92;
+    }
+
+    .workflow-flow__card {
+      position: relative;
+      width: 100%;
+      padding: var(--space-5) var(--space-4);
+      background:
+        radial-gradient(
+          ellipse 140% 80% at 50% -20%,
+          rgba(255, 255, 255, 0.07),
+          transparent 52%
+        ),
+        var(--on-dark-1);
+      border: 1px solid var(--on-dark-2);
+      border-radius: var(--r-panel);
+      transition:
+        transform var(--t-base),
+        border-color var(--t-base),
+        background var(--t-base),
+        box-shadow var(--t-base);
+    }
+
+    .frame--workflow-flow:hover .workflow-flow__card {
+      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.35);
+    }
+
+    .workflow-flow__card:hover {
+      border-color: var(--on-dark-3);
+      transform: translateY(-4px);
+    }
+
+    .workflow-flow__index {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 1.85rem;
+      height: 1.5rem;
+      margin-bottom: var(--space-3);
+      padding: 0 var(--space-2);
+      font-size: var(--fs-micro);
+      font-weight: var(--weight-medium);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--on-dark-text-3);
+      border: 1px solid var(--on-dark-2);
+      border-radius: var(--r-pill);
+      background: rgba(0, 0, 0, 0.25);
+    }
+
+    .workflow-flow__icon-slot {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 52px;
+      height: 52px;
+      margin-bottom: var(--space-4);
+      border-radius: 50%;
+      overflow: hidden;
+      background: rgba(0, 0, 0, 0.35);
+      border: 1px solid var(--on-dark-2);
+      color: var(--white-soft);
+      flex-shrink: 0;
+    }
+
+    .workflow-flow__icon-slot--zira {
+      width: 52px;
+      height: 52px;
+      min-width: 52px;
+      min-height: 52px;
+      padding: 0;
+      background: rgba(0, 0, 0, 0.2);
+      border: 1px solid var(--on-dark-2);
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .workflow-flow__icon-slot svg {
+      width: 26px;
+      height: 26px;
+    }
+
+    .workflow-flow__icon-slot .workflow-flow__wa {
+      width: 28px;
+      height: 28px;
+    }
+
+    .workflow-flow__zira {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .workflow-flow__title {
+      margin: 0 0 var(--space-2);
+      font-size: var(--fs-caption-lg);
+      font-weight: var(--weight-medium);
+      letter-spacing: var(--ls-body-lg);
+      line-height: 1.35;
+      color: var(--white-soft);
+    }
+
+    .workflow-flow__desc {
+      margin: 0;
+      font-size: var(--fs-caption);
+      font-weight: var(--weight-regular);
+      line-height: 1.5;
+      letter-spacing: var(--ls-body-lg);
+      color: var(--on-dark-text-3);
+    }
+
+    .workflow-flow__chev {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      width: 28px;
+      align-self: center;
+      padding: var(--space-2) var(--space-1);
+      color: var(--on-dark-text-3);
+      opacity: 0.85;
+      transition:
+        opacity 0.6s var(--ease-out),
+        transform 0.6s var(--ease-out),
+        filter 0.6s var(--ease-out);
+    }
+
+    .workflow-flow__chev svg {
+      width: 22px;
+      height: 22px;
+      display: block;
+    }
+
+    .workflow-flow__chev svg path {
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .frame--workflow-flow:not([data-revealed='true']) .workflow-flow__step,
+    .frame--workflow-flow:not([data-revealed='true']) .workflow-flow__chev,
+    .frame--workflow-flow:not([data-revealed='true']) .workflow-cycle__braid,
+    .frame--workflow-flow:not([data-revealed='true']) .workflow-cycle__loop-wrap {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+
+    .frame--workflow-flow[data-revealed='true'] .workflow-flow__step,
+    .frame--workflow-flow[data-revealed='true'] .workflow-flow__chev,
+    .frame--workflow-flow[data-revealed='true'] .workflow-cycle__braid,
+    .frame--workflow-flow[data-revealed='true'] .workflow-cycle__loop-wrap {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .frame--workflow-flow[data-revealed='true'] .workflow-flow__chev svg {
+      animation: workflowChevGlow 2.8s ease-in-out infinite;
+    }
+
+    .workflow-flow__step,
+    .workflow-flow__chev,
+    .workflow-cycle__braid,
+    .workflow-cycle__loop-wrap {
+      transition:
+        opacity 0.7s var(--ease-out),
+        transform 0.7s var(--ease-out);
+      transition-delay: var(--wf-delay, 0ms);
+    }
+
+    @keyframes workflowChevGlow {
+      0%,
+      100% {
+        opacity: 0.55;
+        filter: drop-shadow(0 0 0 transparent);
+      }
+      50% {
+        opacity: 1;
+        filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.18));
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .frame--workflow-flow .workflow-flow__step,
+      .frame--workflow-flow .workflow-flow__chev,
+      .frame--workflow-flow .workflow-cycle__braid,
+      .frame--workflow-flow .workflow-cycle__loop-wrap {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+      }
+
+      .frame--workflow-flow[data-revealed='true'] .workflow-flow__chev svg {
+        animation: none;
+      }
+
+      .workflow-flow__chev-svg {
+        transform: none !important;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .workflow-cycle {
+        padding-left: 0;
+      }
+
+      .workflow-cycle__loop-wrap {
+        display: none;
+      }
+
+      .workflow-cycle__tier--top .workflow-flow__step,
+      .workflow-cycle__tier--bottom .workflow-flow__step {
+        flex: 1 1 100%;
+        max-width: 100%;
+      }
+
+      .workflow-cycle__tier {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .workflow-cycle__tier .workflow-flow__chev {
+        align-self: center;
+      }
+
+      .workflow-flow__chev-svg {
+        transform: rotate(90deg);
+      }
+
+      .workflow-cycle__tier--bottom {
+        margin-top: var(--space-5);
+      }
+
+      .workflow-cycle__braid {
+        height: 56px;
+        margin-top: calc(var(--space-2) * -0.75);
+      }
+    }
+
     /* ============================================================
        Tracking · pills only
        ============================================================ */
@@ -1273,7 +1786,8 @@
       background: var(--white);
       color: var(--black);
       border-color: var(--white);
-      transform: translateY(-2px);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.22);
     }
 
     .tracking__pill-dot {
@@ -1395,6 +1909,225 @@
     }
 
     /* ============================================================
+       Modal · agendar conversa (envio de dados)
+       ============================================================ */
+    .schedule-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: var(--space-6);
+      box-sizing: border-box;
+    }
+
+    .schedule-modal[hidden] {
+      display: none !important;
+    }
+
+    .schedule-modal__overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.62);
+      border: 0;
+      padding: 0;
+      cursor: pointer;
+    }
+
+    .schedule-modal__panel {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 420px;
+      max-height: min(92vh, 640px);
+      overflow: auto;
+      padding: var(--space-7) var(--space-6);
+      border-radius: var(--r-panel);
+      background: var(--white);
+      color: var(--black);
+      box-shadow: 0 24px 64px rgba(0, 0, 0, 0.35);
+      text-align: left;
+    }
+
+    .schedule-modal__title {
+      margin: 0 0 var(--space-3);
+      font-size: clamp(20px, 4vw, 24px);
+      font-weight: var(--weight-medium);
+      letter-spacing: var(--ls-display);
+      line-height: 1.2;
+    }
+
+    .schedule-modal__subtitle {
+      margin: 0 0 var(--space-6);
+      font-size: var(--fs-body);
+      line-height: 1.5;
+      color: var(--on-light-text-2);
+    }
+
+    .schedule-modal__field {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+      margin-bottom: var(--space-5);
+    }
+
+    .schedule-modal__field label {
+      font-size: 13px;
+      font-weight: var(--weight-medium);
+      letter-spacing: 0.02em;
+      color: var(--black);
+    }
+
+    .schedule-modal__optional {
+      font-weight: var(--weight-regular);
+      color: var(--on-light-text-3);
+    }
+
+    .schedule-modal__field input {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid rgba(0, 0, 0, 0.14);
+      border-radius: var(--r-sm);
+      font: inherit;
+      font-size: 16px;
+      background: var(--white);
+      color: var(--black);
+    }
+
+    .schedule-modal__field input:focus {
+      outline: 2px solid rgba(0, 0, 0, 0.25);
+      outline-offset: 1px;
+    }
+
+    .schedule-modal__field input[aria-invalid='true'] {
+      border-color: #b42318;
+    }
+
+    .schedule-modal__actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-3);
+      margin-top: var(--space-6);
+    }
+
+    .schedule-modal__actions .btn {
+      flex: 1 1 auto;
+      min-width: min(140px, 100%);
+      justify-content: center;
+    }
+
+    .schedule-modal__btn-ghost {
+      background: transparent;
+      color: var(--black);
+      border: 1px solid rgba(0, 0, 0, 0.2);
+    }
+
+    .schedule-modal__btn-ghost:hover {
+      background: rgba(0, 0, 0, 0.04);
+    }
+
+    .schedule-modal__step[hidden] {
+      display: none !important;
+    }
+
+    .schedule-modal__submit-err {
+      margin-bottom: var(--space-4);
+      font-size: 13px;
+      color: #b42318;
+      line-height: 1.4;
+    }
+
+    .schedule-modal__submit-err[hidden] {
+      display: none !important;
+    }
+
+    .schedule-success {
+      text-align: center;
+      padding-block: var(--space-4) var(--space-2);
+    }
+
+    .schedule-success__mark {
+      width: 88px;
+      height: 88px;
+      margin: 0 auto var(--space-6);
+    }
+
+    .schedule-success__svg {
+      display: block;
+      margin: 0 auto;
+      overflow: visible;
+    }
+
+    .schedule-success__circle {
+      fill: none;
+      stroke: rgba(22, 163, 74, 0.2);
+      stroke-width: 2;
+      transform-origin: 36px 36px;
+      transform: scale(0.88);
+      opacity: 0;
+    }
+
+    .schedule-success__check {
+      fill: none;
+      stroke: #059669;
+      stroke-width: 3.2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-dasharray: 48;
+      stroke-dashoffset: 48;
+    }
+
+    .schedule-success.schedule-success--animate .schedule-success__circle {
+      animation: scheduleSuccessPop 0.45s var(--ease-out) forwards;
+    }
+
+    .schedule-success.schedule-success--animate .schedule-success__check {
+      animation: scheduleSuccessStroke 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards 0.12s;
+    }
+
+    @keyframes scheduleSuccessPop {
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    @keyframes scheduleSuccessStroke {
+      to {
+        stroke-dashoffset: 0;
+      }
+    }
+
+    .schedule-success__title.schedule-modal__title {
+      margin-bottom: var(--space-3);
+      text-wrap: balance;
+    }
+
+    .schedule-success .schedule-modal__subtitle {
+      margin-bottom: var(--space-7);
+      max-width: 22rem;
+      margin-inline: auto;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .schedule-modal__panel {
+        scroll-behavior: auto;
+      }
+
+      .schedule-success.schedule-success--animate .schedule-success__circle {
+        animation-duration: 0.01ms;
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      .schedule-success.schedule-success--animate .schedule-success__check {
+        animation-duration: 0.01ms;
+        stroke-dashoffset: 0;
+      }
+    }
+
+    /* ============================================================
        Footer
        ============================================================ */
     .footer {
@@ -1450,6 +2183,20 @@
 
     .footer__nav a:hover {
       color: var(--white);
+    }
+
+    .footer__admin-leads {
+      font-size: 12px;
+      font-weight: var(--weight-regular);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      opacity: 0.5;
+      color: var(--on-dark-text-3);
+    }
+
+    .footer__admin-leads:hover {
+      opacity: 1;
+      color: var(--on-dark-text-2);
     }
 
     /* ============================================================
@@ -1759,7 +2506,7 @@
 
       .nav__list {
         position: fixed;
-        top: var(--nav-height);
+        top: var(--nav-dynamic);
         left: 0;
         right: 0;
         flex-direction: column;
@@ -1917,36 +2664,29 @@
       }
 
       .zira__lead {
-        flex-direction: row;
-        align-items: flex-start;
-        gap: var(--space-5);
-        margin-inline: 0;
         width: 100%;
         max-width: 100%;
+        margin-inline: 0;
       }
 
-      .zira__title-group {
-        flex: 0 0 min(132px, 36vw);
-        min-width: 0;
+      .zira__brand {
+        align-items: center;
+        gap: var(--space-4);
       }
 
       .zira__title {
         font-size: clamp(34px, 11vw, 54px);
-        margin-bottom: var(--space-3);
         letter-spacing: -2px;
         line-height: 0.95;
       }
 
       .zira__divider {
         max-width: 100%;
-        margin: var(--space-4) 0 0;
-        margin-left: 0;
-        margin-right: auto;
+        margin-top: var(--space-5);
+        margin-bottom: var(--space-5);
       }
 
       .zira__description {
-        flex: 1;
-        min-width: 0;
         margin-left: 0;
         margin-right: 0;
         font-size: 15px;
@@ -1954,6 +2694,102 @@
         letter-spacing: -0.105px;
         max-width: none;
       }
+    }
+
+    /* ============================================================
+       Site shell · LEDs · parallax float targets
+       ============================================================ */
+    .site-stage {
+      position: relative;
+      isolation: isolate;
+    }
+
+    .site-stage > main,
+    .site-stage > footer {
+      position: relative;
+      z-index: 1;
+    }
+
+    .site-led-layer {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .site-led {
+      position: absolute;
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      background: #fff;
+      opacity: 0.16;
+      box-shadow:
+        0 0 7px rgba(255, 255, 255, 0.9),
+        0 0 18px rgba(255, 255, 255, 0.28);
+      animation: site-led-twinkle 9s ease-in-out infinite;
+    }
+
+    @keyframes site-led-twinkle {
+      0%,
+      100% {
+        opacity: 0.08;
+        transform: scale(0.88);
+      }
+      50% {
+        opacity: 0.26;
+        transform: scale(1.06);
+      }
+    }
+
+    .site-led:nth-child(1) {
+      top: 13%;
+      left: 6%;
+      animation-delay: -0.5s;
+    }
+
+    .site-led:nth-child(2) {
+      top: 21%;
+      right: 10%;
+      animation-delay: -1.9s;
+    }
+
+    .site-led:nth-child(3) {
+      bottom: 19%;
+      left: 12%;
+      animation-delay: -2.7s;
+    }
+
+    .site-led:nth-child(4) {
+      bottom: 27%;
+      right: 7%;
+      animation-delay: -3.4s;
+    }
+
+    .site-led:nth-child(5) {
+      top: 47%;
+      left: 3.5%;
+      animation-delay: -1.1s;
+    }
+
+    .site-led:nth-child(6) {
+      top: 61%;
+      right: 14%;
+      animation-delay: -4.1s;
+    }
+
+    .hero__parallax-slot {
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      overflow: hidden;
+      pointer-events: none;
+      will-change: transform;
+    }
+
+    .site-scroll-float {
+      will-change: transform;
     }
 
     /* ============================================================
@@ -1981,10 +2817,27 @@
         animation: none !important;
         transform: scale(1.09);
       }
+
+      .site-led-layer {
+        display: none;
+      }
+
+      .site-scroll-float {
+        will-change: auto;
+      }
     }
   </style>
 </head>
 <body>
+  <div id="site-stage" class="site-stage">
+  <div class="site-led-layer" aria-hidden="true">
+    <span class="site-led"></span>
+    <span class="site-led"></span>
+    <span class="site-led"></span>
+    <span class="site-led"></span>
+    <span class="site-led"></span>
+    <span class="site-led"></span>
+  </div>
   <header class="nav" id="nav" data-visible="false" role="banner">
     <div class="nav__container">
       <a
@@ -2046,25 +2899,36 @@
           <li><a href="#faq" class="nav__item" data-i18n="nav.faq">FAQ</a></li>
           <li><a href="#cta" class="nav__item" data-i18n="nav.contact">Contato</a></li>
         </ul>
-        <a href="#cta" class="nav__cta" data-i18n="nav.cta">Agendar conversa</a>
+        <a href="#" class="nav__cta" data-schedule-open data-i18n="nav.cta">Agendar conversa</a>
       </nav>
     </div>
   </header>
 
   <main>
     <section class="hero" id="hero" aria-labelledby="hero-title">
-      <img
-        src="assets/hero-bg.jpg"
-        alt=""
-        class="hero__bg"
+      <div
+        class="hero__parallax-slot site-scroll-float"
+        data-float-sx="16"
+        data-float-sy="24"
         aria-hidden="true">
+        <img
+          src="assets/hero-bg.jpg"
+          alt=""
+          class="hero__bg"
+          aria-hidden="true">
+      </div>
 
       <div class="hero__top-brand">
         <img src="assets/logo-preta.png" alt="" width="120" height="48" decoding="async">
       </div>
 
       <div class="hero__content">
-        <h1 class="hero__title" id="hero-title" data-i18n="hero.title">
+        <h1
+          class="hero__title site-scroll-float"
+          id="hero-title"
+          data-float-sx="14"
+          data-float-sy="11"
+          data-i18n="hero.title">
           A plataforma que organiza atendimento, equipe, obras e prazos para escritórios de arquitetura e engenharia.
         </h1>
         <p class="hero__credibility" data-i18n="hero.credibility">
@@ -2097,21 +2961,37 @@
       <div class="zira__container">
         <div class="zira__content" data-reveal>
           <div class="zira__lead">
-            <div class="zira__title-group">
-              <h2 class="zira__title" id="zira-title">Zira AI</h2>
-              <div class="zira__divider" aria-hidden="true"></div>
+            <div class="zira__brand">
+              <div class="zira__title-group">
+                <h2 class="zira__title site-scroll-float" id="zira-title" data-float-sx="9" data-float-sy="10">
+                  Zira AI
+                </h2>
+              </div>
+              <div class="zira__image-wrap zira__image-wrap--aside" aria-hidden="true">
+                <img
+                  src="assets/zira-mascot.png"
+                  alt=""
+                  class="zira__image zira__image--aside anim-zira-thumb site-scroll-float"
+                  data-float-phase="2.2"
+                  width="132"
+                  height="132"
+                  loading="lazy"
+                  decoding="async">
+              </div>
             </div>
+            <div class="zira__divider" aria-hidden="true"></div>
             <p class="zira__description" data-i18n="zira.desc">
               No WhatsApp, o Zira identifica a solicitação, separa oportunidades comerciais de outros assuntos, prioriza o que exige atenção do time e organiza o contexto para que cada atendimento avance com mais clareza. Quando a resposta não deve ser automatizada, o sistema encaminha o caso corretamente, sem ruído e sem improviso.
             </p>
           </div>
         </div>
-        <div class="zira__image-wrap" data-reveal style="--reveal-delay: 120ms">
+        <div class="zira__image-wrap zira__image-wrap--featured" data-reveal style="--reveal-delay: 120ms">
           <img
             src="assets/zira-mascot.png"
             data-i18n-attr="alt:zira.imageAlt"
             alt=""
-            class="zira__image"
+            class="zira__image zira__image--featured anim-zira-hero site-scroll-float"
+            data-float-phase="0.8"
             loading="lazy">
         </div>
       </div>
@@ -2133,7 +3013,12 @@
         </svg>
       </div>
       <div class="problem__header" data-reveal>
-        <h2 class="section-title section-title--centered" id="problem-title" data-i18n="problem.title">
+        <h2
+          class="section-title section-title--centered site-scroll-float"
+          id="problem-title"
+          data-float-sx="8"
+          data-float-sy="7"
+          data-i18n="problem.title">
           O problema não está só em captar clientes. Está em perder controle da operação.
         </h2>
         <p class="section-caption" data-i18n="problem.caption">
@@ -2181,8 +3066,9 @@
               <div class="device-shell__screen">
                 <span class="device-shell__island" aria-hidden="true"></span>
                 <img
-                  class="device-shell__img"
+                  class="device-shell__img site-scroll-float"
                   src="assets/screens/plug-iphone.svg"
+                  data-float-phase="1.6"
                   alt=""
                   width="390"
                   height="844"
@@ -2211,29 +3097,201 @@
         </svg>
       </div>
       <div class="workflow__container">
-        <h2 class="section-title section-title--centered" id="workflow-title" data-i18n="workflow.title" data-reveal>
+        <h2
+          class="section-title section-title--centered site-scroll-float"
+          id="workflow-title"
+          data-float-sx="8"
+          data-float-sy="7"
+          data-i18n="workflow.title"
+          data-reveal>
           Do primeiro contato à entrega da obra, tudo conectado.
         </h2>
         <p class="section-caption" data-i18n="workflow.caption">
-          O atendimento deixa de depender de memória, repasse informal e conversa perdida. O cliente entra, o contexto é organizado, a operação ganha continuidade e cada etapa passa a ser acompanhada com mais coerência.
+          Sete pontos ligados como um ciclo · do primeiro ping no WhatsApp à equipe trabalhando com o mesmo panorama, incluindo priorização ativa, mensagens quando o cliente é difícil, follow-ups e projeto integrado a alertas.
         </p>
-        <div class="frame" data-reveal style="--reveal-delay: 120ms">
-          <img
-            src="assets/workflow-steps.png"
-            data-i18n-attr="alt:workflow.imageAlt"
-            alt="Do primeiro contato à obra, em um fluxo contínuo"
-            class="frame__image"
-            loading="lazy">
+        <div
+          class="frame frame--workflow-flow"
+          role="region"
+          data-i18n-attr="aria-label:workflow.flowAria"
+          data-reveal
+          style="--reveal-delay: 120ms">
+          <div class="workflow-cycle">
+            <div class="workflow-cycle__loop-wrap" style="--wf-delay: 480ms">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 396" aria-hidden="true" preserveAspectRatio="xMidYMid meet">
+                <defs>
+                  <marker id="wf-cycle-loop-arr" markerWidth="6" markerHeight="6" refX="4" refY="3" orient="auto">
+                    <path d="m0 0 6 3-6 3z" fill="rgba(255,255,255,0.38)" />
+                  </marker>
+                </defs>
+                <path class="workflow-cycle__loop-dash" d="M 34 382 C -2 294 52 216 38 154 C 24 104 42 74 38 42 C 38 42 42 34 42 34" marker-end="url(#wf-cycle-loop-arr)" />
+              </svg>
+            </div>
+            <div class="workflow-cycle__tier workflow-cycle__tier--top">
+              <article class="workflow-flow__step" style="--wf-delay: 0ms">
+                <div class="workflow-flow__card">
+                  <span class="workflow-flow__index" aria-hidden="true">01</span>
+                  <div class="workflow-flow__icon-slot" aria-hidden="true">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 16 16"
+                      fill="currentColor"
+                      class="workflow-flow__wa"
+                      aria-hidden="true">
+                      <path
+                        d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232" />
+                    </svg>
+                  </div>
+                  <h3 class="workflow-flow__title" data-i18n="workflow.s1Title">Lead no WhatsApp</h3>
+                  <p class="workflow-flow__desc" data-i18n="workflow.s1Body">
+                    O primeiro contato acontece no canal em que o cliente já está, sem fricção e sem perder velocidade no atendimento.
+                  </p>
+                </div>
+              </article>
+              <div class="workflow-flow__chev" style="--wf-delay: 40ms" aria-hidden="true">
+                <svg class="workflow-flow__chev-svg" viewBox="0 0 24 24"><path d="m9 6 6 6-6 6"/></svg>
+              </div>
+              <article class="workflow-flow__step" style="--wf-delay: 72ms">
+                <div class="workflow-flow__card">
+                  <span class="workflow-flow__index" aria-hidden="true">02</span>
+                  <div class="workflow-flow__icon-slot workflow-flow__icon-slot--zira" aria-hidden="true">
+                    <img
+                      class="workflow-flow__zira site-scroll-float"
+                      src="assets/avatar-zira.png"
+                      alt=""
+                      data-float-phase="3.1"
+                      data-i18n-attr="alt:workflow.ziraMascotAlt"
+                      loading="lazy"
+                      width="52"
+                      height="52">
+                  </div>
+                  <h3 class="workflow-flow__title" data-i18n="workflow.s2Title">ZIRA AI organiza a demanda</h3>
+                  <p class="workflow-flow__desc" data-i18n="workflow.s2Body">
+                    Mesmo quando o cliente não consegue explicar direito o que quer, o Zira ajuda a estruturar a solicitação e transforma uma conversa solta em contexto útil para o time.
+                  </p>
+                </div>
+              </article>
+              <div class="workflow-flow__chev" style="--wf-delay: 104ms" aria-hidden="true">
+                <svg class="workflow-flow__chev-svg" viewBox="0 0 24 24"><path d="m9 6 6 6-6 6"/></svg>
+              </div>
+              <article class="workflow-flow__step" style="--wf-delay: 136ms">
+                <div class="workflow-flow__card">
+                  <span class="workflow-flow__index" aria-hidden="true">03</span>
+                  <div class="workflow-flow__icon-slot" aria-hidden="true">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                      <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" />
+                      <circle cx="12" cy="12" r="6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" />
+                      <circle cx="12" cy="12" r="2" fill="currentColor" />
+                    </svg>
+                  </div>
+                  <h3 class="workflow-flow__title" data-i18n="workflow.s3Title">Intenção clara, prioridade definida</h3>
+                  <p class="workflow-flow__desc" data-i18n="workflow.s3Body">
+                    O sistema identifica o que o lead quer, separa curiosos de oportunidades reais e ajuda o escritório a decidir o que merece atenção primeiro.
+                  </p>
+                </div>
+              </article>
+              <div class="workflow-flow__chev" style="--wf-delay: 168ms" aria-hidden="true">
+                <svg class="workflow-flow__chev-svg" viewBox="0 0 24 24"><path d="m9 6 6 6-6 6"/></svg>
+              </div>
+              <article class="workflow-flow__step" style="--wf-delay: 200ms">
+                <div class="workflow-flow__card">
+                  <span class="workflow-flow__index" aria-hidden="true">04</span>
+                  <div class="workflow-flow__icon-slot" aria-hidden="true">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                      <path stroke="currentColor" stroke-linecap="round" stroke-width="1.5" d="M13 8H7"/><path stroke="currentColor" stroke-linecap="round" stroke-width="1.5" d="M17 12H7"/>
+                    </svg>
+                  </div>
+                  <h3 class="workflow-flow__title" data-i18n="workflow.s4Title">Sugestões de resposta para atendimentos difíceis</h3>
+                  <p class="workflow-flow__desc" data-i18n="workflow.s4Body">
+                    Quando o cliente é confuso, exigente ou difícil de conduzir, o sistema ajuda o time com respostas mais claras, profissionais e estratégicas.
+                  </p>
+                </div>
+              </article>
+            </div>
+            <div class="workflow-cycle__braid" style="--wf-delay: 240ms">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 148" aria-hidden="true" preserveAspectRatio="none">
+                <defs>
+                  <marker id="wf-cycle-braid-arr" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+                    <path d="m0 0 7 3.5L0 7z" fill="rgba(255,255,255,0.32)" />
+                  </marker>
+                </defs>
+                <path
+                  class="workflow-cycle__braid-path"
+                  d="M 612 48 C 680 146 548 174 394 174 C 234 174 168 174 132 174 C 118 174 108 170 114 154 C 146 146 198 132 244 112"
+                  marker-end="url(#wf-cycle-braid-arr)" />
+              </svg>
+            </div>
+            <div class="workflow-cycle__tier workflow-cycle__tier--bottom">
+              <article class="workflow-flow__step" style="--wf-delay: 280ms">
+                <div class="workflow-flow__card">
+                  <span class="workflow-flow__index" aria-hidden="true">05</span>
+                  <div class="workflow-flow__icon-slot" aria-hidden="true">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+                    </svg>
+                  </div>
+                  <h3 class="workflow-flow__title" data-i18n="workflow.s5Title">Follow-up sem depender de memória</h3>
+                  <p class="workflow-flow__desc" data-i18n="workflow.s5Body">
+                    Se o contato demonstra interesse, responde e depois some, o fluxo não morre. O sistema ajuda a retomar no momento certo, sem deixar oportunidade esfriar.
+                  </p>
+                </div>
+              </article>
+              <div class="workflow-flow__chev" style="--wf-delay: 320ms" aria-hidden="true">
+                <svg class="workflow-flow__chev-svg" viewBox="0 0 24 24"><path d="m9 6 6 6-6 6"/></svg>
+              </div>
+              <article class="workflow-flow__step" style="--wf-delay: 352ms">
+                <div class="workflow-flow__card">
+                  <span class="workflow-flow__index" aria-hidden="true">06</span>
+                  <div class="workflow-flow__icon-slot" aria-hidden="true">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+                      <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/>
+                      <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v0a2 2 0 0 1-2 2h-2a2 2 0 0 1-2-2V5Zm1 13h7M11 17h8"/>
+                      <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 13a2 2 0 1 0 4 0"/>
+                    </svg>
+                  </div>
+                  <h3 class="workflow-flow__title" data-i18n="workflow.s6Title">Projeto com etapas e alertas</h3>
+                  <p class="workflow-flow__desc" data-i18n="workflow.s6Body">
+                    Quando o atendimento avança, a operação já nasce organizada, com fases rastreáveis, checklists, agenda e alertas conectados ao mesmo fluxo.
+                  </p>
+                </div>
+              </article>
+              <div class="workflow-flow__chev" style="--wf-delay: 392ms" aria-hidden="true">
+                <svg class="workflow-flow__chev-svg" viewBox="0 0 24 24"><path d="m9 6 6 6-6 6"/></svg>
+              </div>
+              <article class="workflow-flow__step" style="--wf-delay: 424ms">
+                <div class="workflow-flow__card">
+                  <span class="workflow-flow__index" aria-hidden="true">07</span>
+                  <div class="workflow-flow__icon-slot" aria-hidden="true">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+                      <circle cx="9" cy="7" r="4" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" />
+                      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
+                    </svg>
+                  </div>
+                  <h3 class="workflow-flow__title" data-i18n="workflow.s7Title">Equipe alinhada no mesmo lugar</h3>
+                  <p class="workflow-flow__desc" data-i18n="workflow.s7Body">
+                    Prazos, tarefas e histórico deixam de ficar espalhados. O time enxerga o que precisa acontecer agora e decide com mais clareza, menos ruído e menos retrabalho.
+                  </p>
+                </div>
+              </article>
+            </div>
+          </div>
         </div>
         <p class="workflow__kicker" data-i18n="workflow.kicker" data-reveal style="--reveal-delay: 180ms">
-          Do primeiro contato à entrega, com contexto, continuidade e rastreabilidade.
+          Setas mostram sequência entre etapas · curva conecta a última volta do atendimento à mesma entrada do fluxo.
         </p>
       </div>
     </section>
 
     <section class="tracking" id="tracking" aria-labelledby="tracking-title">
       <div class="tracking__container">
-        <h2 class="section-title section-title--centered" id="tracking-title" data-i18n="tracking.title" data-reveal>
+        <h2
+          class="section-title section-title--centered site-scroll-float"
+          id="tracking-title"
+          data-float-sx="8"
+          data-float-sy="7"
+          data-i18n="tracking.title"
+          data-reveal>
           Saiba o que cada arquiteto, engenheiro e membro da equipe está fazendo, o que está atrasado e o que exige atenção agora.
         </h2>
         <p class="section-caption" data-i18n="tracking.caption">
@@ -2251,7 +3309,13 @@
 
     <section class="calendar" id="calendar" aria-labelledby="calendar-title">
       <div class="calendar__container">
-        <h2 class="section-title section-title--centered" id="calendar-title" data-i18n="calendar.title" data-reveal>
+        <h2
+          class="section-title section-title--centered site-scroll-float"
+          id="calendar-title"
+          data-float-sx="8"
+          data-float-sy="7"
+          data-i18n="calendar.title"
+          data-reveal>
           Prazos, reuniões, retornos e etapas em uma única visualização.
         </h2>
         <p class="section-caption" data-i18n="calendar.caption">
@@ -2265,8 +3329,9 @@
               <span class="device-shell__cam" aria-hidden="true"></span>
               <div class="device-shell__screen device-shell__screen--laptop">
                 <img
-                  class="device-shell__img"
+                  class="device-shell__img site-scroll-float"
                   src="assets/screens/plug-macbook.svg"
+                  data-float-phase="1.3"
                   alt=""
                   width="1440"
                   height="900"
@@ -2290,7 +3355,15 @@
       aria-hidden="true">
       <div class="blog-teaser__header">
         <div>
-          <h2 class="section-title" id="blog-title" data-i18n="blogSection.title" data-reveal>Conteúdo para quem lidera obra</h2>
+          <h2
+            class="section-title site-scroll-float"
+            id="blog-title"
+            data-float-sx="8"
+            data-float-sy="7"
+            data-i18n="blogSection.title"
+            data-reveal>
+            Conteúdo para quem lidera obra
+          </h2>
           <p class="section-caption" data-i18n="blogSection.caption" data-reveal>
             Artigos sobre gestão de escritório, comunicação com cliente e operação em canteiro, em linguagem direta.
           </p>
@@ -2323,7 +3396,13 @@
 
     <section class="faq" id="faq" aria-labelledby="faq-title">
       <div class="faq__container">
-        <h2 class="section-title section-title--centered" id="faq-title" data-i18n="faq.title" data-reveal>
+        <h2
+          class="section-title section-title--centered site-scroll-float"
+          id="faq-title"
+          data-float-sx="8"
+          data-float-sy="7"
+          data-i18n="faq.title"
+          data-reveal>
           Perguntas frequentes
         </h2>
         <p class="section-caption section-title--centered" data-i18n="faq.caption" data-reveal>
@@ -2413,7 +3492,13 @@
 
     <section class="adapt" aria-labelledby="adapt-title">
       <div class="adapt__container">
-        <h2 class="section-title section-title--centered" id="adapt-title" data-i18n="adapt.title" data-reveal>
+        <h2
+          class="section-title section-title--centered site-scroll-float"
+          id="adapt-title"
+          data-float-sx="8"
+          data-float-sy="7"
+          data-i18n="adapt.title"
+          data-reveal>
           Cada escritório opera de um jeito. O sistema se adapta a isso.
         </h2>
         <div class="adapt__logo-wrap" data-reveal style="--reveal-delay: 200ms">
@@ -2421,7 +3506,8 @@
             src="assets/logo-branca.png"
             data-i18n-attr="alt:adapt.logoAlt"
             alt="ZIRA AI"
-            class="adapt__logo"
+            class="adapt__logo site-scroll-float"
+            data-float-phase="0.4"
             loading="lazy">
         </div>
       </div>
@@ -2430,13 +3516,13 @@
     <section class="cta" id="cta" aria-labelledby="cta-title">
       <div class="cta__container">
         <div class="cta__inner" data-reveal>
-          <h2 class="cta__title" id="cta-title" data-i18n="cta.title">
+          <h2 class="cta__title site-scroll-float" id="cta-title" data-float-sx="10" data-float-sy="9" data-i18n="cta.title">
             Saia na frente na operação, sem abrir mão do que já funciona no escritório.
           </h2>
           <p class="cta__desc" data-i18n="cta.desc">
             Na conversa, você vê onde ganha clareza e previsibilidade. Mostramos como integrar ao procedimento que vocês já usam e como adaptamos etapas, papéis e fluxo à rotina da equipe, para decidir com segurança.
           </p>
-          <a href="#" class="btn btn--solid-dark" data-wa-link target="_blank" rel="noopener noreferrer" data-i18n="cta.btn">Agendar conversa</a>
+          <a href="#" class="btn btn--solid-dark" data-schedule-open data-i18n="cta.btn">Agendar conversa</a>
         </div>
       </div>
     </section>
@@ -2454,6 +3540,7 @@
         <a href="./#blog" data-i18n="footer.blog">Blog</a>
         <a href="./#faq" data-i18n="footer.faq">FAQ</a>
         <a href="./#cta" data-i18n="footer.contact">Contato</a>
+        <a href="admin.html" class="footer__admin-leads" rel="nofollow noreferrer" data-i18n="footer.adminLeads">Painel · leads</a>
       </nav>
     </div>
   </footer>
@@ -2470,6 +3557,81 @@
       <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.149-.197.297-.767.967-.94 1.164-.173.198-.347.223-.644.074-.297-.15-1.255-.463-2.39-1.475-.884-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.134.297-.347.446-.52.149-.173.198-.297.297-.495.099-.198.05-.371-.025-.52-.074-.148-.673-1.618-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.569-.01-.198 0-.52.074-.792.372-.271.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.226 1.359.195 1.871.118.571-.084 1.758-.719 2.006-1.413.248-.694.248-1.288.173-1.413-.074-.124-.272-.197-.569-.347m-5.419 7.403h-.004a9.87 9.87 0 01-5.03-1.378l-.361-.215-3.741.983.998-3.648-.236-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.887-9.884 2.641 0 5.119 1.03 6.986 2.897a9.825 9.825 0 012.892 7.003c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.688 5.949L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
     </svg>
   </a>
+  </div>
+
+  <div id="schedule-modal" class="schedule-modal" hidden>
+    <button
+      type="button"
+      class="schedule-modal__overlay"
+      data-schedule-close
+      tabindex="-1"
+      data-i18n-attr="aria-label:schedule.ariaCloseOverlay"
+      aria-label="Fechar"></button>
+    <div
+      id="schedule-modal-panel"
+      class="schedule-modal__panel"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="schedule-modal-title">
+      <div id="schedule-step-form" class="schedule-modal__step">
+        <h2 class="schedule-modal__title" id="schedule-modal-title" data-i18n="schedule.title">
+          Agendar conversa
+        </h2>
+        <p class="schedule-modal__subtitle" data-i18n="schedule.subtitle">
+          Informe nome, e-mail e telefone para abrir o WhatsApp com uma mensagem pronta.
+        </p>
+        <form id="schedule-lead-form" novalidate>
+          <p id="schedule-submit-err" class="schedule-modal__submit-err" role="alert" hidden data-i18n="schedule.errSubmit">
+            Não foi possível registrar agora. Tente de novo.
+          </p>
+          <div class="schedule-modal__field">
+            <label for="schedule-name" data-i18n="schedule.labelName">Nome completo</label>
+            <input id="schedule-name" name="name" type="text" autocomplete="name" required maxlength="120">
+          </div>
+          <div class="schedule-modal__field">
+            <label for="schedule-email" data-i18n="schedule.labelEmail">E-mail</label>
+            <input id="schedule-email" name="email" type="email" autocomplete="email" required inputmode="email">
+          </div>
+          <div class="schedule-modal__field">
+            <label for="schedule-phone" data-i18n="schedule.labelPhone">Telefone (com DDD)</label>
+            <input id="schedule-phone" name="phone" type="tel" autocomplete="tel" required inputmode="tel" maxlength="32">
+          </div>
+          <div class="schedule-modal__field">
+            <label for="schedule-company">
+              <span data-i18n="schedule.labelCompany">Empresa ou escritório</span>
+              <span class="schedule-modal__optional" data-i18n="schedule.companyOptional"> (opcional)</span>
+            </label>
+            <input id="schedule-company" name="company" type="text" autocomplete="organization" maxlength="160">
+          </div>
+          <div class="schedule-modal__actions">
+            <button type="button" class="btn schedule-modal__btn-ghost" data-schedule-close data-i18n="schedule.btnCancel">
+              Cancelar
+            </button>
+            <button type="submit" id="schedule-submit-btn" class="btn btn--solid-dark" data-i18n="schedule.btnSubmit">
+              Enviar dados
+            </button>
+          </div>
+        </form>
+      </div>
+      <div id="schedule-step-success" class="schedule-modal__step schedule-success" hidden>
+        <div class="schedule-success__mark" aria-hidden="true">
+          <svg class="schedule-success__svg" viewBox="0 0 72 72" width="88" height="88" role="presentation">
+            <circle class="schedule-success__circle" cx="36" cy="36" r="34"></circle>
+            <path class="schedule-success__check" d="M22 38 L32 48 L52 24"></path>
+          </svg>
+        </div>
+        <h2 id="schedule-success-title" class="schedule-modal__title schedule-success__title" data-i18n="schedule.successTitle">
+          Recebemos tudo!
+        </h2>
+        <p class="schedule-modal__subtitle" data-i18n="schedule.successSubtitle">
+          Em breve entraremos em contato.
+        </p>
+        <button type="button" class="btn btn--solid-dark" data-schedule-close data-i18n="schedule.btnDone">
+          Fechar
+        </button>
+      </div>
+    </div>
+  </div>
 
   <script id="zira-ld-json" type="application/ld+json">
   {
@@ -2563,6 +3725,8 @@
   </script>
 
   <script src="assets/i18n.js"></script>
+  <script src="assets/leads.js"></script>
+  <script src="assets/site-motion.js"></script>
   <script>
     (function () {
       'use strict';
@@ -2621,10 +3785,24 @@
       function bindUi() {
         /* ----------------------------------------------------------
            Reveal nav once user scrolls past the hero
+           Visível = mais alto; após rolar além do fim do hero + folga = compacto
            ---------------------------------------------------------- */
+        function updateNavCompact() {
+          if (!nav || !hero) return;
+          if (nav.getAttribute('data-visible') !== 'true') {
+            nav.removeAttribute('data-compact');
+            return;
+          }
+          var y = window.scrollY || window.pageYOffset || 0;
+          var heroEnd = hero.offsetTop + hero.offsetHeight;
+          var buffer = Math.min(Math.round(window.innerHeight * 0.14), 170);
+          nav.setAttribute('data-compact', y >= heroEnd + buffer ? 'true' : 'false');
+        }
+
         function setNavVisible(visible) {
           if (!nav) return;
           nav.setAttribute('data-visible', String(visible));
+          updateNavCompact();
         }
 
         if (nav && hero && 'IntersectionObserver' in window) {
@@ -2679,9 +3857,14 @@
           root.setAttribute('data-scrollbar-zone', zone);
         }
 
-        updateScrollbarTheme();
-        window.addEventListener('scroll', updateScrollbarTheme, { passive: true });
-        window.addEventListener('resize', updateScrollbarTheme);
+        function syncViewportChroming() {
+          updateScrollbarTheme();
+          updateNavCompact();
+        }
+
+        syncViewportChroming();
+        window.addEventListener('scroll', syncViewportChroming, { passive: true });
+        window.addEventListener('resize', syncViewportChroming);
 
         /* ----------------------------------------------------------
            Scroll-reveal
@@ -2740,7 +3923,7 @@
             sec.querySelectorAll('[data-reveal]').forEach(function (inner) {
               inner.setAttribute('data-revealed', 'true');
             });
-            window.requestAnimationFrame(updateScrollbarTheme);
+            window.requestAnimationFrame(syncViewportChroming);
           }
           if (opts.scroll !== false) {
             window.requestAnimationFrame(function () {
@@ -2831,12 +4014,239 @@
           });
 
           document.addEventListener('keydown', function (event) {
+            var scheduleModalEscape = document.getElementById('schedule-modal');
+            if (
+              scheduleModalEscape &&
+              !scheduleModalEscape.hidden &&
+              event.key === 'Escape'
+            ) {
+              return;
+            }
             if (event.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') {
               setMenu(false);
               toggle.focus();
             }
           });
         }
+
+        /* ----------------------------------------------------------
+           Agendar conversa · envio dos dados · tela de sucesso animada
+           ---------------------------------------------------------- */
+        var scheduleModal = document.getElementById('schedule-modal');
+        var scheduleModalPanel = document.getElementById('schedule-modal-panel');
+        var scheduleFormStep = document.getElementById('schedule-step-form');
+        var scheduleSuccessStep = document.getElementById('schedule-step-success');
+        var scheduleForm = document.getElementById('schedule-lead-form');
+        var scheduleSubmitErr = document.getElementById('schedule-submit-err');
+        var scheduleSubmitBtn = document.getElementById('schedule-submit-btn');
+        var scheduleNameEl = scheduleForm ? document.getElementById('schedule-name') : null;
+        var scheduleEmailEl = scheduleForm ? document.getElementById('schedule-email') : null;
+        var schedulePhoneEl = scheduleForm ? document.getElementById('schedule-phone') : null;
+        var scheduleCompanyEl = scheduleForm ? document.getElementById('schedule-company') : null;
+        var scheduleLastFocusEl = null;
+
+        function schedulePhoneDigits(v) {
+          return String(v || '').replace(/\D/g, '').length;
+        }
+
+        function setFieldInvalid(inp, invalid) {
+          if (!inp) return;
+          inp.setAttribute('aria-invalid', invalid ? 'true' : 'false');
+        }
+
+        function resetScheduleModalFlows() {
+          if (!scheduleFormStep || !scheduleSuccessStep) return;
+          scheduleFormStep.removeAttribute('hidden');
+          scheduleSuccessStep.setAttribute('hidden', '');
+          if (scheduleModalPanel) {
+            scheduleModalPanel.setAttribute(
+              'aria-labelledby',
+              'schedule-modal-title'
+            );
+          }
+          scheduleSuccessStep.classList.remove('schedule-success--animate');
+          if (scheduleSubmitErr) {
+            scheduleSubmitErr.setAttribute('hidden', '');
+          }
+          if (scheduleForm) scheduleForm.reset();
+          [scheduleNameEl, scheduleEmailEl, schedulePhoneEl, scheduleCompanyEl].forEach(function (
+            inp
+          ) {
+            setFieldInvalid(inp, false);
+          });
+        }
+
+        function triggerScheduleSuccessAnimation() {
+          if (!scheduleSuccessStep) return;
+          scheduleSuccessStep.classList.remove('schedule-success--animate');
+          void scheduleSuccessStep.offsetWidth;
+          scheduleSuccessStep.classList.add('schedule-success--animate');
+        }
+
+        function showScheduleSuccessUi() {
+          if (!scheduleFormStep || !scheduleSuccessStep || !scheduleModalPanel) return;
+          scheduleFormStep.setAttribute('hidden', '');
+          scheduleSuccessStep.removeAttribute('hidden');
+          scheduleModalPanel.setAttribute('aria-labelledby', 'schedule-success-title');
+          window.requestAnimationFrame(function () {
+            triggerScheduleSuccessAnimation();
+            var btnDone = scheduleSuccessStep.querySelector('[data-schedule-close]');
+            if (btnDone && typeof btnDone.focus === 'function') btnDone.focus();
+          });
+        }
+
+        function openScheduleModal() {
+          if (!scheduleModal || typeof ZiraI18n === 'undefined') return;
+          scheduleLastFocusEl = document.activeElement;
+          resetScheduleModalFlows();
+          scheduleModal.removeAttribute('hidden');
+          document.body.style.overflow = 'hidden';
+          window.setTimeout(function () {
+            if (scheduleNameEl) scheduleNameEl.focus();
+          }, 0);
+        }
+
+        function closeScheduleModal() {
+          if (!scheduleModal) return;
+          resetScheduleModalFlows();
+          scheduleModal.setAttribute('hidden', '');
+          document.body.style.overflow = '';
+          if (
+            scheduleLastFocusEl &&
+            typeof scheduleLastFocusEl.focus === 'function'
+          ) {
+            scheduleLastFocusEl.focus();
+          }
+          scheduleLastFocusEl = null;
+        }
+
+        document.addEventListener('click', function (e) {
+          var trig = e.target && e.target.closest ? e.target.closest('[data-schedule-open]') : null;
+          if (!trig || typeof ZiraI18n === 'undefined') return;
+          e.preventDefault();
+          if (toggle && list && window.matchMedia('(max-width: 1024px)').matches) {
+            setMenu(false);
+          }
+          openScheduleModal();
+        });
+
+        if (scheduleModal) {
+          scheduleModal.addEventListener('click', function (e) {
+            if (e.target && e.target.getAttribute && e.target.getAttribute('data-schedule-close') !== null) {
+              closeScheduleModal();
+            }
+          });
+        }
+
+        if (scheduleForm && scheduleModal) {
+          scheduleForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+            if (typeof ZiraI18n === 'undefined') return;
+            if (!window.ZiraLeads) {
+              if (scheduleSubmitErr) scheduleSubmitErr.removeAttribute('hidden');
+              return;
+            }
+            var lang = ZiraI18n.getLang();
+
+            var name = scheduleNameEl ? scheduleNameEl.value.trim() : '';
+            var email = scheduleEmailEl ? scheduleEmailEl.value.trim() : '';
+            var phone = schedulePhoneEl ? schedulePhoneEl.value.trim() : '';
+            var company = scheduleCompanyEl ? scheduleCompanyEl.value.trim() : '';
+
+            if (scheduleSubmitErr) scheduleSubmitErr.setAttribute('hidden', '');
+            setFieldInvalid(scheduleNameEl, false);
+            setFieldInvalid(scheduleEmailEl, false);
+            setFieldInvalid(schedulePhoneEl, false);
+
+            var ok = true;
+
+            if (!name) {
+              setFieldInvalid(scheduleNameEl, true);
+              ok = false;
+            }
+            if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+              setFieldInvalid(scheduleEmailEl, true);
+              ok = false;
+            }
+            if (schedulePhoneDigits(phone) < 8) {
+              setFieldInvalid(schedulePhoneEl, true);
+              ok = false;
+            }
+
+            if (!ok) {
+              var order = [scheduleNameEl, scheduleEmailEl, schedulePhoneEl];
+              for (var fi = 0; fi < order.length; fi++) {
+                if (
+                  order[fi] &&
+                  order[fi].getAttribute('aria-invalid') === 'true'
+                ) {
+                  order[fi].focus();
+                  break;
+                }
+              }
+              return;
+            }
+
+            var prevBtnText =
+              scheduleSubmitBtn && typeof scheduleSubmitBtn.textContent === 'string'
+                ? scheduleSubmitBtn.textContent
+                : '';
+            if (scheduleSubmitBtn) {
+              scheduleSubmitBtn.disabled = true;
+              scheduleSubmitBtn.setAttribute('aria-busy', 'true');
+              scheduleSubmitBtn.textContent = ZiraI18n.t('schedule.submitting');
+            }
+
+            ZiraLeads.submitLead(
+              { name: name, email: email, phone: phone, company: company },
+              lang
+            )
+              .then(function (result) {
+                if (result && result.ok) {
+                  showScheduleSuccessUi();
+                } else if (scheduleSubmitErr) {
+                  scheduleSubmitErr.removeAttribute('hidden');
+                }
+              })
+              .catch(function () {
+                if (scheduleSubmitErr) scheduleSubmitErr.removeAttribute('hidden');
+              })
+              .finally(function () {
+                if (scheduleSubmitBtn) {
+                  scheduleSubmitBtn.disabled = false;
+                  scheduleSubmitBtn.removeAttribute('aria-busy');
+                  scheduleSubmitBtn.textContent =
+                    typeof ZiraI18n !== 'undefined'
+                      ? ZiraI18n.t('schedule.btnSubmit')
+                      : prevBtnText || '';
+                }
+              });
+          });
+
+          [scheduleNameEl, scheduleEmailEl, schedulePhoneEl, scheduleCompanyEl].forEach(function (inp) {
+            if (!inp) return;
+            inp.addEventListener('input', function () {
+              setFieldInvalid(inp, false);
+              if (scheduleSubmitErr) scheduleSubmitErr.setAttribute('hidden', '');
+            });
+          });
+        }
+
+        document.addEventListener(
+          'keydown',
+          function (ev) {
+            if (
+              !scheduleModal ||
+              scheduleModal.hidden ||
+              ev.key !== 'Escape'
+            ) {
+              return;
+            }
+            ev.preventDefault();
+            closeScheduleModal();
+          },
+          true
+        );
 
         document.addEventListener(
           'zira:lang',
