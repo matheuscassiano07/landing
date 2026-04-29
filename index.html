@@ -200,13 +200,35 @@
       background: transparent;
     }
 
+    html {
+      background: #050607;
+      min-height: 100%;
+    }
+
+    /* Full-viewport animated chrome (below content + LEDs) */
+    .chrome-liquid-bg {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+      pointer-events: none;
+      z-index: -3;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .chrome-liquid-bg {
+        display: none !important;
+      }
+    }
+
     body {
       font-family: var(--font-sans);
       font-feature-settings: "cv01", "ss03";
       font-weight: var(--weight-regular);
       font-size: var(--fs-body);
       line-height: 1.5;
-      background: var(--black);
+      background: transparent;
       color: var(--on-dark-text-2);
       min-height: 100vh;
       overflow-x: hidden;
@@ -266,8 +288,90 @@
       transform: translateY(0);
     }
 
+    /* Motion-enhance: palavras / letras (JS injeta spans) */
+    [data-motion-split][data-reveal] {
+      opacity: 1 !important;
+      transform: none !important;
+      transition: none !important;
+    }
+
+    [data-motion-split][data-reveal]:not([data-revealed='true']) .motion-split__unit {
+      opacity: 0;
+      transform: translate3d(0, 22px, 0) rotateX(-8deg);
+    }
+
+    [data-motion-split][data-reveal][data-revealed='true'] .motion-split__unit {
+      opacity: 1;
+      transform: translate3d(0, 0, 0) rotateX(0);
+      transition:
+        opacity 0.75s cubic-bezier(0.2, 0.65, 0.15, 1),
+        transform 0.88s cubic-bezier(0.2, 0.65, 0.15, 1);
+      transition-delay: calc(var(--u, 0) * var(--motion-stagger-word, 38ms));
+    }
+
+    .motion-split__unit--char {
+      --motion-stagger-word: 11ms;
+    }
+
+    /* Hero headline (mesma lógica, activado por .hero--motion-ready) */
+    .hero.hero--motion .motion-split__unit {
+      opacity: 0;
+      transform: translate3d(0, 20px, 0) rotateX(-6deg);
+    }
+
+    .hero.hero--motion.hero--motion-ready .motion-split__unit {
+      opacity: 1;
+      transform: translate3d(0, 0, 0) rotateX(0);
+      transition:
+        opacity 0.78s cubic-bezier(0.2, 0.65, 0.15, 1),
+        transform 0.92s cubic-bezier(0.16, 0.72, 0.22, 1);
+      transition-delay: calc(var(--u, 0) * var(--motion-stagger-word, 42ms));
+    }
+
+    /* Fotos · máscara + blur até revelar */
+    [data-reveal][data-reveal-variant='photo'] {
+      opacity: 1 !important;
+      transform: none !important;
+    }
+
+    [data-reveal][data-reveal-variant='photo']:not([data-revealed='true']) .zira__image,
+    [data-reveal][data-reveal-variant='photo']:not([data-revealed='true']) .device-shell,
+    [data-reveal][data-reveal-variant='photo']:not([data-revealed='true']) .adapt__logo {
+      opacity: 0;
+      transform: scale(1.07) rotate(-1deg) translateY(16px);
+      filter: blur(16px);
+    }
+
+    [data-reveal][data-reveal-variant='photo'][data-revealed='true'] .zira__image,
+    [data-reveal][data-reveal-variant='photo'][data-revealed='true'] .device-shell,
+    [data-reveal][data-reveal-variant='photo'][data-revealed='true'] .adapt__logo {
+      opacity: 1;
+      transform: none;
+      filter: none;
+      transition:
+        opacity 0.92s cubic-bezier(0.2, 0.72, 0.2, 1),
+        transform 1.05s cubic-bezier(0.16, 0.76, 0.18, 1),
+        filter 0.95s cubic-bezier(0.2, 0.65, 0.2, 1);
+      transition-delay: var(--reveal-delay, 0ms);
+    }
+
     @media (prefers-reduced-motion: reduce) {
       [data-reveal] {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+      }
+
+      [data-reveal-variant='photo'] .zira__image,
+      [data-reveal-variant='photo'] .device-shell,
+      [data-reveal-variant='photo'] .adapt__logo {
+        opacity: 1 !important;
+        transform: none !important;
+        filter: none !important;
+      }
+
+      .motion-split__unit,
+      .hero.hero--motion .motion-split__unit {
         opacity: 1 !important;
         transform: none !important;
         transition: none !important;
@@ -876,7 +980,7 @@
        ============================================================ */
     .zira {
       padding: var(--space-12) var(--space-6) var(--space-11);
-      background: var(--black);
+      background: transparent;
     }
 
     .zira__container {
@@ -1134,7 +1238,7 @@
        ============================================================ */
     .problem {
       padding: var(--space-12) var(--space-6);
-      background: var(--black);
+      background: transparent;
     }
 
     .problem__header {
@@ -1371,7 +1475,7 @@
     .workflow,
     .calendar {
       padding: var(--space-12) var(--space-6);
-      background: var(--black);
+      background: transparent;
       text-align: center;
     }
 
@@ -1738,7 +1842,7 @@
        ============================================================ */
     .tracking {
       padding: var(--space-12) var(--space-6);
-      background: var(--black);
+      background: transparent;
     }
 
     .tracking__container {
@@ -1803,7 +1907,7 @@
     .adapt {
       padding: var(--space-12) var(--space-6);
       text-align: center;
-      background-color: var(--black);
+      background-color: transparent;
       background-image:
         linear-gradient(
           rgba(0, 0, 0, 0.88),
@@ -2132,7 +2236,7 @@
        ============================================================ */
     .footer {
       padding: var(--space-9) var(--space-6) var(--space-7);
-      background: var(--black);
+      background: transparent;
       border-top: 1px solid var(--on-dark-2);
     }
 
@@ -2206,7 +2310,7 @@
       padding: var(--space-12) var(--space-6);
       background:
         radial-gradient(ellipse 90% 60% at 50% -20%, rgba(255, 255, 255, 0.06), transparent),
-        var(--black);
+        transparent;
       border-top: 1px solid var(--on-dark-2);
     }
 
@@ -2318,7 +2422,7 @@
        ============================================================ */
     .blog-teaser {
       padding: var(--space-11) var(--space-6) var(--space-12);
-      background: var(--black-soft);
+      background: transparent;
       border-top: 1px solid var(--on-dark-2);
     }
 
@@ -2807,6 +2911,7 @@
   </style>
 </head>
 <body>
+  <canvas id="chrome-liquid-bg" class="chrome-liquid-bg" role="presentation" aria-hidden="true"></canvas>
   <div class="site-led-layer" aria-hidden="true">
     <span class="site-led"></span>
     <span class="site-led"></span>
@@ -2894,10 +2999,19 @@
       </div>
 
       <div class="hero__content">
-        <h1 class="hero__title" id="hero-title" data-i18n="hero.title">
+        <h1
+          class="hero__title"
+          id="hero-title"
+          data-i18n="hero.title"
+          data-motion-split="words">
           A plataforma que organiza atendimento, equipe, obras e prazos para escritórios de arquitetura e engenharia.
         </h1>
-        <p class="hero__credibility" data-i18n="hero.credibility">
+        <p
+          class="hero__credibility"
+          data-motion-split="words"
+          data-reveal
+          style="--reveal-delay: 220ms"
+          data-i18n="hero.credibility">
           Pensado para operação real, não só atendimento · Celular e desktop · Adaptável ao fluxo do escritório
         </p>
         <p class="sr-only" data-i18n="hero.sr">
@@ -2925,9 +3039,9 @@
         </svg>
       </div>
       <div class="zira__container">
-        <div class="zira__content" data-reveal>
+        <div class="zira__content">
           <div class="zira__lead">
-            <div class="zira__brand">
+            <div class="zira__brand" data-reveal>
               <div class="zira__title-group">
                 <h2 class="zira__title" id="zira-title">
                   Zira AI
@@ -2945,12 +3059,21 @@
               </div>
             </div>
             <div class="zira__divider" aria-hidden="true"></div>
-            <p class="zira__description" data-i18n="zira.desc">
+            <p
+              class="zira__description"
+              data-motion-split="words"
+              data-reveal
+              style="--reveal-delay: 60ms"
+              data-i18n="zira.desc">
               No WhatsApp, o Zira identifica a solicitação, separa oportunidades comerciais de outros assuntos, prioriza o que exige atenção do time e organiza o contexto para que cada atendimento avance com mais clareza. Quando a resposta não deve ser automatizada, o sistema encaminha o caso corretamente, sem ruído e sem improviso.
             </p>
           </div>
         </div>
-        <div class="zira__image-wrap zira__image-wrap--featured" data-reveal style="--reveal-delay: 120ms">
+        <div
+          class="zira__image-wrap zira__image-wrap--featured"
+          data-reveal
+          data-reveal-variant="photo"
+          style="--reveal-delay: 140ms">
           <img
             src="assets/zira-mascot.png"
             data-i18n-attr="alt:zira.imageAlt"
@@ -2976,14 +3099,21 @@
           </g>
         </svg>
       </div>
-      <div class="problem__header" data-reveal>
+      <div class="problem__header">
         <h2
           class="section-title section-title--centered"
           id="problem-title"
+          data-reveal
+          data-motion-split="words"
           data-i18n="problem.title">
           O problema não está só em captar clientes. Está em perder controle da operação.
         </h2>
-        <p class="section-caption" data-i18n="problem.caption">
+        <p
+          class="section-caption"
+          data-reveal
+          data-motion-split="words"
+          style="--reveal-delay: 100ms"
+          data-i18n="problem.caption">
           Quando tudo depende de mensagens soltas, memória e urgência improvisada, o escritório perde contexto, a equipe reage em vez de conduzir, e a operação deixa de ser previsível.
         </p>
       </div>
@@ -3020,7 +3150,7 @@
           </li>
         </ul>
 
-        <div class="problem__visual" data-reveal style="--reveal-delay: 200ms">
+        <div class="problem__visual" data-reveal data-reveal-variant="photo" style="--reveal-delay: 220ms">
           <!-- Imagem do ecrã: substitua assets/screens/plug-iphone.svg ou altere o src abaixo para o seu JPG/PNG. -->
           <figure class="device-shell device-shell--iphone">
             <figcaption class="sr-only" data-i18n="problem.imageAlt">Atendimento e tarefas no celular com Zira AI</figcaption>
@@ -3041,7 +3171,12 @@
           </figure>
         </div>
       </div>
-      <p class="problem__outro" data-i18n="problem.outro" data-reveal>
+      <p
+        class="problem__outro"
+        data-motion-split="words"
+        data-reveal
+        style="--reveal-delay: 40ms"
+        data-i18n="problem.outro">
         Menos ruído operacional. Mais clareza sobre o que precisa acontecer, quem precisa agir e o que ainda está pendente.
       </p>
     </section>
@@ -3061,11 +3196,17 @@
         <h2
           class="section-title section-title--centered"
           id="workflow-title"
+          data-motion-split="words"
           data-i18n="workflow.title"
           data-reveal>
           Do primeiro contato à entrega da obra, tudo conectado.
         </h2>
-        <p class="section-caption" data-i18n="workflow.caption">
+        <p
+          class="section-caption"
+          data-motion-split="words"
+          data-reveal
+          style="--reveal-delay: 90ms"
+          data-i18n="workflow.caption">
           Sete pontos ligados como um ciclo · do primeiro ping no WhatsApp à equipe trabalhando com o mesmo panorama, incluindo priorização ativa, mensagens quando o cliente é difícil, follow-ups e projeto integrado a alertas.
         </p>
         <div
@@ -3235,7 +3376,12 @@
             </div>
           </div>
         </div>
-        <p class="workflow__kicker" data-i18n="workflow.kicker" data-reveal style="--reveal-delay: 180ms">
+        <p
+          class="workflow__kicker"
+          data-motion-split="words"
+          data-reveal
+          style="--reveal-delay: 180ms"
+          data-i18n="workflow.kicker">
           Setas mostram sequência entre etapas · curva conecta a última volta do atendimento à mesma entrada do fluxo.
         </p>
       </div>
@@ -3246,11 +3392,17 @@
         <h2
           class="section-title section-title--centered"
           id="tracking-title"
+          data-motion-split="words"
           data-i18n="tracking.title"
           data-reveal>
           Saiba o que cada arquiteto, engenheiro e membro da equipe está fazendo, o que está atrasado e o que exige atenção agora.
         </h2>
-        <p class="section-caption" data-i18n="tracking.caption">
+        <p
+          class="section-caption"
+          data-motion-split="words"
+          data-reveal
+          style="--reveal-delay: 100ms"
+          data-i18n="tracking.caption">
           Aqui, gestão de obra e gestão de equipe deixam de ficar separadas. O escritório enxerga quem responde por cada frente, o que está em andamento e onde estão os gargalos, sem planilha paralela e sem leitura fragmentada da operação.
         </p>
         <ul class="tracking__pills">
@@ -3268,14 +3420,24 @@
         <h2
           class="section-title section-title--centered"
           id="calendar-title"
+          data-motion-split="words"
           data-i18n="calendar.title"
           data-reveal>
           Prazos, reuniões, retornos e etapas em uma única visualização.
         </h2>
-        <p class="section-caption" data-i18n="calendar.caption">
+        <p
+          class="section-caption"
+          data-motion-split="words"
+          data-reveal
+          style="--reveal-delay: 90ms"
+          data-i18n="calendar.caption">
           Quando prazo, reunião e etapa do projeto aparecem no mesmo fluxo, o escritório inteiro trabalha com a mesma leitura da operação. Menos divergência, menos retrabalho e mais previsibilidade sobre o que precisa acontecer a seguir.
         </p>
-        <div class="frame frame--macbook" data-reveal style="--reveal-delay: 120ms">
+        <div
+          class="frame frame--macbook"
+          data-reveal
+          data-reveal-variant="photo"
+          style="--reveal-delay: 160ms">
           <!-- Imagem do ecrã: substitua assets/screens/plug-macbook.svg ou altere o src para o seu JPG/PNG. -->
           <figure class="device-shell device-shell--macbook">
             <figcaption class="sr-only" data-i18n="calendar.imageAlt">Prazos e etapas num único quadro</figcaption>
@@ -3295,7 +3457,12 @@
             <div class="device-shell__base" aria-hidden="true"></div>
           </figure>
         </div>
-        <p class="calendar__kicker" data-i18n="calendar.kicker" data-reveal style="--reveal-delay: 180ms">
+        <p
+          class="calendar__kicker"
+          data-motion-split="words"
+          data-reveal
+          style="--reveal-delay: 180ms"
+          data-i18n="calendar.kicker">
           Prazos e etapas organizados em um único fluxo visual.
         </p>
       </div>
@@ -3311,15 +3478,26 @@
           <h2
             class="section-title"
             id="blog-title"
+            data-motion-split="words"
             data-i18n="blogSection.title"
             data-reveal>
             Conteúdo para quem lidera obra
           </h2>
-          <p class="section-caption" data-i18n="blogSection.caption" data-reveal>
+          <p
+            class="section-caption"
+            data-motion-split="words"
+            data-reveal
+            style="--reveal-delay: 80ms"
+            data-i18n="blogSection.caption">
             Artigos sobre gestão de escritório, comunicação com cliente e operação em canteiro, em linguagem direta.
           </p>
         </div>
-        <a href="blog.html" class="blog-teaser__link" data-i18n="blogSection.link" data-reveal>
+        <a
+          href="blog.html"
+          class="blog-teaser__link"
+          data-reveal
+          style="--reveal-delay: 200ms"
+          data-i18n="blogSection.link">
           Ver blog completo
         </a>
       </div>
@@ -3350,11 +3528,17 @@
         <h2
           class="section-title section-title--centered"
           id="faq-title"
+          data-motion-split="chars"
           data-i18n="faq.title"
           data-reveal>
           Perguntas frequentes
         </h2>
-        <p class="section-caption section-title--centered" data-i18n="faq.caption" data-reveal>
+        <p
+          class="section-caption section-title--centered"
+          data-motion-split="words"
+          data-reveal
+          style="--reveal-delay: 90ms"
+          data-i18n="faq.caption">
           Respostas diretas sobre implementação, privacidade, operação e como o Zira se adapta à rotina real do escritório.
         </p>
         <div class="faq__panel" role="list">
@@ -3444,11 +3628,12 @@
         <h2
           class="section-title section-title--centered"
           id="adapt-title"
+          data-motion-split="words"
           data-i18n="adapt.title"
           data-reveal>
           Cada escritório opera de um jeito. O sistema se adapta a isso.
         </h2>
-        <div class="adapt__logo-wrap" data-reveal style="--reveal-delay: 200ms">
+        <div class="adapt__logo-wrap" data-reveal data-reveal-variant="photo" style="--reveal-delay: 200ms">
           <img
             src="assets/logo-branca.png"
             data-i18n-attr="alt:adapt.logoAlt"
@@ -3461,14 +3646,32 @@
 
     <section class="cta" id="cta" aria-labelledby="cta-title">
       <div class="cta__container">
-        <div class="cta__inner" data-reveal>
-          <h2 class="cta__title" id="cta-title" data-i18n="cta.title">
+        <div class="cta__inner">
+          <h2
+            class="cta__title"
+            id="cta-title"
+            data-motion-split="words"
+            data-reveal
+            data-i18n="cta.title">
             Saia na frente na operação, sem abrir mão do que já funciona no escritório.
           </h2>
-          <p class="cta__desc" data-i18n="cta.desc">
+          <p
+            class="cta__desc"
+            data-motion-split="words"
+            data-reveal
+            style="--reveal-delay: 100ms"
+            data-i18n="cta.desc">
             Na conversa, você vê onde ganha clareza e previsibilidade. Mostramos como integrar ao procedimento que vocês já usam e como adaptamos etapas, papéis e fluxo à rotina da equipe, para decidir com segurança.
           </p>
-          <a href="#" class="btn btn--solid-dark" data-schedule-open data-i18n="cta.btn">Agendar conversa</a>
+          <a
+            href="#"
+            class="btn btn--solid-dark"
+            data-reveal
+            style="--reveal-delay: 280ms"
+            data-schedule-open
+            data-i18n="cta.btn">
+            Agendar conversa
+          </a>
         </div>
       </div>
     </section>
@@ -3669,7 +3872,9 @@
   }
   </script>
 
+  <script src="assets/chrome-liquid-bg.js" defer></script>
   <script src="assets/i18n.js"></script>
+  <script src="assets/motion-enhance.js"></script>
   <script src="assets/leads.js"></script>
   <script>
     (function () {
@@ -3727,6 +3932,10 @@
       }
 
       function bindUi() {
+        if (typeof ZiraMotion !== 'undefined') {
+          ZiraMotion.enhance(document.body);
+        }
+
         /* ----------------------------------------------------------
            Reveal nav once user scrolls past the hero
            Visível = mais alto; após rolar além do fim do hero + folga = compacto
