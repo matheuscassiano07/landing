@@ -22,12 +22,15 @@
   <meta property="og:title" id="og-title" content="ZIRA AI · Plataforma para Escritórios de Arquitetura e Engenharia">
   <meta property="og:description" id="og-desc" content="Organiza atendimento, equipe, obras e prazos. Operação real no escritório, do WhatsApp à obra, com mais clareza e previsibilidade.">
   <meta property="og:image" content="https://www.zira.ai/assets/hero-bg.jpg">
+  <meta property="og:image:alt" content="Dashboard da plataforma ZIRA AI para escritórios de arquitetura e engenharia.">
   <meta property="og:url" content="https://www.zira.ai/">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" id="twitter-title" content="ZIRA AI · Plataforma para Escritórios">
   <meta name="twitter:description" id="twitter-desc" content="Atendimento, equipe, obras e prazos organizados para escritórios de arquitetura e engenharia.">
   <meta name="twitter:image" content="https://www.zira.ai/assets/hero-bg.jpg">
+  <meta name="twitter:image:alt" content="Visão de operação integrada do ZIRA AI para arquitetura e engenharia.">
   <link rel="alternate" href="https://www.zira.ai/" hreflang="pt-BR">
+  <link rel="alternate" href="https://www.zira.ai/" hreflang="x-default">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" sizes="any">
   <link rel="apple-touch-icon" href="assets/favicon.svg">
   <link rel="icon" type="image/png" sizes="48x48" href="assets/logo-preta.png">
@@ -360,6 +363,25 @@
         opacity: 1 !important;
         transform: none !important;
         transition: none !important;
+      }
+
+      .section-title::after,
+      .section-title::before,
+      .zira__image-wrap--featured::before,
+      .zira__image-wrap--featured::after,
+      .problem__visual::before,
+      .problem__visual::after,
+      .frame--macbook::before,
+      .frame--macbook::after {
+        animation: none !important;
+      }
+
+      .section-title {
+        text-shadow: none !important;
+      }
+
+      .frame--macbook .device-shell {
+        animation: none !important;
       }
 
       [data-reveal-variant='photo'] .zira__image,
@@ -1175,6 +1197,48 @@
       letter-spacing: var(--ls-display);
       color: var(--white);
       text-wrap: balance;
+      position: relative;
+      text-shadow:
+        0 0 12px rgba(255, 255, 255, 0.12),
+        0 0 34px rgba(255, 255, 255, 0.08);
+      animation: titleGlowSweep 7.8s ease-in-out infinite;
+    }
+
+    .section-title::before {
+      content: "";
+      position: absolute;
+      left: -16%;
+      right: -16%;
+      bottom: -0.2em;
+      height: 0.26em;
+      border-radius: 999px;
+      background: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.16) 50%,
+        rgba(255, 255, 255, 0) 100%
+      );
+      filter: blur(7px);
+      transform-origin: 50% 50%;
+      animation: titleLightBar 8.5s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    /* Micro LEDs brancos nos títulos */
+    .section-title::after {
+      content: "";
+      position: absolute;
+      top: -0.28em;
+      right: -0.22em;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.95);
+      box-shadow:
+        0 0 10px rgba(255, 255, 255, 0.95),
+        0 0 28px rgba(255, 255, 255, 0.45);
+      animation: ledPulseWhite 2.6s ease-in-out infinite;
+      pointer-events: none;
     }
 
     .section-title--centered {
@@ -1205,6 +1269,144 @@
       border-radius: var(--r-large);
       overflow: hidden;
       transition: transform var(--t-base), border-color var(--t-base), box-shadow var(--t-base);
+    }
+
+    /* LEDs em blocos visuais (fotos/imagens/dispositivos) */
+    .zira__image-wrap--featured,
+    .problem__visual,
+    .frame--macbook {
+      position: relative;
+      isolation: isolate;
+    }
+
+    .zira__image-wrap--featured::before,
+    .problem__visual::before,
+    .frame--macbook::before,
+    .frame--macbook::after {
+      content: "";
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.92);
+      box-shadow:
+        0 0 10px rgba(255, 255, 255, 0.92),
+        0 0 26px rgba(255, 255, 255, 0.4);
+      pointer-events: none;
+      animation: ledPulseWhite 2.4s ease-in-out infinite;
+    }
+
+    .zira__image-wrap--featured::before {
+      top: 8%;
+      right: 9%;
+      animation-delay: -0.4s;
+    }
+
+    .problem__visual::before {
+      top: 6%;
+      left: 10%;
+      animation-delay: -1s;
+    }
+
+    .frame--macbook::before {
+      top: 12%;
+      left: 7%;
+      animation-delay: -0.7s;
+    }
+
+    .frame--macbook::after {
+      bottom: 10%;
+      right: 8%;
+      animation-delay: -1.5s;
+    }
+
+    .zira__image-wrap--featured::after,
+    .problem__visual::after {
+      content: "";
+      position: absolute;
+      inset: 10% -10%;
+      border-radius: 48px;
+      background:
+        radial-gradient(circle at 30% 40%, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0) 58%),
+        radial-gradient(circle at 70% 65%, rgba(180, 210, 255, 0.16), rgba(180, 210, 255, 0) 62%);
+      filter: blur(28px);
+      opacity: 0.42;
+      z-index: -1;
+      pointer-events: none;
+      animation: ledBackwash 6.6s ease-in-out infinite;
+    }
+
+    .problem__visual::after {
+      animation-delay: -2.1s;
+      opacity: 0.36;
+    }
+
+    .frame--macbook .device-shell {
+      animation: ledImageBreath 7.2s ease-in-out infinite;
+    }
+
+    @keyframes ledPulseWhite {
+      0%, 100% {
+        opacity: 0.5;
+        transform: scale(0.9);
+      }
+      50% {
+        opacity: 1;
+        transform: scale(1.16);
+      }
+    }
+
+    @keyframes titleGlowSweep {
+      0%, 100% {
+        text-shadow:
+          0 0 12px rgba(255, 255, 255, 0.1),
+          0 0 28px rgba(255, 255, 255, 0.06);
+      }
+      45% {
+        text-shadow:
+          0 0 16px rgba(255, 255, 255, 0.18),
+          0 0 42px rgba(255, 255, 255, 0.12);
+      }
+      60% {
+        text-shadow:
+          0 0 14px rgba(255, 255, 255, 0.14),
+          0 0 34px rgba(255, 255, 255, 0.1);
+      }
+    }
+
+    @keyframes titleLightBar {
+      0%, 100% {
+        opacity: 0.28;
+        transform: translateX(-4%) scaleX(0.8);
+      }
+      50% {
+        opacity: 0.58;
+        transform: translateX(5%) scaleX(1.05);
+      }
+    }
+
+    @keyframes ledBackwash {
+      0%, 100% {
+        opacity: 0.3;
+        transform: scale(0.95) translateY(0);
+      }
+      50% {
+        opacity: 0.58;
+        transform: scale(1.05) translateY(-1.8%);
+      }
+    }
+
+    @keyframes ledImageBreath {
+      0%, 100% {
+        filter:
+          drop-shadow(0 18px 48px rgba(0, 0, 0, 0.6))
+          drop-shadow(0 0 0 rgba(255, 255, 255, 0));
+      }
+      50% {
+        filter:
+          drop-shadow(0 18px 48px rgba(0, 0, 0, 0.56))
+          drop-shadow(0 0 22px rgba(255, 255, 255, 0.18));
+      }
     }
 
     .frame:hover {
@@ -2243,11 +2445,21 @@
     .footer__container {
       max-width: var(--content-max);
       margin: 0 auto;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: var(--space-5);
+      display: grid;
+      gap: var(--space-7);
+    }
+
+    .footer__top {
+      display: grid;
+      grid-template-columns: minmax(220px, 1.25fr) repeat(3, minmax(150px, 1fr));
+      gap: var(--space-7);
+      align-items: start;
+    }
+
+    .footer__brand-wrap {
+      display: grid;
+      gap: var(--space-4);
+      max-width: 28rem;
     }
 
     .footer__brand {
@@ -2265,28 +2477,61 @@
     .footer__name {
       font-size: var(--fs-caption);
       font-weight: var(--weight-medium);
-      color: var(--on-dark-text-2);
+      color: var(--white);
       letter-spacing: -0.13px;
     }
 
-    .footer__nav {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: var(--space-5);
+    .footer__desc {
+      margin: 0;
+      color: var(--on-dark-text-3);
+      font-size: var(--fs-caption);
+      line-height: 1.55;
+      letter-spacing: -0.12px;
     }
 
-    .footer__nav a {
-      font-size: var(--fs-caption);
+    .footer__heading {
+      margin: 0 0 var(--space-3);
+      font-size: var(--fs-label);
       font-weight: var(--weight-medium);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--on-dark-text-2);
+    }
+
+    .footer__links {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 10px;
+    }
+
+    .footer__links a {
+      font-size: var(--fs-caption);
+      font-weight: var(--weight-regular);
       color: var(--on-dark-text-3);
       text-decoration: none;
       letter-spacing: -0.12px;
       transition: color var(--t-fast);
     }
 
-    .footer__nav a:hover {
+    .footer__links a:hover {
       color: var(--white);
+    }
+
+    .footer__links a[data-wa-link] {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .footer__links a[data-wa-link]::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.85);
+      box-shadow: 0 0 12px rgba(255, 255, 255, 0.45);
     }
 
     .footer__admin-leads {
@@ -2301,6 +2546,41 @@
     .footer__admin-leads:hover {
       opacity: 1;
       color: var(--on-dark-text-2);
+    }
+
+    .footer__bottom {
+      padding-top: var(--space-5);
+      border-top: 1px solid var(--on-dark-2);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-4);
+    }
+
+    .footer__copyright {
+      margin: 0;
+      font-size: var(--fs-micro);
+      color: var(--on-dark-text-3);
+      letter-spacing: 0.03em;
+    }
+
+    .footer__legal {
+      display: inline-flex;
+      flex-wrap: wrap;
+      gap: var(--space-4);
+    }
+
+    .footer__legal a {
+      font-size: var(--fs-micro);
+      color: var(--on-dark-text-3);
+      text-decoration: none;
+      letter-spacing: 0.03em;
+      transition: color var(--t-fast);
+    }
+
+    .footer__legal a:hover {
+      color: var(--white);
     }
 
     /* ============================================================
@@ -2744,9 +3024,21 @@
       }
 
       .footer__container {
+        text-align: left;
+      }
+
+      .footer__top {
+        grid-template-columns: 1fr;
+        gap: var(--space-6);
+      }
+
+      .footer__brand-wrap {
+        max-width: none;
+      }
+
+      .footer__bottom {
         flex-direction: column;
-        text-align: center;
-        align-items: center;
+        align-items: flex-start;
       }
 
       body {
@@ -3049,7 +3341,7 @@
               </div>
               <div class="zira__image-wrap zira__image-wrap--aside" aria-hidden="true">
                 <img
-                  src="assets/zira-mascot.png"
+                  src="assets/zira-inteiro.png"
                   alt=""
                   class="zira__image zira__image--aside anim-zira-thumb"
                   width="132"
@@ -3075,7 +3367,7 @@
           data-reveal-variant="photo"
           style="--reveal-delay: 140ms">
           <img
-            src="assets/zira-mascot.png"
+            src="assets/zira-inteiro.png"
             data-i18n-attr="alt:zira.imageAlt"
             alt=""
             class="zira__image zira__image--featured anim-zira-hero"
@@ -3679,18 +3971,62 @@
 
   <footer class="footer" role="contentinfo">
     <div class="footer__container">
-      <div class="footer__brand">
-        <img src="assets/logo-branca.png" alt="" class="footer__logo">
-        <span class="footer__name" data-i18n="footer.brand">M2 SCALE</span>
+      <div class="footer__top">
+        <div class="footer__brand-wrap">
+          <div class="footer__brand">
+            <img src="assets/logo-branca.png" alt="" class="footer__logo">
+            <span class="footer__name" data-i18n="footer.brand">M2 SCALE</span>
+          </div>
+          <p class="footer__desc" data-i18n="footer.desc">
+            Plataforma para escritórios de arquitetura e engenharia com operação conectada do WhatsApp ao acompanhamento de equipe, obra e prazos.
+          </p>
+        </div>
+
+        <nav data-i18n-attr="aria-label:footer.navAria" aria-label="Links principais do rodapé">
+          <h3 class="footer__heading" data-i18n="footer.colPlatform">Plataforma</h3>
+          <ul class="footer__links">
+            <li><a href="./#hero" data-i18n="footer.home">Início</a></li>
+            <li><a href="./#zira" data-i18n="footer.platform">Plataforma</a></li>
+            <li><a href="./#workflow" data-i18n="footer.flow">Fluxo</a></li>
+            <li><a href="./#tracking" data-i18n="footer.team">Equipe</a></li>
+          </ul>
+        </nav>
+
+        <nav data-i18n-attr="aria-label:footer.contentAria" aria-label="Conteúdo e materiais">
+          <h3 class="footer__heading" data-i18n="footer.colContent">Conteúdo</h3>
+          <ul class="footer__links">
+            <li><a href="./#blog" data-i18n="footer.blog">Blog</a></li>
+            <li><a href="blog.html" data-i18n="footer.allArticles">Todos os artigos</a></li>
+            <li><a href="./#faq" data-i18n="footer.faq">FAQ</a></li>
+            <li><a href="./#cta" data-i18n="footer.contact">Contato</a></li>
+          </ul>
+        </nav>
+
+        <nav data-i18n-attr="aria-label:footer.opsAria" aria-label="Operação e administração">
+          <h3 class="footer__heading" data-i18n="footer.colOps">Operação</h3>
+          <ul class="footer__links">
+            <li>
+              <a href="#" data-wa-link data-i18n="footer.wa">Atendimento no WhatsApp</a>
+            </li>
+            <li>
+              <a href="#" data-schedule-open data-i18n="footer.schedule">Agendar conversa</a>
+            </li>
+            <li>
+              <a href="admin.html" class="footer__admin-leads" rel="nofollow noreferrer" data-i18n="footer.adminLeads">Painel · leads</a>
+            </li>
+          </ul>
+        </nav>
       </div>
-      <nav class="footer__nav" data-i18n-attr="aria-label:footer.navAria" aria-label="Links do rodapé">
-        <a href="./#hero" data-i18n="footer.home">Início</a>
-        <a href="./#problem" data-i18n="footer.problem">Problema</a>
-        <a href="./#blog" data-i18n="footer.blog">Blog</a>
-        <a href="./#faq" data-i18n="footer.faq">FAQ</a>
-        <a href="./#cta" data-i18n="footer.contact">Contato</a>
-        <a href="admin.html" class="footer__admin-leads" rel="nofollow noreferrer" data-i18n="footer.adminLeads">Painel · leads</a>
-      </nav>
+
+      <div class="footer__bottom">
+        <p class="footer__copyright" data-i18n="footer.copy">
+          © 2026 M2 SCALE · ZIRA AI. Todos os direitos reservados.
+        </p>
+        <div class="footer__legal">
+          <a href="./#faq" data-i18n="footer.privacy">Privacidade e dados</a>
+          <a href="./#cta" data-i18n="footer.terms">Termos comerciais</a>
+        </div>
+      </div>
     </div>
   </footer>
 
