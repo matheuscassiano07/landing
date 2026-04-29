@@ -1,0 +1,2865 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-scrollbar-zone="hero">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="ZIRA AI · Organiza atendimento, equipe, obras e prazos para escritórios de arquitetura e engenharia. Operação clara no WhatsApp, desktop e obra.">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000000">
+  <title>ZIRA AI · Plataforma para Escritórios de Arquitetura e Engenharia</title>
+  <!-- Atualize as URLs absolutas ao publicar em produção -->
+  <link rel="canonical" href="https://www.zira.ai/">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="googlebot" content="index, follow">
+  <meta name="author" content="M2 SCALE">
+  <meta property="og:locale" id="og-locale" content="pt_BR">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="M2 SCALE">
+  <meta property="og:title" id="og-title" content="ZIRA AI · Plataforma para Escritórios de Arquitetura e Engenharia">
+  <meta property="og:description" id="og-desc" content="Organiza atendimento, equipe, obras e prazos. Operação real no escritório, do WhatsApp à obra, com mais clareza e previsibilidade.">
+  <meta property="og:image" content="https://www.zira.ai/assets/hero-bg.jpg">
+  <meta property="og:url" content="https://www.zira.ai/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" id="twitter-title" content="ZIRA AI · Plataforma para Escritórios">
+  <meta name="twitter:description" id="twitter-desc" content="Atendimento, equipe, obras e prazos organizados para escritórios de arquitetura e engenharia.">
+  <meta name="twitter:image" content="https://www.zira.ai/assets/hero-bg.jpg">
+  <link rel="alternate" href="https://www.zira.ai/" hreflang="pt-BR">
+  <link rel="icon" href="assets/logo-preta.png" type="image/png">
+  <link rel="icon" href="assets/logo-branca.png" type="image/png" media="(prefers-color-scheme: dark)">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+  <style>
+    /* ============================================================
+       Tokens · pure black & white only
+       Typography rigor kept from Linear (Inter Variable, weight 510,
+       cv01/ss03 OpenType features, tight display tracking).
+       ============================================================ */
+    :root {
+      /* Pure palette */
+      --white: #ffffff;
+      --white-soft: #f7f7f7;
+      --black: #000000;
+      --black-soft: #0a0a0a;
+
+      /* Translucent overlays (B&W only) */
+      --on-light-1: rgba(0, 0, 0, 0.04);
+      --on-light-2: rgba(0, 0, 0, 0.08);
+      --on-light-3: rgba(0, 0, 0, 0.16);
+      --on-light-text-2: rgba(0, 0, 0, 0.62);
+      --on-light-text-3: rgba(0, 0, 0, 0.42);
+
+      --on-dark-1: rgba(255, 255, 255, 0.04);
+      --on-dark-2: rgba(255, 255, 255, 0.08);
+      --on-dark-3: rgba(255, 255, 255, 0.16);
+      --on-dark-text-2: rgba(255, 255, 255, 0.72);
+      --on-dark-text-3: rgba(255, 255, 255, 0.45);
+
+      /* Typography */
+      --font-sans: 'Inter', 'SF Pro Display', -apple-system, system-ui,
+                   'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+
+      --weight-light: 300;
+      --weight-regular: 400;
+      --weight-medium: 510;
+      --weight-strong: 590;
+
+      --fs-display-xl: 88px;
+      --fs-display: 56px;
+      --fs-h1: 32px;
+      --fs-h3: 20px;
+      --fs-body-lg: 18px;
+      --fs-body: 16px;
+      --fs-small: 15px;
+      --fs-caption-lg: 14px;
+      --fs-caption: 13px;
+      --fs-label: 12px;
+      --fs-micro: 11px;
+
+      --ls-display-xl: -2.4px;
+      --ls-display: -1.4px;
+      --ls-h1: -0.704px;
+      --ls-h3: -0.24px;
+      --ls-body-lg: -0.165px;
+
+      /* Spacing (8px base) */
+      --space-1: 4px;
+      --space-2: 8px;
+      --space-3: 12px;
+      --space-4: 16px;
+      --space-5: 20px;
+      --space-6: 24px;
+      --space-7: 32px;
+      --space-8: 48px;
+      --space-9: 64px;
+      --space-10: 80px;
+      --space-11: 96px;
+      --space-12: 128px;
+
+      /* Radii */
+      --r-sm: 4px;
+      --r-md: 6px;
+      --r-card: 10px;
+      --r-panel: 14px;
+      --r-large: 20px;
+      --r-pill: 9999px;
+
+      /* Layout */
+      --content-max: 1200px;
+      --nav-height: 60px;
+
+      /* Transition */
+      --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+      --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+      --t-fast: 180ms var(--ease-out);
+      --t-base: 320ms var(--ease-out);
+      --t-slow: 600ms var(--ease-out);
+      --t-reveal: 800ms var(--ease-out);
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    /* ============================================================
+       Reset & base, black canvas by default
+       ============================================================ */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scrollbar-gutter: stable;
+      -webkit-text-size-adjust: 100%;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+      /* Thumb acompanha a secção (#000 na hero / CTA, #fff em fundos escuros) */
+      --scrollbar-thumb: #000000;
+      --scrollbar-thumb-hover: #2a2a2a;
+      scrollbar-width: thin;
+      scrollbar-color: var(--scrollbar-thumb) transparent;
+    }
+
+    html[data-scrollbar-zone="mid-dark"],
+    html[data-scrollbar-zone="footer"] {
+      --scrollbar-thumb: #ffffff;
+      --scrollbar-thumb-hover: #e8e8e8;
+    }
+
+    html[data-scrollbar-zone="hero"],
+    html[data-scrollbar-zone="cta"] {
+      --scrollbar-thumb: #000000;
+      --scrollbar-thumb-hover: #2a2a2a;
+    }
+
+    /* Barra de scroll vertical (Chrome, Edge, Safari), trilho invisível */
+    html::-webkit-scrollbar {
+      width: 10px;
+      height: 10px;
+    }
+
+    html::-webkit-scrollbar-track {
+      background: transparent;
+      border: 0;
+    }
+
+    html::-webkit-scrollbar-thumb {
+      background-color: var(--scrollbar-thumb);
+      border-radius: 100px;
+      border: 2px solid transparent;
+      background-clip: padding-box;
+      transition: background-color var(--t-fast), border-color var(--t-fast);
+    }
+
+    html::-webkit-scrollbar-thumb:hover {
+      background-color: var(--scrollbar-thumb-hover);
+    }
+
+    html::-webkit-scrollbar-corner {
+      background: transparent;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      font-feature-settings: "cv01", "ss03";
+      font-weight: var(--weight-regular);
+      font-size: var(--fs-body);
+      line-height: 1.5;
+      background: var(--black);
+      color: var(--on-dark-text-2);
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      transition: color var(--t-fast), opacity var(--t-fast);
+    }
+
+    button {
+      font: inherit;
+      color: inherit;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    ::selection {
+      background: var(--white);
+      color: var(--black);
+    }
+
+    :focus-visible {
+      outline: 2px solid currentColor;
+      outline-offset: 4px;
+      border-radius: var(--r-sm);
+    }
+
+    /* ============================================================
+       Scroll-reveal primitives
+       ============================================================ */
+    [data-reveal] {
+      opacity: 0;
+      transform: translateY(28px);
+      transition:
+        opacity var(--t-reveal),
+        transform var(--t-reveal);
+      transition-delay: var(--reveal-delay, 0ms);
+      will-change: opacity, transform;
+    }
+
+    [data-reveal][data-revealed="true"] {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      [data-reveal] {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+      }
+    }
+
+    /* ============================================================
+       Navigation: hidden initially, revealed after hero
+       Once revealed, sits on the BLACK zone, so dark theme.
+       ============================================================ */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: var(--nav-height);
+      background: rgba(10, 10, 10, 0.72);
+      backdrop-filter: blur(14px) saturate(140%);
+      -webkit-backdrop-filter: blur(14px) saturate(140%);
+      border-bottom: 1px solid var(--on-dark-2);
+      z-index: 1000;
+      transform: translateY(-100%);
+      opacity: 0;
+      transition: transform var(--t-slow), opacity var(--t-base);
+      will-change: transform, opacity;
+      pointer-events: none;
+    }
+
+    .nav[data-visible="true"] {
+      transform: translateY(0);
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .nav__container {
+      max-width: var(--content-max);
+      height: 100%;
+      margin: 0 auto;
+      padding: 0 var(--space-6);
+      display: flex;
+      align-items: center;
+      gap: var(--space-7);
+    }
+
+    .nav__brand {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-3);
+      flex-shrink: 0;
+      transition: opacity var(--t-fast);
+    }
+
+    .nav__brand:hover {
+      opacity: 0.8;
+    }
+
+    .nav__logo {
+      width: 34px;
+      height: 34px;
+      object-fit: contain;
+    }
+
+    .nav__menu {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: var(--space-7);
+    }
+
+    .nav__list {
+      display: flex;
+      align-items: center;
+      gap: var(--space-7);
+    }
+
+    .nav__item {
+      display: inline-flex;
+      align-items: center;
+      font-size: var(--fs-caption);
+      font-weight: var(--weight-medium);
+      line-height: 1;
+      color: var(--on-dark-text-2);
+      transition: color var(--t-fast);
+      position: relative;
+    }
+
+    .nav__item::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -6px;
+      height: 1px;
+      background: var(--white);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform var(--t-base);
+    }
+
+    .nav__item:hover {
+      color: var(--white);
+    }
+
+    .nav__item:hover::after {
+      transform: scaleX(1);
+    }
+
+    .nav__cta {
+      display: inline-flex;
+      align-items: center;
+      padding: 8px 16px;
+      background: var(--white);
+      border-radius: var(--r-md);
+      color: var(--black);
+      font-size: var(--fs-caption);
+      font-weight: var(--weight-medium);
+      letter-spacing: -0.13px;
+      transition: transform var(--t-fast), background var(--t-fast);
+    }
+
+    .nav__cta:hover {
+      background: var(--white-soft);
+      color: var(--black);
+      transform: translateY(-1px);
+    }
+
+    .nav__lang {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      flex-shrink: 0;
+      margin-right: var(--space-3);
+    }
+
+    .nav__lang-btn {
+      display: inline-grid;
+      place-items: center;
+      width: 44px;
+      height: 30px;
+      padding: 0;
+      border-radius: var(--r-sm);
+      border: 1px solid var(--on-dark-3);
+      background: var(--on-dark-1);
+      overflow: hidden;
+      cursor: pointer;
+      opacity: 0.48;
+      transition:
+        opacity var(--t-fast),
+        border-color var(--t-fast),
+        box-shadow var(--t-fast),
+        transform var(--t-fast);
+    }
+
+    .nav__lang-btn img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .nav__lang-btn:hover {
+      opacity: 0.85;
+      border-color: var(--on-dark-text-3);
+    }
+
+    .nav__lang-btn[data-active='true'] {
+      opacity: 1;
+      border-color: rgba(255, 255, 255, 0.85);
+      box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.22);
+    }
+
+    .nav__toggle {
+      display: none;
+      width: 36px;
+      height: 36px;
+      margin-left: auto;
+      padding: 10px 8px;
+      background: var(--on-dark-1);
+      border: 1px solid var(--on-dark-2);
+      border-radius: var(--r-md);
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: stretch;
+      z-index: 1001;
+    }
+
+    .nav__toggle-bar {
+      display: block;
+      width: 100%;
+      height: 1.5px;
+      background: var(--white);
+      border-radius: 1px;
+      transition: transform var(--t-base), opacity var(--t-base);
+      transform-origin: center;
+    }
+
+    /* ============================================================
+       Buttons (themeable: light or dark context)
+       ============================================================ */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-2);
+      padding: 12px 22px;
+      font-family: var(--font-sans);
+      font-size: var(--fs-small);
+      font-weight: var(--weight-medium);
+      line-height: 1.2;
+      letter-spacing: -0.165px;
+      border-radius: var(--r-md);
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition:
+        background var(--t-fast),
+        color var(--t-fast),
+        border-color var(--t-fast),
+        transform var(--t-fast),
+        box-shadow var(--t-fast);
+      white-space: nowrap;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Subtle shine-on-hover sweep */
+    .btn::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -120%;
+      width: 60%;
+      height: 100%;
+      background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.18) 50%,
+        transparent 100%
+      );
+      transition: left 600ms var(--ease-out);
+      pointer-events: none;
+    }
+
+    .btn:hover::before {
+      left: 130%;
+    }
+
+    /* Light context: white hero */
+    .btn--solid-dark {
+      background: var(--black);
+      color: var(--white);
+      border-color: var(--black);
+    }
+
+    .btn--solid-dark:hover {
+      background: var(--black);
+      transform: translateY(-1px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+    }
+
+    .btn--outline-dark {
+      background: transparent;
+      color: var(--black);
+      border-color: var(--black);
+    }
+
+    .btn--outline-dark:hover {
+      background: var(--black);
+      color: var(--white);
+      transform: translateY(-1px);
+    }
+
+    /* Dark context: black sections */
+    .btn--solid-light {
+      background: var(--white);
+      color: var(--black);
+      border-color: var(--white);
+    }
+
+    .btn--solid-light:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 24px rgba(255, 255, 255, 0.12);
+    }
+
+    .btn--outline-light {
+      background: transparent;
+      color: var(--white);
+      border-color: var(--white);
+    }
+
+    .btn--outline-light:hover {
+      background: var(--white);
+      color: var(--black);
+      transform: translateY(-1px);
+    }
+
+    /* ============================================================
+       Hero · WHITE background, black text, back.jpg texture
+       Bottom 30% fades to black to bridge into dark sections.
+       ============================================================ */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      min-height: 100dvh;
+      padding: var(--space-10) var(--space-6) var(--space-12);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      isolation: isolate;
+      overflow: hidden;
+      background: var(--white);
+      color: var(--black);
+    }
+
+    /* Architectural texture (back.jpg) */
+    .hero__bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.35;
+      mix-blend-mode: multiply;
+      filter: grayscale(100%) contrast(1.05);
+      z-index: -2;
+      pointer-events: none;
+      transform-origin: 50% 42%;
+      animation: hero-zoom-breathe 18s ease-in-out infinite;
+      will-change: transform;
+    }
+
+    @keyframes hero-zoom-breathe {
+      0%, 100% {
+        transform: scale(1.045);
+      }
+      50% {
+        transform: scale(1.14);
+      }
+    }
+
+    /* Soft white center vignette so the headline reads sharp */
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(
+        ellipse at 50% 45%,
+        rgba(255, 255, 255, 0.55) 0%,
+        rgba(255, 255, 255, 0.1) 55%,
+        transparent 80%
+      );
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    /* White → Black gradient bridge at the bottom of the hero */
+    .hero::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 38vh;
+      background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(0, 0, 0, 0.05) 25%,
+        rgba(0, 0, 0, 0.45) 60%,
+        rgba(0, 0, 0, 0.92) 90%,
+        var(--black) 100%
+      );
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .hero__top-brand {
+      position: absolute;
+      top: max(var(--space-5), env(safe-area-inset-top));
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .hero__top-brand img {
+      display: block;
+      height: 48px;
+      width: auto;
+      object-fit: contain;
+      opacity: 0.9;
+    }
+
+    .hero__content {
+      max-width: 1100px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      animation: hero-fade-in 1100ms var(--ease-out) both;
+    }
+
+    @keyframes hero-fade-in {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero__title {
+      font-weight: var(--weight-medium);
+      font-size: clamp(28px, 4.5vw, 56px);
+      line-height: 1.08;
+      letter-spacing: var(--ls-display);
+      color: var(--black);
+      text-wrap: balance;
+      max-width: min(940px, 92vw);
+      text-align: center;
+    }
+
+    .hero__credibility {
+      margin-top: var(--space-5);
+      max-width: min(760px, 92vw);
+      padding: 0 var(--space-4);
+      font-size: clamp(12px, 1.05vw, 14px);
+      font-weight: var(--weight-medium);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      line-height: 1.55;
+      color: var(--on-light-text-3);
+      text-align: center;
+      text-wrap: balance;
+    }
+
+    .hero__proof {
+      margin-top: var(--space-8);
+      max-width: 28rem;
+      min-height: 1.6em;
+      padding: 0 var(--space-4);
+      font-size: clamp(15px, 1.25vw, 18px);
+      font-weight: var(--weight-medium);
+      letter-spacing: var(--ls-body-lg);
+      line-height: 1.5;
+      color: var(--on-light-text-2);
+      text-align: center;
+      text-wrap: balance;
+    }
+
+    .hero__proof-text {
+      display: inline;
+    }
+
+    .hero__proof-caret {
+      display: inline-block;
+      width: 2px;
+      height: 1.05em;
+      margin-left: 2px;
+      vertical-align: -0.1em;
+      background: var(--black-soft);
+      animation: hero-caret-blink 0.92s ease-in-out infinite;
+    }
+
+    .hero__proof-caret.hero__proof-caret--off {
+      animation: none;
+      opacity: 0;
+    }
+
+    @keyframes hero-caret-blink {
+      0%, 45% { opacity: 1; }
+      50%, 100% { opacity: 0.15; }
+    }
+
+    /* ============================================================
+       Motivos arquitetônicos (wireframe só em algumas seções)
+       ============================================================ */
+    .arch-deco {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .arch-deco svg {
+      position: absolute;
+      display: block;
+      opacity: 0.9;
+    }
+
+    .has-arch-deco {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .has-arch-deco > *:not(.arch-deco) {
+      position: relative;
+      z-index: 1;
+    }
+
+    .arch-deco--zira svg {
+      left: clamp(-36px, -4vw, -12px);
+      bottom: -6%;
+      width: clamp(140px, 18vw, 220px);
+      height: auto;
+      color: rgba(255, 255, 255, 0.11);
+      transform: rotate(-1.5deg);
+    }
+
+    .arch-deco--problem svg {
+      right: clamp(-52px, -6vw, -16px);
+      top: 4%;
+      width: clamp(180px, 28vw, 340px);
+      height: auto;
+      color: rgba(255, 255, 255, 0.1);
+      transform: rotate(1deg);
+    }
+
+    .arch-deco--workflow svg {
+      left: 50%;
+      bottom: clamp(-28px, -4vw, -10px);
+      width: min(92vw, 520px);
+      height: auto;
+      transform: translateX(-50%);
+      margin: 0;
+      color: rgba(255, 255, 255, 0.1);
+      opacity: 0.82;
+    }
+
+    @media (max-width: 768px) {
+      .arch-deco svg {
+        opacity: 0.65;
+      }
+
+      .arch-deco--problem svg {
+        top: -2%;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .arch-deco--zira svg {
+        transform: none;
+      }
+
+      .arch-deco--problem svg {
+        transform: none;
+      }
+    }
+
+    /* ============================================================
+       ZIRA brand intro · black canvas, white text
+       ============================================================ */
+    .zira {
+      padding: var(--space-12) var(--space-6) var(--space-11);
+      background: var(--black);
+    }
+
+    .zira__container {
+      max-width: var(--content-max);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+      gap: var(--space-10);
+      align-items: center;
+    }
+
+    .zira__title {
+      font-weight: var(--weight-medium);
+      font-size: clamp(56px, 9vw, 120px);
+      line-height: 0.92;
+      letter-spacing: var(--ls-display-xl);
+      color: var(--white);
+      margin-bottom: var(--space-7);
+    }
+
+    .zira__divider {
+      width: 100%;
+      max-width: 240px;
+      height: 1px;
+      background: linear-gradient(
+        90deg,
+        var(--white) 0%,
+        transparent 100%
+      );
+      margin-bottom: var(--space-7);
+    }
+
+    .zira__description {
+      font-size: clamp(16px, 1.3vw, var(--fs-body-lg));
+      font-weight: var(--weight-regular);
+      line-height: 1.6;
+      letter-spacing: var(--ls-body-lg);
+      color: var(--on-dark-text-2);
+      max-width: 560px;
+    }
+
+    .zira__lead {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      width: min(100%, 620px);
+    }
+
+    .zira__title-group {
+      flex-shrink: 0;
+    }
+
+    .zira__image-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform var(--t-base);
+    }
+
+    .zira__image-wrap:hover {
+      transform: translateY(-4px);
+    }
+
+    .zira__image {
+      width: 100%;
+      max-width: min(520px, 100%);
+      height: auto;
+      object-fit: contain;
+      transition: transform var(--t-slow);
+    }
+
+    .zira__image-wrap:hover .zira__image {
+      transform: scale(1.03);
+    }
+
+    /* ============================================================
+       Reusable section pieces (dark theme)
+       ============================================================ */
+    .section-title {
+      font-weight: var(--weight-medium);
+      font-size: clamp(30px, 4.4vw, var(--fs-display));
+      line-height: 1.05;
+      letter-spacing: var(--ls-display);
+      color: var(--white);
+      text-wrap: balance;
+    }
+
+    .section-title--centered {
+      text-align: center;
+      margin: 0 auto;
+    }
+
+    .section-caption {
+      margin: var(--space-5) auto 0;
+      max-width: 34rem;
+      font-size: var(--fs-small);
+      line-height: 1.56;
+      letter-spacing: var(--ls-body-lg);
+      color: var(--on-dark-text-3);
+      text-wrap: balance;
+    }
+
+    .problem__header .section-caption {
+      margin-top: var(--space-6);
+      max-width: 36rem;
+    }
+
+    .frame {
+      position: relative;
+      padding: var(--space-6);
+      background: var(--on-dark-1);
+      border: 1px solid var(--on-dark-2);
+      border-radius: var(--r-large);
+      overflow: hidden;
+      transition: transform var(--t-base), border-color var(--t-base), box-shadow var(--t-base);
+    }
+
+    .frame:hover {
+      transform: translateY(-4px);
+      border-color: var(--on-dark-3);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4);
+    }
+
+    .frame__image {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: var(--r-panel);
+      transition: transform var(--t-slow);
+    }
+
+    .frame:hover .frame__image {
+      transform: scale(1.015);
+    }
+
+    .frame:hover .device-shell--macbook .device-shell__img {
+      transform: scale(1.015);
+    }
+
+    figure.device-shell {
+      margin: 0;
+    }
+
+    /* ============================================================
+       Problem
+       ============================================================ */
+    .problem {
+      padding: var(--space-12) var(--space-6);
+      background: var(--black);
+    }
+
+    .problem__header {
+      max-width: 920px;
+      margin: 0 auto var(--space-10);
+      text-align: center;
+    }
+
+    .problem__grid {
+      max-width: var(--content-max);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: var(--space-9);
+      align-items: center;
+    }
+
+    .problem__bullets {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-3);
+    }
+
+    .problem__outro {
+      margin-top: var(--space-11);
+      max-width: 36rem;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+      font-size: var(--fs-body-lg);
+      line-height: 1.5;
+      letter-spacing: var(--ls-body-lg);
+      color: var(--white);
+    }
+
+    .workflow__kicker {
+      margin: var(--space-8) auto 0;
+      max-width: 34rem;
+      font-size: var(--fs-small);
+      line-height: 1.52;
+      letter-spacing: var(--ls-body-lg);
+      color: var(--on-dark-text-3);
+      text-wrap: balance;
+      text-align: center;
+    }
+
+    .calendar__kicker {
+      margin-top: var(--space-8);
+      max-width: 34rem;
+      margin-left: auto;
+      margin-right: auto;
+      font-size: var(--fs-small);
+      line-height: 1.52;
+      letter-spacing: var(--ls-body-lg);
+      color: var(--on-dark-text-3);
+      text-wrap: balance;
+      text-align: center;
+    }
+
+    .problem__bullet {
+      display: flex;
+      align-items: center;
+      gap: var(--space-4);
+      padding: var(--space-4) var(--space-5);
+      background: var(--on-dark-1);
+      border: 1px solid var(--on-dark-2);
+      border-radius: var(--r-card);
+      color: var(--on-dark-text-2);
+      font-size: var(--fs-small);
+      font-weight: var(--weight-medium);
+      line-height: 1.4;
+      letter-spacing: -0.165px;
+      transition:
+        background var(--t-fast),
+        border-color var(--t-fast),
+        color var(--t-fast),
+        transform var(--t-fast);
+    }
+
+    .problem__bullet:hover {
+      background: var(--on-dark-2);
+      border-color: var(--on-dark-3);
+      color: var(--white);
+      transform: translateX(4px);
+    }
+
+    .problem__bullet-marker {
+      width: 6px;
+      height: 6px;
+      flex-shrink: 0;
+      border-radius: 50%;
+      background: var(--on-dark-text-3);
+      transition: background var(--t-fast), transform var(--t-fast);
+    }
+
+    .problem__bullet:hover .problem__bullet-marker {
+      background: var(--white);
+      transform: scale(1.3);
+    }
+
+    .problem__visual {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Device mocks: substitute assets/screens/plug-iphone.svg ou troque apenas o src do .device-shell__img */
+    .device-shell {
+      filter: drop-shadow(0 18px 48px rgba(0, 0, 0, 0.6));
+      transition: transform var(--t-slow);
+    }
+
+    .problem__visual:hover .device-shell--iphone {
+      transform: translateY(-6px);
+    }
+
+    .device-shell--iphone {
+      width: min(340px, 92vw);
+      max-width: 420px;
+    }
+
+    .device-shell__body {
+      position: relative;
+      padding: 11px;
+      border-radius: 54px;
+      background: linear-gradient(
+        158deg,
+        #323236 0%,
+        #1a1a1d 36%,
+        #0e0e11 72%,
+        #080809 100%
+      );
+      border: 1px solid rgba(255, 255, 255, 0.085);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.07),
+        0 0 0 1px rgba(0, 0, 0, 0.48);
+    }
+
+    .device-shell__screen {
+      position: relative;
+      overflow: hidden;
+      border-radius: 43px;
+      aspect-ratio: 390 / 844;
+      background: #050506;
+      isolation: isolate;
+    }
+
+    .device-shell__island {
+      position: absolute;
+      top: 11px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      width: 118px;
+      height: 32px;
+      border-radius: 20px;
+      background: #080809;
+      box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.05),
+        0 2px 8px rgba(0, 0, 0, 0.45);
+      pointer-events: none;
+    }
+
+    .device-shell__home-bar {
+      position: absolute;
+      bottom: 7px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      width: 132px;
+      height: 5px;
+      border-radius: 3px;
+      background: rgba(255, 255, 255, 0.2);
+      pointer-events: none;
+    }
+
+    .device-shell__img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform var(--t-slow);
+    }
+
+    .device-shell--macbook {
+      width: 100%;
+      max-width: 100%;
+    }
+
+    .device-shell__lid {
+      padding: 9px 10px 5px;
+      border-radius: 15px 15px 3px 3px;
+      background: linear-gradient(172deg, #4a4a50 0%, #29292e 52%, #18181d 100%);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.08),
+        0 3px 0 rgba(0, 0, 0, 0.35);
+    }
+
+    .device-shell__cam {
+      display: block;
+      width: 7px;
+      height: 7px;
+      margin: 0 auto 6px;
+      border-radius: 50%;
+      background: #121215;
+      box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.08),
+        0 1px 2px rgba(0, 0, 0, 0.5);
+    }
+
+    .device-shell__screen--laptop {
+      border-radius: 5px;
+      aspect-ratio: 16 / 10;
+      background: #020203;
+    }
+
+    .device-shell__base {
+      margin: -1px auto 0;
+      width: 100%;
+      max-width: 100%;
+      height: 13px;
+      border-radius: 0 0 10px 10px;
+      background: linear-gradient(178deg, #3a3a40 0%, #252529 52%, #18181d 100%);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(0, 0, 0, 0.25);
+      border-top: none;
+      pointer-events: none;
+    }
+
+    /* ============================================================
+       Workflow + Calendar · same frame treatment
+       ============================================================ */
+    .workflow,
+    .calendar {
+      padding: var(--space-12) var(--space-6);
+      background: var(--black);
+      text-align: center;
+    }
+
+    .workflow__container,
+    .calendar__container {
+      max-width: var(--content-max);
+      margin: 0 auto;
+    }
+
+    .workflow .section-title,
+    .calendar .section-title {
+      max-width: 880px;
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: 0;
+    }
+
+    .workflow .section-caption,
+    .calendar .section-caption {
+      margin-bottom: var(--space-9);
+    }
+
+    /* ============================================================
+       Tracking · pills only
+       ============================================================ */
+    .tracking {
+      padding: var(--space-12) var(--space-6);
+      background: var(--black);
+    }
+
+    .tracking__container {
+      max-width: 960px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .tracking .section-title {
+      margin-bottom: 0;
+    }
+
+    .tracking .section-caption {
+      margin-bottom: var(--space-9);
+      max-width: 36rem;
+    }
+
+    .tracking__pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-3);
+      justify-content: center;
+    }
+
+    .tracking__pill {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-3);
+      padding: var(--space-3) var(--space-5);
+      background: transparent;
+      border: 1px solid var(--on-dark-2);
+      border-radius: var(--r-pill);
+      font-size: var(--fs-caption-lg);
+      font-weight: var(--weight-medium);
+      color: var(--on-dark-text-2);
+      letter-spacing: -0.182px;
+      transition:
+        background var(--t-fast),
+        color var(--t-fast),
+        border-color var(--t-fast),
+        transform var(--t-fast);
+    }
+
+    .tracking__pill:hover {
+      background: var(--white);
+      color: var(--black);
+      border-color: var(--white);
+      transform: translateY(-2px);
+    }
+
+    .tracking__pill-dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: currentColor;
+    }
+
+    /* ============================================================
+       Adapt · única seção com textura section-total.jpg
+       ============================================================ */
+    .adapt {
+      padding: var(--space-12) var(--space-6);
+      text-align: center;
+      background-color: var(--black);
+      background-image:
+        linear-gradient(
+          rgba(0, 0, 0, 0.88),
+          rgba(0, 0, 0, 0.92)
+        ),
+        url('assets/section-total.jpg');
+      background-size: cover, cover;
+      background-position: center, center;
+      background-repeat: no-repeat;
+    }
+
+    .adapt__container {
+      max-width: 880px;
+      margin: 0 auto;
+    }
+
+    .adapt .section-title {
+      margin-bottom: var(--space-9);
+    }
+
+    .adapt__logo-wrap {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .adapt__logo-wrap:hover .adapt__logo {
+      transform: scale(1.03);
+    }
+
+    .adapt__logo {
+      display: block;
+      height: 72px;
+      width: auto;
+      max-width: min(260px, 88vw);
+      object-fit: contain;
+      transition: transform var(--t-base);
+    }
+
+    /* ============================================================
+       CTA · véu claro + final-section
+       ============================================================ */
+    .cta {
+      position: relative;
+      isolation: isolate;
+      min-height: clamp(320px, 56vh, 720px);
+      padding: var(--space-11) var(--space-6) var(--space-12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background-color: var(--white-soft);
+      background-image:
+        linear-gradient(
+          rgba(255, 255, 255, 0.78),
+          rgba(255, 255, 255, 0.88)
+        ),
+        url('assets/final-section.png');
+      background-size: cover, cover;
+      background-position: center, center;
+      background-repeat: no-repeat;
+    }
+
+    .cta__container {
+      width: 100%;
+      max-width: var(--content-max);
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cta__inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-7);
+      max-width: 720px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .cta__title {
+      font-weight: var(--weight-medium);
+      font-size: clamp(28px, 4vw, var(--fs-display));
+      line-height: 1.1;
+      letter-spacing: var(--ls-display);
+      color: var(--black);
+      margin: 0;
+      max-width: 720px;
+      text-wrap: balance;
+    }
+
+    .cta__desc {
+      margin: 0;
+      max-width: min(38rem, 92vw);
+      font-size: var(--fs-body-lg);
+      font-weight: var(--weight-regular);
+      line-height: 1.52;
+      letter-spacing: var(--ls-body-lg);
+      color: var(--on-light-text-2);
+      text-wrap: balance;
+      text-align: center;
+    }
+
+    /* ============================================================
+       Footer
+       ============================================================ */
+    .footer {
+      padding: var(--space-9) var(--space-6) var(--space-7);
+      background: var(--black);
+      border-top: 1px solid var(--on-dark-2);
+    }
+
+    .footer__container {
+      max-width: var(--content-max);
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-5);
+    }
+
+    .footer__brand {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-3);
+    }
+
+    .footer__logo {
+      width: 28px;
+      height: 28px;
+      object-fit: contain;
+    }
+
+    .footer__name {
+      font-size: var(--fs-caption);
+      font-weight: var(--weight-medium);
+      color: var(--on-dark-text-2);
+      letter-spacing: -0.13px;
+    }
+
+    .footer__nav {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-5);
+    }
+
+    .footer__nav a {
+      font-size: var(--fs-caption);
+      font-weight: var(--weight-medium);
+      color: var(--on-dark-text-3);
+      text-decoration: none;
+      letter-spacing: -0.12px;
+      transition: color var(--t-fast);
+    }
+
+    .footer__nav a:hover {
+      color: var(--white);
+    }
+
+    /* ============================================================
+       FAQ · details nativo + acabamento editorial
+       ============================================================ */
+    .faq {
+      padding: var(--space-12) var(--space-6);
+      background:
+        radial-gradient(ellipse 90% 60% at 50% -20%, rgba(255, 255, 255, 0.06), transparent),
+        var(--black);
+      border-top: 1px solid var(--on-dark-2);
+    }
+
+    .faq__container {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .faq .section-caption {
+      margin-bottom: var(--space-9);
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .faq__panel {
+      display: grid;
+      gap: var(--space-3);
+    }
+
+    .faq__item {
+      border: 1px solid var(--on-dark-2);
+      border-radius: var(--r-panel);
+      background: var(--on-dark-1);
+      overflow: hidden;
+      transition: border-color var(--t-base), background var(--t-base), transform var(--t-base);
+    }
+
+    .faq__item:hover {
+      border-color: var(--on-dark-3);
+    }
+
+    .faq__details {
+      margin: 0;
+    }
+
+    .faq__summary-text {
+      flex: 1;
+      min-width: 0;
+      padding-right: var(--space-3);
+      text-align: left;
+    }
+
+    .faq__summary {
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-4);
+      padding: var(--space-5) var(--space-6);
+      font-size: var(--fs-body);
+      font-weight: var(--weight-medium);
+      color: var(--white);
+      letter-spacing: var(--ls-h3);
+      line-height: 1.35;
+    }
+
+    .faq__summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .faq__icon {
+      flex-shrink: 0;
+      width: 22px;
+      height: 22px;
+      display: grid;
+      place-items: center;
+      border-radius: var(--r-sm);
+      background: var(--on-dark-2);
+      transition: transform var(--t-fast), background var(--t-fast);
+      color: var(--on-dark-text-3);
+    }
+
+    .faq__details[open] .faq__icon {
+      transform: rotate(45deg);
+      background: var(--white);
+      color: var(--black);
+    }
+
+    .faq__answer {
+      padding: 0 var(--space-6) var(--space-6);
+      font-size: var(--fs-small);
+      line-height: 1.62;
+      color: var(--on-dark-text-2);
+      letter-spacing: var(--ls-body-lg);
+      border-top: 1px solid transparent;
+      margin-top: calc(-1 * var(--space-1));
+      animation: faqReveal var(--t-base) var(--ease-out);
+    }
+
+    @keyframes faqReveal {
+      from {
+        opacity: 0;
+        transform: translateY(-4px);
+      }
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    .faq__answer p + p {
+      margin-top: var(--space-3);
+    }
+
+    /* ============================================================
+       Blog · teaser na landing
+       ============================================================ */
+    .blog-teaser {
+      padding: var(--space-11) var(--space-6) var(--space-12);
+      background: var(--black-soft);
+      border-top: 1px solid var(--on-dark-2);
+    }
+
+    /* Bloco teaser só aparece depois do utilizador abrir pelo menu (#blog) */
+    .blog-teaser.blog-teaser--hidden {
+      display: none !important;
+    }
+
+    .blog-teaser__header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: var(--space-4);
+      margin-bottom: var(--space-8);
+      max-width: var(--content-max);
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .blog-teaser .section-caption {
+      margin: var(--space-4) 0 0;
+      max-width: 28rem;
+    }
+
+    .blog-teaser__link {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      font-size: var(--fs-caption-lg);
+      font-weight: var(--weight-medium);
+      color: var(--white);
+      text-decoration: none;
+      border-bottom: 1px solid var(--on-dark-3);
+      padding-bottom: 2px;
+      transition: border-color var(--t-fast), color var(--t-fast), transform var(--t-fast);
+    }
+
+    .blog-teaser__link:hover {
+      border-color: var(--white);
+      transform: translateX(2px);
+    }
+
+    .blog-teaser__grid {
+      max-width: var(--content-max);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: var(--space-5);
+    }
+
+    .blog-teaser__card {
+      display: flex;
+      flex-direction: column;
+      padding: var(--space-6);
+      border: 1px solid var(--on-dark-2);
+      border-radius: var(--r-large);
+      background: linear-gradient(
+        155deg,
+        var(--on-dark-1),
+        transparent 96%
+      );
+      transition: border-color var(--t-base), transform var(--t-base), box-shadow var(--t-base);
+    }
+
+    .blog-teaser__card:hover {
+      transform: translateY(-4px);
+      border-color: var(--on-dark-3);
+      box-shadow: 0 20px 52px rgba(0, 0, 0, 0.45);
+    }
+
+    .blog-teaser__topic {
+      font-size: var(--fs-caption);
+      font-weight: var(--weight-medium);
+      color: var(--on-dark-text-3);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: var(--space-3);
+    }
+
+    .blog-teaser__title {
+      font-size: var(--fs-h3);
+      font-weight: var(--weight-medium);
+      letter-spacing: var(--ls-h3);
+      line-height: 1.35;
+      color: var(--white);
+      margin: 0 0 var(--space-4);
+    }
+
+    .blog-teaser__excerpt {
+      font-size: var(--fs-small);
+      line-height: 1.52;
+      color: var(--on-dark-text-2);
+      letter-spacing: var(--ls-body-lg);
+      margin-bottom: var(--space-5);
+    }
+
+    .blog-teaser__read {
+      font-size: var(--fs-caption-lg);
+      font-weight: var(--weight-medium);
+      color: var(--white);
+      text-decoration: none;
+      border-bottom: 1px solid var(--on-dark-text-3);
+      align-self: flex-start;
+      transition: border-color var(--t-fast), color var(--t-fast);
+    }
+
+    .blog-teaser__read:hover {
+      border-color: var(--white);
+    }
+
+    /* ============================================================
+       WhatsApp flutuante · atendimento rápido
+       ============================================================ */
+    .whatsapp-fab {
+      position: fixed;
+      bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+      right: calc(20px + env(safe-area-inset-right, 0px));
+      z-index: 90;
+      display: grid;
+      place-items: center;
+      width: 56px;
+      height: 56px;
+      border-radius: var(--r-pill);
+      background: #25d366;
+      color: #ffffff;
+      text-decoration: none;
+      border: none;
+      box-shadow:
+        0 0 0 0 rgba(37, 211, 102, 0.45),
+        0 12px 32px rgba(0, 0, 0, 0.35);
+      animation: whatsappPulse 2.8s var(--ease-in-out) infinite;
+      transition: transform var(--t-fast), box-shadow var(--t-fast), background var(--t-fast);
+    }
+
+    .whatsapp-fab:hover {
+      transform: translateY(-2px) scale(1.06);
+      background: #21c45c;
+      box-shadow:
+        0 0 0 6px rgba(37, 211, 102, 0.15),
+        0 14px 40px rgba(0, 0, 0, 0.42);
+    }
+
+    .whatsapp-fab:active {
+      transform: translateY(0) scale(1);
+    }
+
+    .whatsapp-fab__icon {
+      width: 28px;
+      height: 28px;
+      display: block;
+    }
+
+    @keyframes whatsappPulse {
+      0%, 100% {
+        box-shadow:
+          0 0 0 0 rgba(37, 211, 102, 0.45),
+          0 12px 32px rgba(0, 0, 0, 0.35);
+      }
+      55% {
+        box-shadow:
+          0 0 0 10px rgba(37, 211, 102, 0),
+          0 12px 32px rgba(0, 0, 0, 0.35);
+      }
+    }
+
+    @media (max-width: 980px) {
+      .blog-teaser__grid {
+        grid-template-columns: 1fr;
+      }
+
+      .blog-teaser__header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    /* ============================================================
+       Tablet (≤1024px)
+       ============================================================ */
+    @media (max-width: 1024px) {
+      .nav__container {
+        padding: 0 var(--space-5);
+      }
+
+      .nav__list {
+        position: fixed;
+        top: var(--nav-height);
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding: 0 var(--space-5);
+        background: rgba(10, 10, 10, 0.95);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        border-bottom: 1px solid var(--on-dark-2);
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height var(--t-base), padding var(--t-base);
+      }
+
+      .nav__list[data-open="true"] {
+        max-height: 480px;
+        padding: var(--space-3) var(--space-5);
+      }
+
+      .nav__list .nav__item {
+        padding: var(--space-4) 0;
+        border-bottom: 1px solid var(--on-dark-2);
+        font-size: var(--fs-small);
+      }
+
+      .nav__list .nav__item::after {
+        display: none;
+      }
+
+      .nav__list li:last-child .nav__item {
+        border-bottom: none;
+      }
+
+      .nav__cta {
+        display: none;
+      }
+
+      .nav__toggle {
+        display: flex;
+      }
+
+      .nav__toggle[aria-expanded="true"] .nav__toggle-bar:nth-child(1) {
+        transform: translateY(6px) rotate(45deg);
+      }
+
+      .nav__toggle[aria-expanded="true"] .nav__toggle-bar:nth-child(2) {
+        opacity: 0;
+      }
+
+      .nav__toggle[aria-expanded="true"] .nav__toggle-bar:nth-child(3) {
+        transform: translateY(-6px) rotate(-45deg);
+      }
+
+      .zira__container,
+      .problem__grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-8);
+      }
+
+      .zira__container {
+        text-align: center;
+      }
+
+      .zira__divider {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .zira__description {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .zira__lead {
+        margin-inline: auto;
+      }
+
+      .zira,
+      .problem,
+      .workflow,
+      .tracking,
+      .calendar,
+      .adapt,
+      .faq,
+      .blog-teaser,
+      .cta {
+        padding-top: var(--space-10);
+        padding-bottom: var(--space-10);
+      }
+    }
+
+    /* ============================================================
+       Mobile (≤768px)
+       ============================================================ */
+    @media (max-width: 768px) {
+      :root {
+        --space-12: 64px;
+        --space-11: 48px;
+      }
+
+      .nav__container {
+        padding: 0 var(--space-4);
+      }
+
+      .hero {
+        padding-left: var(--space-4);
+        padding-right: var(--space-4);
+      }
+
+      .hero__title {
+        letter-spacing: var(--ls-display);
+      }
+
+      .btn {
+        padding: 11px 18px;
+        font-size: var(--fs-small);
+      }
+
+      .zira,
+      .problem,
+      .workflow,
+      .tracking,
+      .calendar,
+      .adapt,
+      .faq,
+      .blog-teaser,
+      .cta {
+        padding-left: var(--space-4);
+        padding-right: var(--space-4);
+      }
+
+      .footer__container {
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+      }
+
+      body {
+        padding-bottom: calc(84px + env(safe-area-inset-bottom, 0px));
+      }
+
+      .frame {
+        padding: var(--space-4);
+      }
+
+      .device-shell--iphone {
+        max-width: 320px;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .zira__container {
+        text-align: left;
+      }
+
+      .zira__lead {
+        flex-direction: row;
+        align-items: flex-start;
+        gap: var(--space-5);
+        margin-inline: 0;
+        width: 100%;
+        max-width: 100%;
+      }
+
+      .zira__title-group {
+        flex: 0 0 min(132px, 36vw);
+        min-width: 0;
+      }
+
+      .zira__title {
+        font-size: clamp(34px, 11vw, 54px);
+        margin-bottom: var(--space-3);
+        letter-spacing: -2px;
+        line-height: 0.95;
+      }
+
+      .zira__divider {
+        max-width: 100%;
+        margin: var(--space-4) 0 0;
+        margin-left: 0;
+        margin-right: auto;
+      }
+
+      .zira__description {
+        flex: 1;
+        min-width: 0;
+        margin-left: 0;
+        margin-right: 0;
+        font-size: 15px;
+        line-height: 1.55;
+        letter-spacing: -0.105px;
+        max-width: none;
+      }
+    }
+
+    /* ============================================================
+       Reduced motion · kill all non-essential animation
+       ============================================================ */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+
+      .whatsapp-fab {
+        animation: none !important;
+        box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+      }
+
+      .hero__proof-caret {
+        animation: none !important;
+        opacity: 0 !important;
+      }
+
+      .hero__bg {
+        animation: none !important;
+        transform: scale(1.09);
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="nav" id="nav" data-visible="false" role="banner">
+    <div class="nav__container">
+      <a
+        href="./#hero"
+        class="nav__brand"
+        data-i18n-attr="aria-label:nav.brandAria"
+        aria-label="M2 SCALE · Página inicial">
+        <img src="assets/logo-branca.png" alt="" class="nav__logo">
+      </a>
+
+      <div
+        class="nav__lang"
+        role="group"
+        data-i18n-attr="aria-label:nav.langGroup"
+        aria-label="Idioma">
+        <button
+          type="button"
+          class="nav__lang-btn"
+          id="lang-pt-br"
+          data-lang-btn="pt-BR"
+          data-active="true"
+          aria-pressed="true"
+          title="Português"
+          aria-label="Português">
+          <img src="assets/brasil-logo.gif" alt="" width="40" height="28" decoding="async" fetchpriority="low">
+        </button>
+        <button
+          type="button"
+          class="nav__lang-btn"
+          id="lang-en"
+          data-lang-btn="en"
+          data-active="false"
+          aria-pressed="false"
+          title="English"
+          aria-label="English">
+          <img src="assets/usa-logo.jpg" alt="" width="40" height="28" decoding="async" fetchpriority="low">
+        </button>
+      </div>
+
+      <button
+        type="button"
+        class="nav__toggle"
+        id="nav-toggle"
+        aria-expanded="false"
+        aria-controls="nav-list"
+        data-i18n-attr="aria-label:nav.menuOpen"
+        aria-label="Abrir menu de navegação">
+        <span class="nav__toggle-bar" aria-hidden="true"></span>
+        <span class="nav__toggle-bar" aria-hidden="true"></span>
+        <span class="nav__toggle-bar" aria-hidden="true"></span>
+      </button>
+
+      <nav class="nav__menu" aria-label="Navegação principal">
+        <ul class="nav__list" id="nav-list" data-open="false">
+          <li><a href="#zira" class="nav__item" data-i18n="nav.platform">Plataforma</a></li>
+          <li><a href="#workflow" class="nav__item" data-i18n="nav.flow">Fluxo</a></li>
+          <li><a href="#tracking" class="nav__item" data-i18n="nav.team">Equipe</a></li>
+          <li><a href="#blog" class="nav__item" data-i18n="nav.blog">Blog</a></li>
+          <li><a href="#faq" class="nav__item" data-i18n="nav.faq">FAQ</a></li>
+          <li><a href="#cta" class="nav__item" data-i18n="nav.contact">Contato</a></li>
+        </ul>
+        <a href="#cta" class="nav__cta" data-i18n="nav.cta">Agendar conversa</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="hero" aria-labelledby="hero-title">
+      <img
+        src="assets/hero-bg.jpg"
+        alt=""
+        class="hero__bg"
+        aria-hidden="true">
+
+      <div class="hero__top-brand">
+        <img src="assets/logo-preta.png" alt="" width="120" height="48" decoding="async">
+      </div>
+
+      <div class="hero__content">
+        <h1 class="hero__title" id="hero-title" data-i18n="hero.title">
+          A plataforma que organiza atendimento, equipe, obras e prazos para escritórios de arquitetura e engenharia.
+        </h1>
+        <p class="hero__credibility" data-i18n="hero.credibility">
+          Pensado para operação real, não só atendimento · Celular e desktop · Adaptável ao fluxo do escritório
+        </p>
+        <p class="sr-only" data-i18n="hero.sr">
+          ZIRA AI, plataforma para arquitetura e engenharia. Mais de 100 escritórios já evoluíram para uma operação mais clara, integrada e previsível.
+        </p>
+        <p class="hero__proof" aria-hidden="true">
+          <span class="hero__proof-text" id="hero-proof-text"></span><span class="hero__proof-caret" id="hero-proof-caret" aria-hidden="true"></span>
+        </p>
+      </div>
+    </section>
+
+    <section class="zira has-arch-deco" id="zira" aria-labelledby="zira-title">
+      <div class="arch-deco arch-deco--zira" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 132 560" fill="none">
+          <g stroke="currentColor" stroke-width="1" stroke-linecap="square">
+            <line x1="12" y1="520" x2="120" y2="520"/>
+            <line x1="10" y1="40" x2="122" y2="38"/>
+            <line x1="14" y1="36" x2="14" y2="520"/>
+            <line x1="36" y1="54" x2="36" y2="518"/>
+            <line x1="54" y1="28" x2="54" y2="518"/>
+            <line x1="74" y1="54" x2="74" y2="518"/>
+            <line x1="92" y1="36" x2="92" y2="518"/>
+            <line x1="114" y1="38" x2="114" y2="518"/>
+          </g>
+        </svg>
+      </div>
+      <div class="zira__container">
+        <div class="zira__content" data-reveal>
+          <div class="zira__lead">
+            <div class="zira__title-group">
+              <h2 class="zira__title" id="zira-title">Zira AI</h2>
+              <div class="zira__divider" aria-hidden="true"></div>
+            </div>
+            <p class="zira__description" data-i18n="zira.desc">
+              No WhatsApp, o Zira identifica a solicitação, separa oportunidades comerciais de outros assuntos, prioriza o que exige atenção do time e organiza o contexto para que cada atendimento avance com mais clareza. Quando a resposta não deve ser automatizada, o sistema encaminha o caso corretamente, sem ruído e sem improviso.
+            </p>
+          </div>
+        </div>
+        <div class="zira__image-wrap" data-reveal style="--reveal-delay: 120ms">
+          <img
+            src="assets/zira-mascot.png"
+            data-i18n-attr="alt:zira.imageAlt"
+            alt=""
+            class="zira__image"
+            loading="lazy">
+        </div>
+      </div>
+    </section>
+
+    <section class="problem has-arch-deco" id="problem" aria-labelledby="problem-title">
+      <div class="arch-deco arch-deco--problem" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 340" fill="none">
+          <g stroke="currentColor" stroke-width="1.05">
+            <rect x="40" y="48" width="220" height="232" rx="1"/>
+            <line x1="40" y1="128" x2="260" y2="128"/>
+            <line x1="40" y1="194" x2="260" y2="194"/>
+            <line x1="40" y1="256" x2="260" y2="256"/>
+            <line x1="112" y1="48" x2="112" y2="280"/>
+            <line x1="170" y1="48" x2="170" y2="280"/>
+            <line x1="228" y1="48" x2="228" y2="280"/>
+            <line x1="40" y1="280" x2="260" y2="280"/>
+          </g>
+        </svg>
+      </div>
+      <div class="problem__header" data-reveal>
+        <h2 class="section-title section-title--centered" id="problem-title" data-i18n="problem.title">
+          O problema não está só em captar clientes. Está em perder controle da operação.
+        </h2>
+        <p class="section-caption" data-i18n="problem.caption">
+          Quando tudo depende de mensagens soltas, memória e urgência improvisada, o escritório perde contexto, a equipe reage em vez de conduzir, e a operação deixa de ser previsível.
+        </p>
+      </div>
+
+      <div class="problem__grid">
+        <ul class="problem__bullets">
+          <li class="problem__bullet" data-reveal style="--reveal-delay: 0ms">
+            <span class="problem__bullet-marker" aria-hidden="true"></span>
+            <span data-i18n="problem.b1">WhatsApp desorganizado</span>
+          </li>
+          <li class="problem__bullet" data-reveal style="--reveal-delay: 60ms">
+            <span class="problem__bullet-marker" aria-hidden="true"></span>
+            <span data-i18n="problem.b2">Tarefas perdidas</span>
+          </li>
+          <li class="problem__bullet" data-reveal style="--reveal-delay: 120ms">
+            <span class="problem__bullet-marker" aria-hidden="true"></span>
+            <span data-i18n="problem.b3">Obras sem acompanhamento claro</span>
+          </li>
+          <li class="problem__bullet" data-reveal style="--reveal-delay: 180ms">
+            <span class="problem__bullet-marker" aria-hidden="true"></span>
+            <span data-i18n="problem.b4">Cliente cobrando sem contexto</span>
+          </li>
+          <li class="problem__bullet" data-reveal style="--reveal-delay: 240ms">
+            <span class="problem__bullet-marker" aria-hidden="true"></span>
+            <span data-i18n="problem.b5">Equipe sem prioridade definida</span>
+          </li>
+          <li class="problem__bullet" data-reveal style="--reveal-delay: 300ms">
+            <span class="problem__bullet-marker" aria-hidden="true"></span>
+            <span data-i18n="problem.b6">Prazos estourando</span>
+          </li>
+          <li class="problem__bullet" data-reveal style="--reveal-delay: 360ms">
+            <span class="problem__bullet-marker" aria-hidden="true"></span>
+            <span data-i18n="problem.b7">Informações espalhadas</span>
+          </li>
+        </ul>
+
+        <div class="problem__visual" data-reveal style="--reveal-delay: 200ms">
+          <!-- Imagem do ecrã: substitua assets/screens/plug-iphone.svg ou altere o src abaixo para o seu JPG/PNG. -->
+          <figure class="device-shell device-shell--iphone">
+            <figcaption class="sr-only" data-i18n="problem.imageAlt">Atendimento e tarefas no celular com Zira AI</figcaption>
+            <div class="device-shell__body">
+              <div class="device-shell__screen">
+                <span class="device-shell__island" aria-hidden="true"></span>
+                <img
+                  class="device-shell__img"
+                  src="assets/screens/plug-iphone.svg"
+                  alt=""
+                  width="390"
+                  height="844"
+                  decoding="async"
+                  loading="lazy">
+                <span class="device-shell__home-bar" aria-hidden="true"></span>
+              </div>
+            </div>
+          </figure>
+        </div>
+      </div>
+      <p class="problem__outro" data-i18n="problem.outro" data-reveal>
+        Menos ruído operacional. Mais clareza sobre o que precisa acontecer, quem precisa agir e o que ainda está pendente.
+      </p>
+    </section>
+
+    <section class="workflow has-arch-deco" id="workflow" aria-labelledby="workflow-title">
+      <div class="arch-deco arch-deco--workflow" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 176" fill="none">
+          <g stroke="currentColor" stroke-width="1" stroke-linejoin="miter">
+            <path d="M24 128 L492 146 L474 164 L42 154 Z"/>
+            <path d="M58 94 L446 126 L438 154 L74 146 Z"/>
+            <path d="M108 62 L394 126 L394 146 L146 146 Z"/>
+            <path d="M214 154 L478 154"/>
+          </g>
+        </svg>
+      </div>
+      <div class="workflow__container">
+        <h2 class="section-title section-title--centered" id="workflow-title" data-i18n="workflow.title" data-reveal>
+          Do primeiro contato à entrega da obra, tudo conectado.
+        </h2>
+        <p class="section-caption" data-i18n="workflow.caption">
+          O atendimento deixa de depender de memória, repasse informal e conversa perdida. O cliente entra, o contexto é organizado, a operação ganha continuidade e cada etapa passa a ser acompanhada com mais coerência.
+        </p>
+        <div class="frame" data-reveal style="--reveal-delay: 120ms">
+          <img
+            src="assets/workflow-steps.png"
+            data-i18n-attr="alt:workflow.imageAlt"
+            alt="Do primeiro contato à obra, em um fluxo contínuo"
+            class="frame__image"
+            loading="lazy">
+        </div>
+        <p class="workflow__kicker" data-i18n="workflow.kicker" data-reveal style="--reveal-delay: 180ms">
+          Do primeiro contato à entrega, com contexto, continuidade e rastreabilidade.
+        </p>
+      </div>
+    </section>
+
+    <section class="tracking" id="tracking" aria-labelledby="tracking-title">
+      <div class="tracking__container">
+        <h2 class="section-title section-title--centered" id="tracking-title" data-i18n="tracking.title" data-reveal>
+          Saiba o que cada arquiteto, engenheiro e membro da equipe está fazendo, o que está atrasado e o que exige atenção agora.
+        </h2>
+        <p class="section-caption" data-i18n="tracking.caption">
+          Aqui, gestão de obra e gestão de equipe deixam de ficar separadas. O escritório enxerga quem responde por cada frente, o que está em andamento e onde estão os gargalos, sem planilha paralela e sem leitura fragmentada da operação.
+        </p>
+        <ul class="tracking__pills">
+          <li class="tracking__pill" data-reveal style="--reveal-delay: 0ms"><span class="tracking__pill-dot" aria-hidden="true"></span><span data-i18n="tracking.p1">Tarefas por responsável</span></li>
+          <li class="tracking__pill" data-reveal style="--reveal-delay: 80ms"><span class="tracking__pill-dot" aria-hidden="true"></span><span data-i18n="tracking.p2">Histórico de ações</span></li>
+          <li class="tracking__pill" data-reveal style="--reveal-delay: 160ms"><span class="tracking__pill-dot" aria-hidden="true"></span><span data-i18n="tracking.p3">Pendências e atrasos</span></li>
+          <li class="tracking__pill" data-reveal style="--reveal-delay: 240ms"><span class="tracking__pill-dot" aria-hidden="true"></span><span data-i18n="tracking.p4">Por arquiteto ou engenheiro</span></li>
+          <li class="tracking__pill" data-reveal style="--reveal-delay: 320ms"><span class="tracking__pill-dot" aria-hidden="true"></span><span data-i18n="tracking.p5">Visão individual da equipe</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="calendar" id="calendar" aria-labelledby="calendar-title">
+      <div class="calendar__container">
+        <h2 class="section-title section-title--centered" id="calendar-title" data-i18n="calendar.title" data-reveal>
+          Prazos, reuniões, retornos e etapas em uma única visualização.
+        </h2>
+        <p class="section-caption" data-i18n="calendar.caption">
+          Quando prazo, reunião e etapa do projeto aparecem no mesmo fluxo, o escritório inteiro trabalha com a mesma leitura da operação. Menos divergência, menos retrabalho e mais previsibilidade sobre o que precisa acontecer a seguir.
+        </p>
+        <div class="frame frame--macbook" data-reveal style="--reveal-delay: 120ms">
+          <!-- Imagem do ecrã: substitua assets/screens/plug-macbook.svg ou altere o src para o seu JPG/PNG. -->
+          <figure class="device-shell device-shell--macbook">
+            <figcaption class="sr-only" data-i18n="calendar.imageAlt">Prazos e etapas num único quadro</figcaption>
+            <div class="device-shell__lid">
+              <span class="device-shell__cam" aria-hidden="true"></span>
+              <div class="device-shell__screen device-shell__screen--laptop">
+                <img
+                  class="device-shell__img"
+                  src="assets/screens/plug-macbook.svg"
+                  alt=""
+                  width="1440"
+                  height="900"
+                  decoding="async"
+                  loading="lazy">
+              </div>
+            </div>
+            <div class="device-shell__base" aria-hidden="true"></div>
+          </figure>
+        </div>
+        <p class="calendar__kicker" data-i18n="calendar.kicker" data-reveal style="--reveal-delay: 180ms">
+          Prazos e etapas organizados em um único fluxo visual.
+        </p>
+      </div>
+    </section>
+
+    <section
+      class="blog-teaser blog-teaser--hidden"
+      id="blog"
+      aria-labelledby="blog-title"
+      aria-hidden="true">
+      <div class="blog-teaser__header">
+        <div>
+          <h2 class="section-title" id="blog-title" data-i18n="blogSection.title" data-reveal>Conteúdo para quem lidera obra</h2>
+          <p class="section-caption" data-i18n="blogSection.caption" data-reveal>
+            Artigos sobre gestão de escritório, comunicação com cliente e operação em canteiro, em linguagem direta.
+          </p>
+        </div>
+        <a href="blog.html" class="blog-teaser__link" data-i18n="blogSection.link" data-reveal>
+          Ver blog completo
+        </a>
+      </div>
+      <div class="blog-teaser__grid">
+        <article class="blog-teaser__card" data-reveal style="--reveal-delay: 0ms">
+          <p class="blog-teaser__topic" data-i18n="blogSection.c1topic">Operação</p>
+          <h3 class="blog-teaser__title" data-i18n="blogSection.c1title">Como reduzir retrabalho quando o WhatsApp é o “sistema” do escritório</h3>
+          <p class="blog-teaser__excerpt" data-i18n="blogSection.c1excerpt">Checklist prático para priorizar o que entra no inbox sem perder o fio da meada em obra.</p>
+          <a class="blog-teaser__read" href="blog.html#retrabalho-whatsapp" data-i18n="blogSection.c1read">Ler artigo</a>
+        </article>
+        <article class="blog-teaser__card" data-reveal style="--reveal-delay: 80ms">
+          <p class="blog-teaser__topic" data-i18n="blogSection.c2topic">Equipe</p>
+          <h3 class="blog-teaser__title" data-i18n="blogSection.c2title">Gestão à vista: o que monitorar antes do atraso virar drama com o cliente</h3>
+          <p class="blog-teaser__excerpt" data-i18n="blogSection.c2excerpt">Indicadores simples para arquiteto e engenheiro saberem quem segura cada frente.</p>
+          <a class="blog-teaser__read" href="blog.html#gestao-a-vista" data-i18n="blogSection.c2read">Ler artigo</a>
+        </article>
+        <article class="blog-teaser__card" data-reveal style="--reveal-delay: 160ms">
+          <p class="blog-teaser__topic" data-i18n="blogSection.c3topic">Cliente</p>
+          <h3 class="blog-teaser__title" data-i18n="blogSection.c3title">Da primeira mensagem à entrega: alinhar expectativa sem prometer milagre</h3>
+          <p class="blog-teaser__excerpt" data-i18n="blogSection.c3excerpt">Como manter transparência na jornada do lead sem sobrecarregar o time técnico.</p>
+          <a class="blog-teaser__read" href="blog.html#jornada-cliente" data-i18n="blogSection.c3read">Ler artigo</a>
+        </article>
+      </div>
+    </section>
+
+    <section class="faq" id="faq" aria-labelledby="faq-title">
+      <div class="faq__container">
+        <h2 class="section-title section-title--centered" id="faq-title" data-i18n="faq.title" data-reveal>
+          Perguntas frequentes
+        </h2>
+        <p class="section-caption section-title--centered" data-i18n="faq.caption" data-reveal>
+          Respostas diretas sobre implementação, privacidade, operação e como o Zira se adapta à rotina real do escritório.
+        </p>
+        <div class="faq__panel" role="list">
+          <article class="faq__item" data-reveal style="--reveal-delay: 0ms" role="listitem">
+            <details class="faq__details" name="zira-faq">
+              <summary class="faq__summary">
+                <span class="faq__summary-text" data-i18n="faq.q1">O Zira AI substitui o WhatsApp do escritório?</span>
+                <span class="faq__icon" aria-hidden="true">+</span>
+              </summary>
+              <div class="faq__answer">
+                <p data-i18n="faq.a1">Não: o time continua no WhatsApp que o escritório já usa. O Zira organiza leads, prioridades e histórico por cima dessa mesma linha de atendimento, para ninguém depender de grupos soltos ou print.</p>
+              </div>
+            </details>
+          </article>
+          <article class="faq__item" data-reveal style="--reveal-delay: 50ms" role="listitem">
+            <details class="faq__details" name="zira-faq">
+              <summary class="faq__summary">
+                <span class="faq__summary-text" data-i18n="faq.q2">Funciona para obras já em andamento ou só para novos projetos?</span>
+                <span class="faq__icon" aria-hidden="true">+</span>
+              </summary>
+              <div class="faq__answer">
+                <p data-i18n="faq.a2">Os dois cenários: atendimento de novos contatos e acompanhamento de obras que já estão na rua. O foco é dar visibilidade de etapa, pendência e responsável, independentemente de o cliente ter entrado ontem ou há meses.</p>
+              </div>
+            </details>
+          </article>
+          <article class="faq__item" data-reveal style="--reveal-delay: 100ms" role="listitem">
+            <details class="faq__details" name="zira-faq">
+              <summary class="faq__summary">
+                <span class="faq__summary-text" data-i18n="faq.q3">Quanto tempo leva para o time incorporar na rotina?</span>
+                <span class="faq__icon" aria-hidden="true">+</span>
+              </summary>
+              <div class="faq__answer">
+                <p data-i18n="faq.a3">Escritórios enxutos costumem estabilizar fluxo e priorização em poucas semanas, com treinamento enxuto e ajuste de formulários aos seus tipos de obra. Grandes mudanças de processo combinamos em fases.</p>
+              </div>
+            </details>
+          </article>
+          <article class="faq__item" data-reveal style="--reveal-delay: 150ms" role="listitem">
+            <details class="faq__details" name="zira-faq">
+              <summary class="faq__summary">
+                <span class="faq__summary-text" data-i18n="faq.q4">Existe demonstração ou conversa técnica antes de contratar?</span>
+                <span class="faq__icon" aria-hidden="true">+</span>
+              </summary>
+              <div class="faq__answer">
+                <p data-i18n="faq.a4">Sim. Agendamos uma conversa para mapear volume de leads, tamanho da equipe e como vocês fecham obra hoje e mostramos o produto no contexto do seu escritório, sem slides genéricos.</p>
+              </div>
+            </details>
+          </article>
+          <article class="faq__item" data-reveal style="--reveal-delay: 200ms" role="listitem">
+            <details class="faq__details" name="zira-faq">
+              <summary class="faq__summary">
+                <span class="faq__summary-text" data-i18n="faq.q5">Onde ficam armazenados dados e conversas?</span>
+                <span class="faq__icon" aria-hidden="true">+</span>
+              </summary>
+              <div class="faq__answer">
+                <p data-i18n="faq.a5">Seguimos práticas de segurança e minimização de dado: apenas o necessário para operar atendimento e obra fica estruturado na plataforma. Detalhes de infraestrutura e contratos comentamos na proposta formal.</p>
+              </div>
+            </details>
+          </article>
+          <article class="faq__item" data-reveal style="--reveal-delay: 250ms" role="listitem">
+            <details class="faq__details" name="zira-faq">
+              <summary class="faq__summary">
+                <span class="faq__summary-text" data-i18n="faq.q6">Como é o suporte após a implantação?</span>
+                <span class="faq__icon" aria-hidden="true">+</span>
+              </summary>
+              <div class="faq__answer">
+                <p data-i18n="faq.a6">Há canal dedicado para dúvidas de produto e ajustes operacionais, com SLA combinado conforme o plano. Novas integrações ou customizações de fluxo tratamos como projeto à parte quando fizer sentido.</p>
+              </div>
+            </details>
+          </article>
+          <article class="faq__item" data-reveal style="--reveal-delay: 300ms" role="listitem">
+            <details class="faq__details" name="zira-faq">
+              <summary class="faq__summary">
+                <span class="faq__summary-text" data-i18n="faq.q7">O sistema se adapta ao fluxo do meu escritório ou exige um modelo pronto?</span>
+                <span class="faq__icon" aria-hidden="true">+</span>
+              </summary>
+              <div class="faq__answer">
+                <p data-i18n="faq.a7">O Zira é configurado à realidade do seu escritório: tipos de obra, etapas, responsáveis e prioridades alinhamos na implantação. Não existe um molde rígido único para todos: há um núcleo comum de atendimento e obra que mapeamos para como vocês já trabalham hoje.</p>
+              </div>
+            </details>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="adapt" aria-labelledby="adapt-title">
+      <div class="adapt__container">
+        <h2 class="section-title section-title--centered" id="adapt-title" data-i18n="adapt.title" data-reveal>
+          Cada escritório opera de um jeito. O sistema se adapta a isso.
+        </h2>
+        <div class="adapt__logo-wrap" data-reveal style="--reveal-delay: 200ms">
+          <img
+            src="assets/logo-branca.png"
+            data-i18n-attr="alt:adapt.logoAlt"
+            alt="ZIRA AI"
+            class="adapt__logo"
+            loading="lazy">
+        </div>
+      </div>
+    </section>
+
+    <section class="cta" id="cta" aria-labelledby="cta-title">
+      <div class="cta__container">
+        <div class="cta__inner" data-reveal>
+          <h2 class="cta__title" id="cta-title" data-i18n="cta.title">
+            Saia na frente na operação, sem abrir mão do que já funciona no escritório.
+          </h2>
+          <p class="cta__desc" data-i18n="cta.desc">
+            Na conversa, você vê onde ganha clareza e previsibilidade. Mostramos como integrar ao procedimento que vocês já usam e como adaptamos etapas, papéis e fluxo à rotina da equipe, para decidir com segurança.
+          </p>
+          <a href="#" class="btn btn--solid-dark" data-wa-link target="_blank" rel="noopener noreferrer" data-i18n="cta.btn">Agendar conversa</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" role="contentinfo">
+    <div class="footer__container">
+      <div class="footer__brand">
+        <img src="assets/logo-branca.png" alt="" class="footer__logo">
+        <span class="footer__name" data-i18n="footer.brand">M2 SCALE</span>
+      </div>
+      <nav class="footer__nav" data-i18n-attr="aria-label:footer.navAria" aria-label="Links do rodapé">
+        <a href="./#hero" data-i18n="footer.home">Início</a>
+        <a href="./#problem" data-i18n="footer.problem">Problema</a>
+        <a href="./#blog" data-i18n="footer.blog">Blog</a>
+        <a href="./#faq" data-i18n="footer.faq">FAQ</a>
+        <a href="./#cta" data-i18n="footer.contact">Contato</a>
+      </nav>
+    </div>
+  </footer>
+
+  <a
+    class="whatsapp-fab"
+    href="#"
+    data-wa-link
+    target="_blank"
+    rel="noopener noreferrer"
+    data-i18n-attr="aria-label:wa.aria"
+    aria-label="Atendimento ZIRA AI no WhatsApp">
+    <svg class="whatsapp-fab__icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.149-.197.297-.767.967-.94 1.164-.173.198-.347.223-.644.074-.297-.15-1.255-.463-2.39-1.475-.884-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.134.297-.347.446-.52.149-.173.198-.297.297-.495.099-.198.05-.371-.025-.52-.074-.148-.673-1.618-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.569-.01-.198 0-.52.074-.792.372-.271.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.226 1.359.195 1.871.118.571-.084 1.758-.719 2.006-1.413.248-.694.248-1.288.173-1.413-.074-.124-.272-.197-.569-.347m-5.419 7.403h-.004a9.87 9.87 0 01-5.03-1.378l-.361-.215-3.741.983.998-3.648-.236-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.887-9.884 2.641 0 5.119 1.03 6.986 2.897a9.825 9.825 0 012.892 7.003c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.688 5.949L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </svg>
+  </a>
+
+  <script id="zira-ld-json" type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://www.zira.ai/#organization",
+        "name": "M2 SCALE",
+        "url": "https://www.zira.ai/",
+        "logo": "https://www.zira.ai/assets/logo-preta.png"
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://www.zira.ai/#website",
+        "url": "https://www.zira.ai/",
+        "name": "M2 SCALE",
+        "inLanguage": "pt-BR",
+        "publisher": { "@id": "https://www.zira.ai/#organization" }
+      },
+      {
+        "@type": "SoftwareApplication",
+        "name": "ZIRA AI",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Web",
+        "description": "Plataforma que organiza atendimento, equipe, obras e prazos para escritórios de arquitetura e engenharia, com atendimento integrado via WhatsApp."
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "O Zira AI substitui o WhatsApp do escritório?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Não: o time continua no WhatsApp que o escritório já usa. O Zira organiza leads, prioridades e histórico por cima dessa mesma linha de atendimento, para ninguém depender de grupos soltos ou print."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Funciona para obras já em andamento ou só para novos projetos?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Os dois cenários: atendimento de novos contatos e acompanhamento de obras que já estão na rua. O foco é dar visibilidade de etapa, pendência e responsável, independentemente de o cliente ter entrado ontem ou há meses."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Quanto tempo leva para o time incorporar na rotina?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Escritórios enxutos costumem estabilizar fluxo e priorização em poucas semanas, com treinamento enxuto e ajuste de formulários aos seus tipos de obra. Grandes mudanças de processo combinamos em fases."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Existe demonstração ou conversa técnica antes de contratar?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sim. Agendamos uma conversa para mapear volume de leads, tamanho da equipe e como vocês fecham obra hoje e mostramos o produto no contexto do seu escritório, sem slides genéricos."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Onde ficam armazenados dados e conversas?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Seguimos práticas de segurança e minimização de dado: apenas o necessário para operar atendimento e obra fica estruturado na plataforma. Detalhes de infraestrutura e contratos comentamos na proposta formal."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Como é o suporte após a implantação?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Há canal dedicado para dúvidas de produto e ajustes operacionais, com SLA combinado conforme o plano. Novas integrações ou customizações de fluxo tratamos como projeto à parte quando fizer sentido."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "O sistema se adapta ao fluxo do meu escritório ou exige um modelo pronto?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "O Zira é configurado à realidade do seu escritório: tipos de obra, etapas, responsáveis e prioridades alinhamos na implantação. Não existe um molde rígido único para todos: há um núcleo comum de atendimento e obra que mapeamos para como vocês já trabalham hoje."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <script src="assets/i18n.js"></script>
+  <script>
+    (function () {
+      'use strict';
+
+      var nav = document.getElementById('nav');
+      var hero = document.getElementById('hero');
+      var toggle = document.getElementById('nav-toggle');
+      var list = document.getElementById('nav-list');
+
+      var heroProofEl = document.getElementById('hero-proof-text');
+      var heroCaretEl = document.getElementById('hero-proof-caret');
+      var heroTypingToken = 0;
+
+      function heroReducedMotion() {
+        return (
+          typeof window.matchMedia === 'function' &&
+          window.matchMedia('(prefers-reduced-motion: reduce)').matches
+        );
+      }
+
+      function runHeroTyping() {
+        if (!heroProofEl || !heroCaretEl || typeof ZiraI18n === 'undefined') {
+          return;
+        }
+        heroTypingToken += 1;
+        var token = heroTypingToken;
+        var lang = ZiraI18n.getLang();
+        var heroProofCopy =
+          (ZiraI18n.STRINGS[lang] && ZiraI18n.STRINGS[lang].hero && ZiraI18n.STRINGS[lang].hero.proof) || '';
+
+        heroProofEl.textContent = '';
+        heroCaretEl.classList.remove('hero__proof-caret--off');
+
+        if (!heroProofCopy) return;
+
+        if (heroReducedMotion()) {
+          heroProofEl.textContent = heroProofCopy;
+          heroCaretEl.classList.add('hero__proof-caret--off');
+          return;
+        }
+
+        var heroPos = 0;
+        function tick() {
+          if (token !== heroTypingToken) return;
+          heroProofEl.textContent = heroProofCopy.slice(0, heroPos);
+          if (heroPos < heroProofCopy.length) {
+            heroPos += 1;
+            window.setTimeout(tick, 36);
+          } else {
+            heroCaretEl.classList.add('hero__proof-caret--off');
+          }
+        }
+        window.setTimeout(tick, 980);
+      }
+
+      function bindUi() {
+        /* ----------------------------------------------------------
+           Reveal nav once user scrolls past the hero
+           ---------------------------------------------------------- */
+        function setNavVisible(visible) {
+          if (!nav) return;
+          nav.setAttribute('data-visible', String(visible));
+        }
+
+        if (nav && hero && 'IntersectionObserver' in window) {
+          var navObserver = new IntersectionObserver(
+            function (entries) {
+              entries.forEach(function (entry) {
+                setNavVisible(!entry.isIntersecting);
+              });
+            },
+            { threshold: 0, rootMargin: '-85% 0px 0px 0px' }
+          );
+          navObserver.observe(hero);
+        } else if (nav && hero) {
+          window.addEventListener(
+            'scroll',
+            function () {
+              var heroBottom = hero.offsetTop + hero.offsetHeight * 0.85;
+              setNavVisible(window.scrollY >= heroBottom);
+            },
+            { passive: true }
+          );
+        }
+
+        /* ----------------------------------------------------------
+           Scrollbar · polegar preto/branco por zona (Hero / até .adapt / CTA / footer)
+           ---------------------------------------------------------- */
+        var adaptScrollbar = document.querySelector('.adapt');
+        var ctaScrollbar = document.getElementById('cta');
+
+        function updateScrollbarTheme() {
+          var root = document.documentElement;
+          var yMid = window.scrollY + window.innerHeight * 0.5;
+          var zone = 'cta';
+
+          if (hero && yMid >= hero.offsetTop && yMid < hero.offsetTop + hero.offsetHeight) {
+            zone = 'hero';
+          } else if (
+            adaptScrollbar &&
+            yMid < adaptScrollbar.offsetTop + adaptScrollbar.offsetHeight
+          ) {
+            zone = 'mid-dark';
+          } else if (
+            ctaScrollbar &&
+            yMid >= ctaScrollbar.offsetTop &&
+            yMid < ctaScrollbar.offsetTop + ctaScrollbar.offsetHeight
+          ) {
+            zone = 'cta';
+          } else {
+            zone = 'footer';
+          }
+
+          root.setAttribute('data-scrollbar-zone', zone);
+        }
+
+        updateScrollbarTheme();
+        window.addEventListener('scroll', updateScrollbarTheme, { passive: true });
+        window.addEventListener('resize', updateScrollbarTheme);
+
+        /* ----------------------------------------------------------
+           Scroll-reveal
+           ---------------------------------------------------------- */
+        var revealTargets = document.querySelectorAll('[data-reveal]');
+
+        if ('IntersectionObserver' in window && revealTargets.length) {
+          var revealObserver = new IntersectionObserver(
+            function (entries) {
+              entries.forEach(function (entry) {
+                if (entry.isIntersecting) {
+                  entry.target.setAttribute('data-revealed', 'true');
+                  revealObserver.unobserve(entry.target);
+                }
+              });
+            },
+            { threshold: 0.12, rootMargin: '0px 0px -8% 0px' }
+          );
+
+          revealTargets.forEach(function (el) {
+            revealObserver.observe(el);
+          });
+        } else {
+          revealTargets.forEach(function (el) {
+            el.setAttribute('data-revealed', 'true');
+          });
+        }
+
+        /* ----------------------------------------------------------
+           Blog teaser: oculto até clicar «Blog» (ou entrar em #blog)
+           ---------------------------------------------------------- */
+        var blogSection = document.getElementById('blog');
+
+        function scrollToBlogPreferSmooth(sec) {
+          if (!sec) return;
+          var smooth =
+            !(
+              window.matchMedia &&
+              window.matchMedia('(prefers-reduced-motion: reduce)').matches
+            );
+          sec.scrollIntoView({
+            behavior: smooth ? 'smooth' : 'auto',
+            block: 'start',
+          });
+        }
+
+        function revealBlogSection(opts) {
+          opts = opts || {};
+          var sec = blogSection;
+          if (!sec || !sec.classList.contains('blog-teaser')) return;
+
+          var wasHidden = sec.classList.contains('blog-teaser--hidden');
+          if (wasHidden) {
+            sec.classList.remove('blog-teaser--hidden');
+            sec.setAttribute('aria-hidden', 'false');
+            sec.querySelectorAll('[data-reveal]').forEach(function (inner) {
+              inner.setAttribute('data-revealed', 'true');
+            });
+            window.requestAnimationFrame(updateScrollbarTheme);
+          }
+          if (opts.scroll !== false) {
+            window.requestAnimationFrame(function () {
+              scrollToBlogPreferSmooth(sec);
+            });
+          }
+        }
+
+        function isLandingBlogFragmentLink(el) {
+          if (!el || el.tagName !== 'A') return false;
+          var h = el.getAttribute('href') || '';
+          return h === '#blog' || h === './#blog';
+        }
+
+        document.addEventListener('click', function (e) {
+          var anchor = e.target && e.target.closest ? e.target.closest('a') : null;
+          if (!anchor || !isLandingBlogFragmentLink(anchor)) return;
+          /* Só quando estamos mesmo na página index (landing) */
+          if (anchor.getAttribute('target') === '_blank') return;
+          e.preventDefault();
+          revealBlogSection({ scroll: true });
+          var path = window.location.pathname || '';
+          try {
+            history.replaceState(
+              null,
+              '',
+              window.location.origin + path + window.location.search + '#blog'
+            );
+          } catch (err1) {
+            try {
+              history.replaceState(null, '', path + window.location.search + '#blog');
+            } catch (err2) {}
+          }
+        });
+
+        function revealBlogIfHash() {
+          if (window.location.hash !== '#blog' || !blogSection) return;
+          revealBlogSection({ scroll: true });
+        }
+
+        revealBlogIfHash();
+        window.addEventListener('hashchange', revealBlogIfHash);
+
+        function setMenuAria(open) {
+          if (!toggle || typeof ZiraI18n === 'undefined') return;
+          toggle.setAttribute(
+            'aria-label',
+            ZiraI18n.t(open ? 'nav.menuClose' : 'nav.menuOpen')
+          );
+        }
+
+        /* ----------------------------------------------------------
+           Mobile / tablet hamburger menu
+           ---------------------------------------------------------- */
+        function setMenu(open) {
+          if (!toggle || !list) return;
+          toggle.setAttribute('aria-expanded', String(open));
+          list.setAttribute('data-open', String(open));
+          setMenuAria(open);
+        }
+
+        if (toggle && list) {
+          setMenuAria(false);
+
+          toggle.addEventListener('click', function () {
+            var open = toggle.getAttribute('aria-expanded') === 'true';
+            setMenu(!open);
+          });
+
+          list.querySelectorAll('.nav__item').forEach(function (item) {
+            item.addEventListener('click', function () {
+              if (window.matchMedia('(max-width: 1024px)').matches) {
+                setMenu(false);
+              }
+            });
+          });
+
+          var resizeTimer = null;
+          window.addEventListener('resize', function () {
+            if (resizeTimer) {
+              window.clearTimeout(resizeTimer);
+            }
+            resizeTimer = window.setTimeout(function () {
+              if (window.matchMedia('(min-width: 1025px)').matches) {
+                setMenu(false);
+              }
+            }, 120);
+          });
+
+          document.addEventListener('keydown', function (event) {
+            if (event.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') {
+              setMenu(false);
+              toggle.focus();
+            }
+          });
+        }
+
+        document.addEventListener(
+          'zira:lang',
+          function () {
+            if (toggle && toggle.getAttribute('aria-expanded') === 'true') {
+              setMenuAria(true);
+            } else if (toggle) {
+              setMenuAria(false);
+            }
+          },
+          false
+        );
+      }
+
+      document.addEventListener('DOMContentLoaded', function () {
+        if (typeof ZiraI18n !== 'undefined') {
+          ZiraI18n.init();
+        }
+        bindUi();
+        runHeroTyping();
+        document.addEventListener('zira:lang', runHeroTyping);
+      });
+    })();
+  </script>
+</body>
+</html>
