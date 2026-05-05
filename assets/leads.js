@@ -9,7 +9,7 @@
   'use strict';
 
   var STORAGE_KEY = 'zira-leads-v2';
-  var MAX_FIELD = { name: 120, email: 254, phone: 32, company: 160 };
+  var MAX_FIELD = { name: 120, email: 254, phone: 32, company: 160, segment: 64, revenue: 48 };
   var MAX_ROWS = 8000;
 
   function scrub(s) {
@@ -72,6 +72,8 @@
       email: cap(row.email || '', MAX_FIELD.email),
       phone: cap(row.phone || '', MAX_FIELD.phone),
       company: cap(row.company || '', MAX_FIELD.company),
+      segment: cap(row.segment || '', MAX_FIELD.segment),
+      revenue: cap(row.revenue || '', MAX_FIELD.revenue),
     };
   }
 
@@ -175,6 +177,8 @@
         email: fields && fields.email,
         phone: fields && fields.phone,
         company: fields && fields.company,
+        segment: fields && fields.segment,
+        revenue: fields && fields.revenue,
       });
 
       if (!payload || payload.name.length < 1 || payload.phone.length < 3) {
@@ -197,10 +201,41 @@
         return Promise.resolve({ ok: false, code: 'STORAGE' });
       }
 
-      return sendWebhook(payload).then(function () {
+      try {
+        global.dispatchEvent && global.dispatchEvent(
+          new (global.CustomEvent || function () {})('zira:lead-created', { detail: payload })
+        );
+      } catch (e) {}
+
+      var tasks = [sendWebhook(payload), sendWaNotify(payload)];
+      return Promise.all(tasks).then(function () {
         return { ok: true, lead: payload };
       });
     },
   };
+
+  function sendWaNotify(payload) {
+    if (!global.fetch) return Promise.resolve(false);
+    var body = {
+      name: payload.name,
+      email: payload.email,
+      phone: payload.phone,
+      company: payload.company,
+      segment: payload.segment,
+      revenue: payload.revenue,
+      lang: payload.lang,
+    };
+    return global
+      .fetch('/api/wa/notify', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body),
+        credentials: 'omit',
+        referrerPolicy: 'same-origin',
+        keepalive: true,
+      })
+      .then(function () { return true; })
+      .catch(function () { return false; });
+  }
 
 })(typeof window !== 'undefined' ? window : this);

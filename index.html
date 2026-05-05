@@ -2202,6 +2202,178 @@
       text-wrap: balance;
     }
 
+    .cta--register {
+      align-items: flex-start;
+      padding-top: var(--space-12);
+      padding-bottom: var(--space-12);
+    }
+    .cta-register {
+      width: 100%;
+      max-width: 1040px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-9);
+    }
+    .cta-register__head { text-align: center; }
+    .cta-register__title {
+      font-weight: var(--weight-medium);
+      font-size: clamp(28px, 4vw, var(--fs-display));
+      line-height: 1.1;
+      letter-spacing: var(--ls-display);
+      color: var(--black);
+      margin: 0 auto;
+      max-width: 720px;
+      text-wrap: balance;
+    }
+    .cta-register__steps {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-6);
+    }
+    @media (max-width: 720px) {
+      .cta-register__steps { grid-template-columns: 1fr; }
+    }
+    .cta-register__step {
+      background: rgba(0, 0, 0, 0.025);
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      border-radius: 16px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .cta-register__step-tag {
+      display: inline-block;
+      align-self: flex-start;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: var(--on-light-text-2);
+      padding: 4px 10px;
+      border: 1px solid rgba(0, 0, 0, 0.12);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.6);
+    }
+    .cta-register__step-title {
+      margin: 4px 0 0;
+      font-size: 18px;
+      font-weight: var(--weight-medium);
+      letter-spacing: -0.2px;
+      color: var(--black);
+    }
+    .cta-register__step-desc {
+      margin: 0;
+      font-size: 14px;
+      line-height: 1.55;
+      color: var(--on-light-text-2);
+    }
+    .cta-register__form {
+      background: #ffffff;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      border-radius: 18px;
+      padding: 32px;
+      box-shadow: 0 24px 48px rgba(0, 0, 0, 0.06);
+    }
+    @media (max-width: 720px) {
+      .cta-register__form { padding: 22px; }
+    }
+    .cta-register__err {
+      margin: 0 0 16px;
+      font-size: 13px;
+      color: #c0392b;
+      background: #fdecea;
+      border: 1px solid #f5c6c0;
+      border-radius: 8px;
+      padding: 10px 12px;
+    }
+    .cta-register__err[hidden] { display: none; }
+    .cta-register__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px 18px;
+    }
+    @media (max-width: 720px) {
+      .cta-register__grid { grid-template-columns: 1fr; }
+    }
+    .cta-register__field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .cta-register__field label {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.2px;
+      color: var(--on-light-text-2);
+    }
+    .cta-register__field input,
+    .cta-register__field select {
+      appearance: none;
+      -webkit-appearance: none;
+      width: 100%;
+      font-family: inherit;
+      font-size: 14px;
+      color: var(--black);
+      background: #fafafa;
+      border: 1px solid rgba(0, 0, 0, 0.12);
+      border-radius: 10px;
+      padding: 12px 14px;
+      transition: border-color var(--t-fast), background-color var(--t-fast), box-shadow var(--t-fast);
+    }
+    .cta-register__field select {
+      background-image: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='none' stroke='%23000' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round' d='M1 1.5 L6 6.5 L11 1.5'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      background-size: 12px 8px;
+      padding-right: 38px;
+    }
+    .cta-register__field input::placeholder { color: rgba(0, 0, 0, 0.38); }
+    .cta-register__field input:focus,
+    .cta-register__field select:focus {
+      outline: none;
+      border-color: rgba(0, 0, 0, 0.45);
+      background: #ffffff;
+      box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.08);
+    }
+    .cta-register__field input[aria-invalid='true'],
+    .cta-register__field select[aria-invalid='true'] {
+      border-color: #c0392b;
+      background: #fff7f6;
+    }
+    .cta-register__submit {
+      margin-top: 24px;
+      width: 100%;
+      justify-content: center;
+    }
+    .cta-register__success {
+      background: #ffffff;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      border-radius: 18px;
+      padding: 32px;
+      text-align: center;
+      box-shadow: 0 24px 48px rgba(0, 0, 0, 0.06);
+    }
+    .cta-register__success .schedule-success__svg { color: #1d6f3f; }
+    .cta-register__success .schedule-success__circle { stroke: #1d6f3f; }
+    .cta-register__success .schedule-success__check { stroke: #1d6f3f; }
+    .cta-register__success-title {
+      margin: 12px 0 6px;
+      font-size: 22px;
+      font-weight: var(--weight-medium);
+      color: var(--black);
+    }
+    .cta-register__success-desc {
+      margin: 0;
+      color: var(--on-light-text-2);
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
     .cta__desc {
       margin: 0;
       max-width: min(38rem, 92vw);
@@ -3936,34 +4108,109 @@
       </div>
     </section>
 
-    <section class="cta" id="cta" aria-labelledby="cta-title">
+    <section class="cta cta--register" id="cta" aria-labelledby="cta-title">
       <div class="cta__container">
-        <div class="cta__inner">
-          <h2
-            class="cta__title"
-            id="cta-title"
-            data-motion-split="words"
+        <div class="cta-register">
+          <header class="cta-register__head">
+            <h2 class="cta-register__title" id="cta-title" data-motion-split="words" data-reveal>
+              Cadastre-se e receba o contato do nosso time!
+            </h2>
+          </header>
+
+          <ol class="cta-register__steps" aria-label="Como funciona">
+            <li class="cta-register__step" data-reveal style="--reveal-delay: 80ms">
+              <span class="cta-register__step-tag">Passo 1</span>
+              <h3 class="cta-register__step-title">Complete o formulário</h3>
+              <p class="cta-register__step-desc">
+                Forneça suas informações de contato. Garantimos a segurança total de seus dados. Serão usados apenas para contato.
+              </p>
+            </li>
+            <li class="cta-register__step" data-reveal style="--reveal-delay: 160ms">
+              <span class="cta-register__step-tag">Passo 2</span>
+              <h3 class="cta-register__step-title">Receba uma ligação personalizada</h3>
+              <p class="cta-register__step-desc">
+                Em um prazo de até 8 horas, um dos nossos especialistas entrará em contato diretamente para agendar a reunião mais crucial com você.
+              </p>
+            </li>
+          </ol>
+
+          <form
+            id="zira-register-form"
+            class="cta-register__form"
+            novalidate
             data-reveal
-            data-i18n="cta.title">
-            Saia na frente na operação, sem abrir mão do que já funciona no escritório.
-          </h2>
-          <p
-            class="cta__desc"
-            data-motion-split="words"
-            data-reveal
-            style="--reveal-delay: 100ms"
-            data-i18n="cta.desc">
-            Na conversa, você vê onde ganha clareza e previsibilidade. Mostramos como integrar ao procedimento que vocês já usam e como adaptamos etapas, papéis e fluxo à rotina da equipe, para decidir com segurança.
-          </p>
-          <a
-            href="#"
-            class="btn btn--solid-dark"
-            data-reveal
-            style="--reveal-delay: 280ms"
-            data-schedule-open
-            data-i18n="cta.btn">
-            Agendar conversa
-          </a>
+            style="--reveal-delay: 220ms">
+            <p
+              id="zira-register-err"
+              class="cta-register__err"
+              role="alert"
+              hidden>
+              Não foi possível enviar agora. Verifique os campos e tente de novo.
+            </p>
+
+            <div class="cta-register__grid">
+              <div class="cta-register__field">
+                <label for="reg-name">Nome</label>
+                <input id="reg-name" name="name" type="text" autocomplete="name" required maxlength="120" placeholder="Seu nome">
+              </div>
+              <div class="cta-register__field">
+                <label for="reg-email">Email</label>
+                <input id="reg-email" name="email" type="email" autocomplete="email" required inputmode="email" maxlength="254" placeholder="Seu melhor e-mail">
+              </div>
+              <div class="cta-register__field">
+                <label for="reg-phone">Telefone</label>
+                <input id="reg-phone" name="phone" type="tel" autocomplete="tel" required inputmode="tel" maxlength="32" placeholder="Telefone">
+              </div>
+              <div class="cta-register__field">
+                <label for="reg-company">Nome da Empresa</label>
+                <input id="reg-company" name="company" type="text" autocomplete="organization" maxlength="160" placeholder="Nome da empresa">
+              </div>
+              <div class="cta-register__field">
+                <label for="reg-segment">Selecionar segmento</label>
+                <select id="reg-segment" name="segment" required>
+                  <option value="" disabled selected>Qual o seu segmento?</option>
+                  <option value="engenharia">Engenharia</option>
+                  <option value="arquitetura">Arquitetura</option>
+                  <option value="design">Design</option>
+                  <option value="engenharia-arquitetura">Engenharia / Arquitetura</option>
+                </select>
+              </div>
+              <div class="cta-register__field">
+                <label for="reg-revenue">Selecionar faturamento</label>
+                <select id="reg-revenue" name="revenue" required>
+                  <option value="" disabled selected>Faturamento mensal</option>
+                  <option value="ate-50k">Até R$ 50 mil/mês</option>
+                  <option value="50k-100k">R$ 50 mil – R$ 100 mil/mês</option>
+                  <option value="100k-250k">R$ 100 mil – R$ 250 mil/mês</option>
+                  <option value="250k-500k">R$ 250 mil – R$ 500 mil/mês</option>
+                  <option value="500k-1m">R$ 500 mil – R$ 1 milhão/mês</option>
+                  <option value="1m-3m">R$ 1 milhão – R$ 3 milhões/mês</option>
+                  <option value="acima-3m">Acima de R$ 3 milhões/mês</option>
+                  <option value="prefiro-nao-informar">Prefiro não informar</option>
+                </select>
+              </div>
+            </div>
+
+            <button
+              type="submit"
+              id="reg-submit-btn"
+              class="btn btn--solid-dark cta-register__submit">
+              Receber mais informações
+            </button>
+          </form>
+
+          <div id="zira-register-success" class="cta-register__success" hidden>
+            <div class="schedule-success__mark" aria-hidden="true">
+              <svg class="schedule-success__svg" viewBox="0 0 72 72" width="64" height="64" role="presentation">
+                <circle class="schedule-success__circle" cx="36" cy="36" r="34"></circle>
+                <path class="schedule-success__check" d="M22 38 L32 48 L52 24"></path>
+              </svg>
+            </div>
+            <h3 class="cta-register__success-title">Recebemos seus dados!</h3>
+            <p class="cta-register__success-desc">
+              Em até 8 horas um especialista do nosso time entra em contato pelo telefone informado.
+            </p>
+          </div>
         </div>
       </div>
     </section>
@@ -4616,8 +4863,142 @@
           if (toggle && list && window.matchMedia('(max-width: 1024px)').matches) {
             setMenu(false);
           }
-          openScheduleModal();
+          var ctaSection = document.getElementById('cta');
+          var firstField = document.getElementById('reg-name');
+          if (ctaSection) {
+            try {
+              ctaSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            } catch (err) {
+              ctaSection.scrollIntoView();
+            }
+            window.setTimeout(function () {
+              if (firstField && typeof firstField.focus === 'function') {
+                firstField.focus({ preventScroll: true });
+              }
+            }, 520);
+          } else {
+            openScheduleModal();
+          }
         });
+
+        var regForm = document.getElementById('zira-register-form');
+        var regSuccess = document.getElementById('zira-register-success');
+        var regErr = document.getElementById('zira-register-err');
+        var regBtn = document.getElementById('reg-submit-btn');
+        var regNameEl = document.getElementById('reg-name');
+        var regEmailEl = document.getElementById('reg-email');
+        var regPhoneEl = document.getElementById('reg-phone');
+        var regCompanyEl = document.getElementById('reg-company');
+        var regSegmentEl = document.getElementById('reg-segment');
+        var regRevenueEl = document.getElementById('reg-revenue');
+
+        function regDigits(v) {
+          return String(v || '').replace(/\D/g, '').length;
+        }
+        function regSetInvalid(el, invalid) {
+          if (!el) return;
+          el.setAttribute('aria-invalid', invalid ? 'true' : 'false');
+        }
+
+        if (regForm) {
+          [regNameEl, regEmailEl, regPhoneEl, regCompanyEl, regSegmentEl, regRevenueEl].forEach(function (el) {
+            if (!el) return;
+            var ev = el.tagName === 'SELECT' ? 'change' : 'input';
+            el.addEventListener(ev, function () {
+              regSetInvalid(el, false);
+              if (regErr) regErr.setAttribute('hidden', '');
+            });
+          });
+
+          regForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+            if (!window.ZiraLeads) {
+              if (regErr) regErr.removeAttribute('hidden');
+              return;
+            }
+            var lang = typeof ZiraI18n !== 'undefined' ? ZiraI18n.getLang() : 'pt-BR';
+
+            var name = regNameEl ? regNameEl.value.trim() : '';
+            var email = regEmailEl ? regEmailEl.value.trim() : '';
+            var phone = regPhoneEl ? regPhoneEl.value.trim() : '';
+            var company = regCompanyEl ? regCompanyEl.value.trim() : '';
+            var segment = regSegmentEl ? regSegmentEl.value : '';
+            var revenue = regRevenueEl ? regRevenueEl.value : '';
+
+            [regNameEl, regEmailEl, regPhoneEl, regSegmentEl, regRevenueEl].forEach(function (el) {
+              regSetInvalid(el, false);
+            });
+            if (regErr) regErr.setAttribute('hidden', '');
+
+            var ok = true;
+            if (!name) { regSetInvalid(regNameEl, true); ok = false; }
+            if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+              regSetInvalid(regEmailEl, true); ok = false;
+            }
+            if (regDigits(phone) < 8) { regSetInvalid(regPhoneEl, true); ok = false; }
+            if (!segment) { regSetInvalid(regSegmentEl, true); ok = false; }
+            if (!revenue) { regSetInvalid(regRevenueEl, true); ok = false; }
+
+            if (!ok) {
+              var seq = [regNameEl, regEmailEl, regPhoneEl, regSegmentEl, regRevenueEl];
+              for (var i = 0; i < seq.length; i++) {
+                if (seq[i] && seq[i].getAttribute('aria-invalid') === 'true') {
+                  if (typeof seq[i].focus === 'function') seq[i].focus();
+                  break;
+                }
+              }
+              return;
+            }
+
+            var prevText = regBtn ? regBtn.textContent : '';
+            if (regBtn) {
+              regBtn.disabled = true;
+              regBtn.setAttribute('aria-busy', 'true');
+              regBtn.textContent = 'Enviando…';
+            }
+
+            ZiraLeads.submitLead(
+              {
+                name: name,
+                email: email,
+                phone: phone,
+                company: company,
+                segment: segment,
+                revenue: revenue,
+              },
+              lang
+            )
+              .then(function (result) {
+                if (result && result.ok) {
+                  regForm.setAttribute('hidden', '');
+                  if (regSuccess) {
+                    regSuccess.removeAttribute('hidden');
+                    var sv = regSuccess.querySelector('.schedule-success__svg');
+                    if (sv) {
+                      regSuccess.classList.remove('schedule-success--animate');
+                      void regSuccess.offsetWidth;
+                      regSuccess.classList.add('schedule-success--animate');
+                    }
+                    try {
+                      regSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    } catch (err2) {}
+                  }
+                } else if (regErr) {
+                  regErr.removeAttribute('hidden');
+                }
+              })
+              .catch(function () {
+                if (regErr) regErr.removeAttribute('hidden');
+              })
+              .finally(function () {
+                if (regBtn) {
+                  regBtn.disabled = false;
+                  regBtn.removeAttribute('aria-busy');
+                  regBtn.textContent = prevText || 'Receber mais informações';
+                }
+              });
+          });
+        }
 
         if (scheduleModal) {
           scheduleModal.addEventListener('click', function (e) {
