@@ -31,10 +31,10 @@
   <meta name="twitter:image:alt" content="Visão de operação integrada do ZIRA AI para arquitetura e engenharia.">
   <link rel="alternate" href="https://www.zira.ai/" hreflang="pt-BR">
   <link rel="alternate" href="https://www.zira.ai/" hreflang="x-default">
-  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" sizes="any">
-  <link rel="apple-touch-icon" href="assets/favicon.svg">
-  <link rel="icon" type="image/png" sizes="48x48" href="assets/logo-preta.png">
-  <link rel="icon" type="image/png" sizes="48x48" href="assets/logo-branca.png" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="assets/favicon.png" type="image/svg+xml" sizes="any">
+  <link rel="apple-touch-icon" href="assets/favicon.png">
+  <link rel="icon" type="image/png" sizes="48x48" href="assets/favicon.png">
+  <link rel="icon" type="image/png" sizes="48x48" href="assets/favicon.png" media="(prefers-color-scheme: dark)">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
@@ -921,6 +921,7 @@
       50%, 100% { opacity: 0.15; }
     }
 
+    
     /* ============================================================
        Motivos arquitetônicos (wireframe só em algumas seções)
        ============================================================ */
@@ -2104,12 +2105,9 @@
     }
 
     /* ============================================================
-       Adapt · única seção com textura section-total.jpg
+       Adapt + CTA · wrapper compartilhando background
        ============================================================ */
-    .adapt {
-      padding: var(--space-12) var(--space-6);
-      text-align: center;
-      background-color: transparent;
+    .adapt-cta-wrap {
       background-image:
         linear-gradient(
           rgba(0, 0, 0, 0.88),
@@ -2119,6 +2117,13 @@
       background-size: cover, cover;
       background-position: center, center;
       background-repeat: no-repeat;
+      background-attachment: fixed;
+    }
+
+    .adapt {
+      padding: var(--space-12) var(--space-6);
+      text-align: center;
+      background: transparent;
     }
 
     .adapt__container {
@@ -2150,7 +2155,7 @@
     }
 
     /* ============================================================
-       CTA · véu claro + final-section
+       CTA · herda background do wrapper pai
        ============================================================ */
     .cta {
       position: relative;
@@ -2161,16 +2166,7 @@
       align-items: center;
       justify-content: center;
       overflow: hidden;
-      background-color: var(--white-soft);
-      background-image:
-        linear-gradient(
-          rgba(255, 255, 255, 0.78),
-          rgba(255, 255, 255, 0.88)
-        ),
-        url('assets/final-section.png');
-      background-size: cover, cover;
-      background-position: center, center;
-      background-repeat: no-repeat;
+      background: transparent;
     }
 
     .cta__container {
@@ -2203,113 +2199,122 @@
     }
 
     .cta--register {
-      align-items: flex-start;
-      padding-top: var(--space-12);
-      padding-bottom: var(--space-12);
+      align-items: stretch;
+      padding-top: clamp(64px, 9vw, 128px);
+      padding-bottom: clamp(64px, 9vw, 128px);
+      background: transparent;
     }
+    .cta--register .cta__container { max-width: 1180px; }
     .cta-register {
       width: 100%;
-      max-width: 1040px;
-      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(40px, 6vw, 96px);
+      align-items: start;
+    }
+    @media (max-width: 900px) {
+      .cta-register { grid-template-columns: 1fr; gap: 48px; }
+    }
+    .cta-register__intro {
       display: flex;
       flex-direction: column;
-      gap: var(--space-9);
+      gap: 40px;
     }
-    .cta-register__head { text-align: center; }
     .cta-register__title {
+      margin: 0;
       font-weight: var(--weight-medium);
-      font-size: clamp(28px, 4vw, var(--fs-display));
-      line-height: 1.1;
-      letter-spacing: var(--ls-display);
-      color: var(--black);
-      margin: 0 auto;
-      max-width: 720px;
+      font-size: clamp(32px, 4.4vw, 56px);
+      line-height: 1.05;
+      letter-spacing: -1px;
+      color: #ffffff;
       text-wrap: balance;
     }
     .cta-register__steps {
       list-style: none;
       margin: 0;
       padding: 0;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: var(--space-6);
-    }
-    @media (max-width: 720px) {
-      .cta-register__steps { grid-template-columns: 1fr; }
-    }
-    .cta-register__step {
-      background: rgba(0, 0, 0, 0.025);
-      border: 1px solid rgba(0, 0, 0, 0.08);
-      border-radius: 16px;
-      padding: 24px;
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 32px;
+    }
+    .cta-register__step { margin: 0; }
+    .cta-register__step-rule {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 16px;
+    }
+    .cta-register__step-line {
+      width: 56px;
+      height: 1px;
+      background: rgba(255, 255, 255, 0.35);
     }
     .cta-register__step-tag {
-      display: inline-block;
-      align-self: flex-start;
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 1.2px;
-      text-transform: uppercase;
-      color: var(--on-light-text-2);
-      padding: 4px 10px;
-      border: 1px solid rgba(0, 0, 0, 0.12);
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.6);
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.2px;
+      color: #ffffff;
     }
+    .cta-register__step-row {
+      display: grid;
+      grid-template-columns: 56px 1fr;
+      gap: 20px;
+      align-items: start;
+    }
+    .cta-register__step-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 14px;
+      background: #ffffff;
+      color: #0a0a0c;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+    }
+    .cta-register__step-icon svg { width: 28px; height: 28px; display: block; }
+    .cta-register__step-body { display: flex; flex-direction: column; gap: 10px; }
     .cta-register__step-title {
-      margin: 4px 0 0;
-      font-size: 18px;
+      margin: 0;
+      font-size: 20px;
       font-weight: var(--weight-medium);
-      letter-spacing: -0.2px;
-      color: var(--black);
+      letter-spacing: -0.3px;
+      color: #ffffff;
+      line-height: 1.25;
     }
     .cta-register__step-desc {
       margin: 0;
       font-size: 14px;
       line-height: 1.55;
-      color: var(--on-light-text-2);
+      color: rgba(255, 255, 255, 0.6);
+      max-width: 38ch;
     }
     .cta-register__form {
-      background: #ffffff;
-      border: 1px solid rgba(0, 0, 0, 0.08);
-      border-radius: 18px;
-      padding: 32px;
-      box-shadow: 0 24px 48px rgba(0, 0, 0, 0.06);
-    }
-    @media (max-width: 720px) {
-      .cta-register__form { padding: 22px; }
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
     }
     .cta-register__err {
-      margin: 0 0 16px;
+      margin: 0;
       font-size: 13px;
-      color: #c0392b;
-      background: #fdecea;
-      border: 1px solid #f5c6c0;
-      border-radius: 8px;
+      color: #ff8a8a;
+      background: rgba(255, 138, 138, 0.08);
+      border: 1px solid rgba(255, 138, 138, 0.3);
+      border-radius: 10px;
       padding: 10px 12px;
     }
     .cta-register__err[hidden] { display: none; }
-    .cta-register__grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px 18px;
+    .cta-register__field { display: flex; flex-direction: column; }
+    .cta-register__field label.is-shown {
+      font-size: 13px;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.85);
+      margin-bottom: 8px;
     }
-    @media (max-width: 720px) {
-      .cta-register__grid { grid-template-columns: 1fr; }
-    }
-    .cta-register__field {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-    .cta-register__field label {
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 0.2px;
-      color: var(--on-light-text-2);
+    .cta-register__field label.is-sr {
+      position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+      overflow: hidden; clip: rect(0, 0, 0, 0); border: 0; white-space: nowrap;
     }
     .cta-register__field input,
     .cta-register__field select {
@@ -2317,59 +2322,109 @@
       -webkit-appearance: none;
       width: 100%;
       font-family: inherit;
-      font-size: 14px;
-      color: var(--black);
-      background: #fafafa;
-      border: 1px solid rgba(0, 0, 0, 0.12);
+      font-size: 15px;
+      color: #ffffff;
+      background: #1d1d22;
+      border: 1px solid rgba(255, 255, 255, 0.07);
       border-radius: 10px;
-      padding: 12px 14px;
+      padding: 16px 18px;
       transition: border-color var(--t-fast), background-color var(--t-fast), box-shadow var(--t-fast);
     }
     .cta-register__field select {
-      background-image: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='none' stroke='%23000' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round' d='M1 1.5 L6 6.5 L11 1.5'/%3E%3C/svg%3E");
+      background-image: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='none' stroke='%23ffffff' stroke-opacity='0.6' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round' d='M1 1.5 L6 6.5 L11 1.5'/%3E%3C/svg%3E");
       background-repeat: no-repeat;
-      background-position: right 14px center;
+      background-position: right 18px center;
       background-size: 12px 8px;
-      padding-right: 38px;
+      padding-right: 44px;
+      cursor: pointer;
     }
-    .cta-register__field input::placeholder { color: rgba(0, 0, 0, 0.38); }
+    .cta-register__field select option { background: #1d1d22; color: #ffffff; }
+    .cta-register__field input::placeholder { color: rgba(255, 255, 255, 0.45); }
+    .cta-register__field input:hover,
+    .cta-register__field select:hover { border-color: rgba(255, 255, 255, 0.14); }
     .cta-register__field input:focus,
     .cta-register__field select:focus {
       outline: none;
-      border-color: rgba(0, 0, 0, 0.45);
-      background: #ffffff;
-      box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.08);
+      border-color: rgba(255, 255, 255, 0.35);
+      background: #232329;
+      box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.06);
     }
     .cta-register__field input[aria-invalid='true'],
     .cta-register__field select[aria-invalid='true'] {
-      border-color: #c0392b;
-      background: #fff7f6;
+      border-color: #ff8a8a;
+      background: rgba(255, 138, 138, 0.06);
+    }
+    .cta-register__phone {
+      position: relative;
+      display: flex;
+      align-items: center;
+      background: #1d1d22;
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      border-radius: 10px;
+      transition: border-color var(--t-fast), background-color var(--t-fast), box-shadow var(--t-fast);
+    }
+    .cta-register__phone:hover { border-color: rgba(255, 255, 255, 0.14); }
+    .cta-register__phone:focus-within {
+      border-color: rgba(255, 255, 255, 0.35);
+      background: #232329;
+      box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.06);
+    }
+    .cta-register__phone-flag {
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0 12px 0 16px;
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 14px;
+    }
+    .cta-register__phone-flag::after {
+      content: '';
+      display: block;
+      width: 1px;
+      height: 22px;
+      background: rgba(255, 255, 255, 0.1);
+      margin-left: 4px;
+    }
+    .cta-register__phone-flag svg { width: 22px; height: 16px; border-radius: 2px; display: block; }
+    .cta-register__phone input {
+      flex: 1;
+      background: transparent;
+      border: 0;
+      padding: 16px 18px 16px 12px;
+    }
+    .cta-register__phone input:focus { outline: none; box-shadow: none; background: transparent; }
+    .cta-register__phone[data-invalid='true'] {
+      border-color: #ff8a8a;
+      background: rgba(255, 138, 138, 0.06);
     }
     .cta-register__submit {
-      margin-top: 24px;
+      margin-top: 12px;
       width: 100%;
       justify-content: center;
+      padding: 18px 28px;
+      font-size: 15px;
     }
     .cta-register__success {
-      background: #ffffff;
-      border: 1px solid rgba(0, 0, 0, 0.08);
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: 18px;
-      padding: 32px;
+      padding: 40px 32px;
       text-align: center;
-      box-shadow: 0 24px 48px rgba(0, 0, 0, 0.06);
+      color: #ffffff;
     }
-    .cta-register__success .schedule-success__svg { color: #1d6f3f; }
-    .cta-register__success .schedule-success__circle { stroke: #1d6f3f; }
-    .cta-register__success .schedule-success__check { stroke: #1d6f3f; }
+    .cta-register__success .schedule-success__svg { color: #7adfb1; }
+    .cta-register__success .schedule-success__circle { stroke: #7adfb1; }
+    .cta-register__success .schedule-success__check { stroke: #7adfb1; }
     .cta-register__success-title {
-      margin: 12px 0 6px;
+      margin: 16px 0 8px;
       font-size: 22px;
       font-weight: var(--weight-medium);
-      color: var(--black);
+      color: #ffffff;
     }
     .cta-register__success-desc {
       margin: 0;
-      color: var(--on-light-text-2);
+      color: rgba(255, 255, 255, 0.65);
       font-size: 14px;
       line-height: 1.55;
     }
@@ -2761,9 +2816,10 @@
     .faq {
       padding: var(--space-12) var(--space-6);
       background:
-        radial-gradient(ellipse 90% 60% at 50% -20%, rgba(255, 255, 255, 0.06), transparent),
-        transparent;
-      border-top: 1px solid var(--on-dark-2);
+        linear-gradient(180deg, rgba(255,255,255,0.88) 0%, rgba(255,255,255,0.94) 100%),
+        url('assets/final-section.png') center center / cover no-repeat;
+      border-top: 1px solid rgba(0,0,0,0.08);
+      position: relative;
     }
 
     .faq__container {
@@ -2771,11 +2827,22 @@
       margin: 0 auto;
     }
 
+    .faq .section-title {
+      color: #0a0a0a;
+      text-shadow: none;
+      animation: none;
+    }
+    .faq .section-title::before,
+    .faq .section-title::after {
+      display: none;
+    }
+
     .faq .section-caption {
       margin-bottom: var(--space-9);
       text-align: center;
       margin-left: auto;
       margin-right: auto;
+      color: rgba(0,0,0,0.55);
     }
 
     .faq__panel {
@@ -2784,15 +2851,17 @@
     }
 
     .faq__item {
-      border: 1px solid var(--on-dark-2);
+      border: 1px solid rgba(0,0,0,0.1);
       border-radius: var(--r-panel);
-      background: var(--on-dark-1);
+      background: rgba(255,255,255,0.6);
       overflow: hidden;
       transition: border-color var(--t-base), background var(--t-base), transform var(--t-base);
+      backdrop-filter: blur(8px);
     }
 
     .faq__item:hover {
-      border-color: var(--on-dark-3);
+      border-color: rgba(0,0,0,0.2);
+      background: rgba(255,255,255,0.8);
     }
 
     .faq__details {
@@ -2816,7 +2885,7 @@
       padding: var(--space-5) var(--space-6);
       font-size: var(--fs-body);
       font-weight: var(--weight-medium);
-      color: var(--white);
+      color: #0a0a0a;
       letter-spacing: var(--ls-h3);
       line-height: 1.35;
     }
@@ -2832,24 +2901,24 @@
       display: grid;
       place-items: center;
       border-radius: var(--r-sm);
-      background: var(--on-dark-2);
+      background: rgba(0,0,0,0.08);
       transition: transform var(--t-fast), background var(--t-fast);
-      color: var(--on-dark-text-3);
+      color: rgba(0,0,0,0.45);
     }
 
     .faq__details[open] .faq__icon {
       transform: rotate(45deg);
-      background: var(--white);
-      color: var(--black);
+      background: #0a0a0a;
+      color: #fff;
     }
 
     .faq__answer {
       padding: 0 var(--space-6) var(--space-6);
       font-size: var(--fs-small);
       line-height: 1.62;
-      color: var(--on-dark-text-2);
+      color: rgba(0,0,0,0.65);
       letter-spacing: var(--ls-body-lg);
-      border-top: 1px solid transparent;
+      border-top: 1px solid rgba(0,0,0,0.06);
       margin-top: calc(-1 * var(--space-1));
       animation: faqReveal var(--t-base) var(--ease-out);
     }
@@ -3470,15 +3539,7 @@
           data-motion-split="words">
           A plataforma que organiza atendimento, equipe, obras e prazos para escritórios de arquitetura e engenharia.
         </h1>
-        <p
-          class="hero__credibility"
-          data-motion-split="words"
-          data-reveal
-          style="--reveal-delay: 220ms"
-          data-i18n="hero.credibility">
-          Pensado para operação real, não só atendimento · Celular e desktop · Adaptável ao fluxo do escritório
-        </p>
-        <p class="sr-only" data-i18n="hero.sr">
+                        <p class="sr-only" data-i18n="hero.sr">
           ZIRA AI, plataforma para arquitetura e engenharia. Mais de 100 escritórios já evoluíram para uma operação mais clara, integrada e previsível.
         </p>
         <p class="hero__proof" aria-hidden="true">
@@ -4087,52 +4148,79 @@
       </div>
     </section>
 
-    <section class="adapt" aria-labelledby="adapt-title">
-      <div class="adapt__container">
-        <h2
-          class="section-title section-title--centered"
-          id="adapt-title"
-          data-motion-split="words"
-          data-i18n="adapt.title"
-          data-reveal>
-          Cada escritório opera de um jeito. O sistema se adapta a isso.
-        </h2>
-        <div class="adapt__logo-wrap" data-reveal data-reveal-variant="photo" style="--reveal-delay: 200ms">
-          <img
-            src="assets/logo-branca.png"
-            data-i18n-attr="alt:adapt.logoAlt"
-            alt="ZIRA AI"
-            class="adapt__logo"
-            loading="lazy">
+    <div class="adapt-cta-wrap">
+      <section class="adapt" aria-labelledby="adapt-title">
+        <div class="adapt__container">
+          <h2
+            class="section-title section-title--centered"
+            id="adapt-title"
+            data-motion-split="words"
+            data-i18n="adapt.title"
+            data-reveal>
+            Cada escritório opera de um jeito. O sistema se adapta a isso.
+          </h2>
+          <div class="adapt__logo-wrap" data-reveal data-reveal-variant="photo" style="--reveal-delay: 200ms">
+            <img
+              src="assets/logo-branca.png"
+              data-i18n-attr="alt:adapt.logoAlt"
+              alt="ZIRA AI"
+              class="adapt__logo"
+              loading="lazy">
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section class="cta cta--register" id="cta" aria-labelledby="cta-title">
+      <section class="cta cta--register" id="cta" aria-labelledby="cta-title">
       <div class="cta__container">
         <div class="cta-register">
-          <header class="cta-register__head">
+          <div class="cta-register__intro">
             <h2 class="cta-register__title" id="cta-title" data-motion-split="words" data-reveal>
               Cadastre-se e receba o contato do nosso time!
             </h2>
-          </header>
 
-          <ol class="cta-register__steps" aria-label="Como funciona">
-            <li class="cta-register__step" data-reveal style="--reveal-delay: 80ms">
-              <span class="cta-register__step-tag">Passo 1</span>
-              <h3 class="cta-register__step-title">Complete o formulário</h3>
-              <p class="cta-register__step-desc">
-                Forneça suas informações de contato. Garantimos a segurança total de seus dados. Serão usados apenas para contato.
-              </p>
-            </li>
-            <li class="cta-register__step" data-reveal style="--reveal-delay: 160ms">
-              <span class="cta-register__step-tag">Passo 2</span>
-              <h3 class="cta-register__step-title">Receba uma ligação personalizada</h3>
-              <p class="cta-register__step-desc">
-                Em um prazo de até 8 horas, um dos nossos especialistas entrará em contato diretamente para agendar a reunião mais crucial com você.
-              </p>
-            </li>
-          </ol>
+            <ol class="cta-register__steps" aria-label="Como funciona">
+              <li class="cta-register__step" data-reveal style="--reveal-delay: 80ms">
+                <div class="cta-register__step-rule" aria-hidden="true">
+                  <span class="cta-register__step-line"></span>
+                  <span class="cta-register__step-tag">Passo 1</span>
+                </div>
+                <div class="cta-register__step-row">
+                  <div class="cta-register__step-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                      <circle cx="12" cy="8" r="4"/>
+                      <path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/>
+                    </svg>
+                  </div>
+                  <div class="cta-register__step-body">
+                    <h3 class="cta-register__step-title">Complete o formulário</h3>
+                    <p class="cta-register__step-desc">
+                      Forneça suas informações de contato. Garantimos a segurança total de seus dados. Serão usados apenas para contato.
+                    </p>
+                  </div>
+                </div>
+              </li>
+
+              <li class="cta-register__step" data-reveal style="--reveal-delay: 160ms">
+                <div class="cta-register__step-rule" aria-hidden="true">
+                  <span class="cta-register__step-line"></span>
+                  <span class="cta-register__step-tag">Passo 2</span>
+                </div>
+                <div class="cta-register__step-row">
+                  <div class="cta-register__step-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.86 19.86 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.86 19.86 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                    </svg>
+                  </div>
+                  <div class="cta-register__step-body">
+                    <h3 class="cta-register__step-title">Receba uma ligação personalizada</h3>
+                    <p class="cta-register__step-desc">
+                      Em um prazo de até 8 horas, um dos nossos especialistas entrará em contato diretamente para agendar a reunião mais crucial com você.
+                    </p>
+                  </div>
+                </div>
+              </li>
+            </ol>
+          </div>
 
           <form
             id="zira-register-form"
@@ -4148,53 +4236,66 @@
               Não foi possível enviar agora. Verifique os campos e tente de novo.
             </p>
 
-            <div class="cta-register__grid">
-              <div class="cta-register__field">
-                <label for="reg-name">Nome</label>
-                <input id="reg-name" name="name" type="text" autocomplete="name" required maxlength="120" placeholder="Seu nome">
-              </div>
-              <div class="cta-register__field">
-                <label for="reg-email">Email</label>
-                <input id="reg-email" name="email" type="email" autocomplete="email" required inputmode="email" maxlength="254" placeholder="Seu melhor e-mail">
-              </div>
-              <div class="cta-register__field">
-                <label for="reg-phone">Telefone</label>
+            <div class="cta-register__field">
+              <label for="reg-name" class="is-sr">Nome</label>
+              <input id="reg-name" name="name" type="text" autocomplete="name" required maxlength="120" placeholder="Seu nome">
+            </div>
+
+            <div class="cta-register__field">
+              <label for="reg-email" class="is-sr">Email</label>
+              <input id="reg-email" name="email" type="email" autocomplete="email" required inputmode="email" maxlength="254" placeholder="Seu melhor e-mail">
+            </div>
+
+            <div class="cta-register__field">
+              <label for="reg-phone" class="is-sr">Telefone</label>
+              <div class="cta-register__phone" id="reg-phone-wrap">
+                <span class="cta-register__phone-flag" aria-hidden="true">
+                  <svg viewBox="0 0 28 20" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="28" height="20" rx="2" fill="#009C3B"/>
+                    <path d="M14 3 L25 10 L14 17 L3 10 Z" fill="#FFDF00"/>
+                    <circle cx="14" cy="10" r="4" fill="#002776"/>
+                    <path d="M10.5 10.2 q3.5 -1.3 7 0" stroke="#fff" stroke-width="0.7" fill="none"/>
+                  </svg>
+                </span>
                 <input id="reg-phone" name="phone" type="tel" autocomplete="tel" required inputmode="tel" maxlength="32" placeholder="Telefone">
               </div>
-              <div class="cta-register__field">
-                <label for="reg-company">Nome da Empresa</label>
-                <input id="reg-company" name="company" type="text" autocomplete="organization" maxlength="160" placeholder="Nome da empresa">
-              </div>
-              <div class="cta-register__field">
-                <label for="reg-segment">Selecionar segmento</label>
-                <select id="reg-segment" name="segment" required>
-                  <option value="" disabled selected>Qual o seu segmento?</option>
-                  <option value="engenharia">Engenharia</option>
-                  <option value="arquitetura">Arquitetura</option>
-                  <option value="design">Design</option>
-                  <option value="engenharia-arquitetura">Engenharia / Arquitetura</option>
-                </select>
-              </div>
-              <div class="cta-register__field">
-                <label for="reg-revenue">Selecionar faturamento</label>
-                <select id="reg-revenue" name="revenue" required>
-                  <option value="" disabled selected>Faturamento mensal</option>
-                  <option value="ate-50k">Até R$ 50 mil/mês</option>
-                  <option value="50k-100k">R$ 50 mil – R$ 100 mil/mês</option>
-                  <option value="100k-250k">R$ 100 mil – R$ 250 mil/mês</option>
-                  <option value="250k-500k">R$ 250 mil – R$ 500 mil/mês</option>
-                  <option value="500k-1m">R$ 500 mil – R$ 1 milhão/mês</option>
-                  <option value="1m-3m">R$ 1 milhão – R$ 3 milhões/mês</option>
-                  <option value="acima-3m">Acima de R$ 3 milhões/mês</option>
-                  <option value="prefiro-nao-informar">Prefiro não informar</option>
-                </select>
-              </div>
+            </div>
+
+            <div class="cta-register__field">
+              <label for="reg-company" class="is-sr">Nome da Empresa</label>
+              <input id="reg-company" name="company" type="text" autocomplete="organization" maxlength="160" placeholder="Nome da empresa">
+            </div>
+
+            <div class="cta-register__field">
+              <label for="reg-segment" class="is-shown">Selecionar segmento</label>
+              <select id="reg-segment" name="segment" required>
+                <option value="" disabled selected>Qual o seu segmento?</option>
+                <option value="engenharia">Engenharia</option>
+                <option value="arquitetura">Arquitetura</option>
+                <option value="design">Design</option>
+                <option value="engenharia-arquitetura">Engenharia / Arquitetura</option>
+              </select>
+            </div>
+
+            <div class="cta-register__field">
+              <label for="reg-revenue" class="is-shown">Selecionar faturamento</label>
+              <select id="reg-revenue" name="revenue" required>
+                <option value="" disabled selected>Faturamento mensal</option>
+                <option value="ate-50k">Até R$ 50 mil/mês</option>
+                <option value="50k-100k">R$ 50 mil – R$ 100 mil/mês</option>
+                <option value="100k-250k">R$ 100 mil – R$ 250 mil/mês</option>
+                <option value="250k-500k">R$ 250 mil – R$ 500 mil/mês</option>
+                <option value="500k-1m">R$ 500 mil – R$ 1 milhão/mês</option>
+                <option value="1m-3m">R$ 1 milhão – R$ 3 milhões/mês</option>
+                <option value="acima-3m">Acima de R$ 3 milhões/mês</option>
+                <option value="prefiro-nao-informar">Prefiro não informar</option>
+              </select>
             </div>
 
             <button
               type="submit"
               id="reg-submit-btn"
-              class="btn btn--solid-dark cta-register__submit">
+              class="btn btn--solid-light cta-register__submit">
               Receber mais informações
             </button>
           </form>
@@ -4214,11 +4315,11 @@
         </div>
       </div>
     </section>
+    </div>
   </main>
 
   <footer class="footer" role="contentinfo">
     <div class="footer__container">
-      <div class="footer__top">
         <div class="footer__brand-wrap">
           <div class="footer__brand">
             <img src="assets/logo-branca.png" alt="" class="footer__logo">
@@ -4351,11 +4452,11 @@
             <path class="schedule-success__check" d="M22 38 L32 48 L52 24"></path>
           </svg>
         </div>
-        <h2 id="schedule-success-title" class="schedule-modal__title schedule-success__title" data-i18n="schedule.successTitle">
-          Recebemos tudo!
+        <h2 id="schedule-success-title" class="schedule-modal__title schedule-success__title">
+          Recebemos seus dados!
         </h2>
-        <p class="schedule-modal__subtitle" data-i18n="schedule.successSubtitle">
-          Em breve entraremos em contato.
+        <p class="schedule-modal__subtitle">
+          Em até 8 horas um especialista do nosso time entra em contato pelo telefone informado.
         </p>
         <button type="button" class="btn btn--solid-dark" data-schedule-close data-i18n="schedule.btnDone">
           Fechar
@@ -4514,6 +4615,7 @@
         window.setTimeout(tick, 980);
       }
 
+      
       function bindUi() {
         if (typeof ZiraMotion !== 'undefined') {
           ZiraMotion.enhance(document.body);
@@ -4898,6 +5000,13 @@
         function regSetInvalid(el, invalid) {
           if (!el) return;
           el.setAttribute('aria-invalid', invalid ? 'true' : 'false');
+          if (el.id === 'reg-phone') {
+            var wrap = document.getElementById('reg-phone-wrap');
+            if (wrap) {
+              if (invalid) wrap.setAttribute('data-invalid', 'true');
+              else wrap.removeAttribute('data-invalid');
+            }
+          }
         }
 
         if (regForm) {

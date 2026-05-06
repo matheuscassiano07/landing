@@ -104,7 +104,7 @@
     if (!needle.length) return all.slice();
     return all.filter(function (r) {
       return (
-        [r.name, r.email, r.phone, r.company, r.lang, r.createdAt]
+        [r.name, r.email, r.phone, r.company, r.segment, r.revenue, r.lang, r.createdAt]
           .map(function (k) {
             return String(k || '');
           })
@@ -180,7 +180,7 @@
       var lg =
         r.lang === 'en' ? 'EN' : r.lang === 'pt-BR' ? 'PT-BR' : String(r.lang || '');
       var tr = document.createElement('tr');
-      [fmt(r.createdAt, lng), r.name || '', r.email || '', r.phone || '', r.company || '', lg].forEach(
+      [fmt(r.createdAt, lng), r.name || '', r.email || '', r.phone || '', r.company || '', r.segment || '', r.revenue || '', lg].forEach(
         function (txt) {
           var td = document.createElement('td');
           td.textContent = txt;
@@ -218,6 +218,18 @@
           document.createTextNode(L.co + ': ' + String(r.company).trim())
         );
       }
+      if (r.segment && String(r.segment).trim()) {
+        kp.appendChild(document.createElement('br'));
+        kp.appendChild(
+          document.createTextNode('Segmento: ' + String(r.segment).trim())
+        );
+      }
+      if (r.revenue && String(r.revenue).trim()) {
+        kp.appendChild(document.createElement('br'));
+        kp.appendChild(
+          document.createTextNode('Faturamento: ' + String(r.revenue).trim())
+        );
+      }
       card.appendChild(kp);
       document.getElementById('cds').appendChild(card);
     });
@@ -243,7 +255,7 @@
         window.ZiraLeads.getAllLeadsSorted(),
         document.getElementById('q').value
       );
-      var head = ['createdAt', 'lang', 'name', 'email', 'phone', 'company'];
+      var head = ['createdAt', 'lang', 'name', 'email', 'phone', 'company', 'segment', 'revenue'];
       var lines = [head.join(',')];
       rows.forEach(function (r) {
         lines.push(
