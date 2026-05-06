@@ -2,6 +2,7 @@
 
 const lib = require('../_lib/evolution.js');
 const rl = require('../_lib/rateLimit.js');
+const auth = require('../_lib/auth.js');
 
 module.exports = async function handler(req, res) {
   res.setHeader('Cache-Control', 'no-store, max-age=0');
@@ -10,11 +11,11 @@ module.exports = async function handler(req, res) {
     res.status(405).json({ ok: false, error: 'method-not-allowed' });
     return;
   }
-  if (!lib.sameOrigin(req)) {
+  if (!lib.sameOrigin(req, { requireSource: true })) {
     res.status(403).json({ ok: false, error: 'origin' });
     return;
   }
-  if (!lib.adminAuthorized(req)) {
+  if (!auth.requireAuth(req)) {
     res.status(401).json({ ok: false, error: 'unauthorized' });
     return;
   }

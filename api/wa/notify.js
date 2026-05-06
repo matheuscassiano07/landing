@@ -74,7 +74,7 @@ module.exports = async function handler(req, res) {
     res.status(405).json({ ok: false, error: 'method-not-allowed' });
     return;
   }
-  if (!lib.sameOrigin(req)) {
+  if (!lib.sameOrigin(req, { requireSource: true })) {
     res.status(403).json({ ok: false, error: 'origin' });
     return;
   }

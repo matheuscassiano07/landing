@@ -70,12 +70,14 @@ function normalizeNumber(input, defaultDDI) {
   return '';
 }
 
-function sameOrigin(req) {
+function sameOrigin(req, opts) {
+  opts = opts || {};
+  const requireSource = !!opts.requireSource;
   const host = String(req.headers['x-forwarded-host'] || req.headers.host || '').toLowerCase();
   if (!host) return false;
   const origin = String(req.headers.origin || '').toLowerCase();
   const referer = String(req.headers.referer || '').toLowerCase();
-  if (!origin && !referer) return true;
+  if (!origin && !referer) return !requireSource;
   try {
     if (origin) {
       const u = new URL(origin);
